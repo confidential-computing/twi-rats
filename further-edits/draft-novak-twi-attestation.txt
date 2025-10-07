@@ -2,10 +2,13 @@
 
 
 
-Network Working Group                                        H. Birkholz
-Internet-Draft                                          Franhaufer Inst.
-Intended status: Informational                            7 October 2025
-Expires: 10 April 2026
+Network Working Group                                           M. Novak
+Internet-Draft                                       JP Morgan Chase LLC
+Intended status: Informational                              Y. Deshpande
+Expires: 10 April 2026                                               Arm
+                                                             H. Birkholz
+                                                        Franhaufer Inst.
+                                                          7 October 2025
 
 
           Remote Attestation for Trustworthy Workload Identity
@@ -70,7 +73,7 @@ Table of Contents
    4.  IANA Considerations
    5.  Normative References
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -121,7 +124,17 @@ Acknowledgments
 
    TODO acknowledge.
 
-Author's Address
+Authors' Addresses
+
+   Mark Novak
+   JP Morgan Chase LLC
+   Email: mark.novak@outlook.com
+
+
+   Yogesh Deshpande
+   Arm
+   Email: Yogesh.Deshpande@arm.com
+
 
    Henk Birkholz
    Franhaufer Inst.
