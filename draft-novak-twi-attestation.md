@@ -43,18 +43,20 @@ pi:
 
 
 author:
- -
-    fullname: Mark Novak
-    organization: JP Morgan Chase LLC
-    email: mark.novak@outlook.com
+- ins: M. Novak
+  name: Mark Novak
+  org:  JP Morgan Chase LLC
+  email: mark.novak@outlook.com
 
-    fullname: Yogesh Deshpande
-    organization: Arm
-    email: Yogesh.Deshpande@arm.com
+- ins: Y. Deshpande
+  name: Yogesh Deshpande
+  org:  Arm
+  email: Yogesh.Deshpande@arm.com
 
-    fullname: Henk Birkholz
-    organization: Franhaufer Inst.
-    email: Henk.Birkholz@ietf.contact
+- ins:
+  name: Henk Birkholz
+  org:  Franhaufer Inst.
+  email: Henk.Birkholz@ietf.contact
 
 normative:
 
