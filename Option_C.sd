@@ -6,9 +6,9 @@ sequenceDiagram
     W->>+W: Generate Key
     W->>+W: Create Credential Request<br/>using Key
     W->>+W: Create Quote<br/> using Credential Request
-    W->>+IDP: Request Credential
+    W->>+IDP: Request Credential<br/>with Quote as Evidence
     IDP->>+V: Forward Quote<br/>from Credential Request
     V->>+IDP: Attestation<br/>Results
     IDP->>+IDP: Convert Attestation Results<br/>to Credential Attributes
+    IDP->>+IDP: Create and Sign Credential<br/>from Credential Request<br/>and Credential Attributes
     IDP->>+W: Credential
-    
