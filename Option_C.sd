@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant W as Workload
+    participant IDP as Identity Provider
+    participant V as Verifier
+    note over W, V: Credential Acquisition Phase
+    W->>+W: Generate Key
+    W->>+W: Create Credential Request<br/>using Key
+    W->>+W: Create Quote<br/> using Credential Request
+    W->>+IDP: Request Credential
+    IDP->>+V: Forward Quote<br/>from Credential Request
+    V->>+IDP: Attestation<br/>Results
+    IDP->>+IDP: Convert Attestation Results<br/>to Credential Attributes
+    IDP->>+W: Credential
+    
