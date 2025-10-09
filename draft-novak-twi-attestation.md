@@ -160,7 +160,7 @@ TODO: Insert the "Variant1/Variant2" ASCII art generated from our existing docum
 Several distinct options are possible, outlined below. In all cases, the Credential is generated and signed by the Identity Provider (IDP), but may get to the Workload in one of several ways, described later. The main pivots are:
 
 1. Where the Credential Key is generated:
-    1. By the Workload itself or
+    1. By the Workload itself
     2. By an Identity Provider as part of Credential generation
 2. Where the Workload gets its Credential from:
     1. The Verifier
@@ -176,6 +176,29 @@ Several distinct options are possible, outlined below. In all cases, the Credent
 | 2.ii | Identity Provider | Identity Provider | The Workload generates an asymmetric encryption key and sends the public portion to the Verifier as part of Evidence. The Verifier includes the public portion of the Encryption Key in the Attestation Results. The Workload sends the Attestation Results to the IDP which returns to it the Credential and the Credential Key encrypted to the public encryption key in the Attestation Results. |
 | 2.iii | Identity Provider | Control Plane | The Credential is given to the Workload by the Control Plane. The Workload obtains the Credential Key from the Identity Provider or a Key store using the same mechanism as in the previous row. |
 
+These options are illustrated below with interaction diagrams.
+
+TODO: Generate ASCII art around each of the  sequence diagrams.
+
+## Option 1.i
+
+File: Option_1i.sd
+
+## Option 1.ii
+
+File: Option_1ii.sd
+
+## Option 2.i
+
+File: Option_2i.sd
+
+## Option 2.ii
+
+File: Option_2ii.sd
+
+## Option 2.iii
+
+File: Option_2iii.sd
 
 # Security Considerations
 
