@@ -179,7 +179,7 @@ Further, under pivot 2.i, the order of interactions involved in Credential gener
 1. A Workload invokes the Verifier which collaborates with the Credential Authority to compute and return Credentials, returning these Credentials inside the Attestation Results, or
 2. A Workload invokes the Verifier, obtains from it the Attestation Results, and forwards these Attestation Results to the Credential Authority inside a Credential Request to get the Credential.
 
-This set of variants results in several distinct credential acquisition mechanisms (CAMs):
+This set of variants results in several distinct credential acquisition mechanisms (CAMs), some of which are listed in the table below:
 
 | CAM | Key Source | Credential Source | Description |
 | :---: | :--- | :--- | :--- |
@@ -187,37 +187,35 @@ This set of variants results in several distinct credential acquisition mechanis
 | B | Workload | Credential Authority | A Proof-of-Possession of the Credential Key is included in Evidence submitted by the Workload to the Verifier, and also in the Attestation Results returned by the Verifier. The Workload sends the Attestation Results obtained from the Verifier to the Credential Authority, which computes and returns to the Workload Instance a Credential based on these Attestation Results. |
 | C | Workload | Credential Authority | A Proof-of-Possession of the Credential Key is included in a Credential Request submitted by the Workload to the Credential Authority alongside Evidence destined for the Verifier. Credential Authority handles the Credential Request by contacting the Verifier on the Workload's behalf, supplying the Evidence from the Credential Request. The Verifier responds with Attestation Results which the Credential Authority uses to compute a Credential, which it then returns to the Workload. |
 | N/A | Workload | Control Plane | This is not a viable option since a Workload that generates its own Credential Key MUST contact either the Verifier or the Credential Authority to build a Credential for this Key. |
-| D | Key Store | Verifier | The Workload generates an asymmetric encryption key and sends its public portion to the Verifier as part of Evidence. The Verifier obtains the Credential and the Credential Key from the IDP or a Key Store and returns these to the Workload, encrypted with the public encryption key. |
-| E | Key Store | Credential Authority | The Workload generates an asymmetric encryption key and sends the public portion to the Verifier as part of Evidence. The Verifier includes the public portion of the Encryption Key in the Attestation Results. The Workload sends the Attestation Results to the IDP which returns to it the Credential and the Credential Key encrypted to the public encryption key in the Attestation Results. |
-| F | Key Store | Control Plane | The Credential is given to the Workload by the Control Plane. The Workload obtains the Credential Key from the Identity Provider or a Key store using the same mechanism as in the previous row. |
+| D | Key Store | Control Plane | The Credential is generated and handed to the Workload by the Workload Owner. The Workload Owner stores the Credential Key in the Key Store. The Workload obtains the Credential Key from the Key Store after completing Remote Attestation. |
 
 These options are illustrated below with sequence diagrams.
 
 TODO: Generate ASCII art around each of the  sequence diagrams.
 
-## Option A
+## Mechanism A
 
 File: CAM_A.sd
 
-## Option B
+## Mechanism B
 
 File: CAM_B.sd
 
-## Option C
+## Mechanism C
 
 File: CAM_C.sd
 
-## Option D
+## Mechanisms D
+
+Mechanisms D consists of a "Credential Provisioning" phase followed by the "Credential Acquisition" phase.
+
+### Credential Provisioning Phase
+
+File: CAM_D_Prov.sd
+
+### Credential Acquisition Phase
 
 File: CAM_D.sd
-
-## Option E
-
-File: CAM_E.sd
-
-## Option F
-
-File: CAM_F.sd
 
 # Security Considerations
 
