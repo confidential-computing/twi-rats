@@ -1,10 +1,11 @@
 ---
 title: Remote Attestation for Trustworthy Workload Identity
-abbrev: "RATS for TWI"
+abbrev: RATS for TWI
+docname: draft-novak-twi-attestation-latest
 category: info
 ipr: trust200902
-# area: Security
-# workgroup: RATS
+area: Security
+workgroup: RATS
 
 stand_alone: yes
 
@@ -91,6 +92,7 @@ informative:
 ...
 
 --- abstract
+
 Trustworthy Workloads are workloads that operate in environments that provide isolation of data in use.
 This document describes how Trustworthy workloads can acquire credentials containing stable identifiers, upon proving the trust in the environments in which they operate via Remote Attestation.
 
@@ -101,7 +103,6 @@ This document describes how Trustworthy workloads can acquire credentials contai
 As organisations move more workloads into untrusted or shared environments, protection of data in use becomes increasingly important. One way of isolating data in use is Confidential Computing: executing a workload (for example an AI model, database process or financial service) inside a hardware-based, remotely attested Trusted Execution Environment (TEE). Workloads operating in such environments need stable and trustworthy identifiers to communicate over network to the external world. Often such identifiers are provided to them via Credential issuers upon ascertaining trust in the environments in which these workloads operate. The standard practice to establish required trust in the operating environment is through the means of Remote Attestation.
 
 This draft specifies how a Workload operating in Confidential Computing Environment can obtain trustworthy, stable, and workload-bound credentials using Remote Attestation.
-
 
 # Conventions and Definitions
 {: #definitions }
@@ -140,70 +141,81 @@ Bound Workload Credential:
 
 When dealing with a client Workload that is running inside a remotely attested Trusted Execution Environment, the goal of having a Relying Party having a stable authorization policy and utilizing industry-standard mechanisms for authorization can be achieved by issuing Credentials in a relying party-friendly format, such as those specified by {{-WIMSE}}. Such credentials may take the form of x.509 certificates or Workload Identity Tokens (WITs) defined in Section 3.1 of {{-WIMSES2S}}. A Workload can start using the Credential for authentication and authorization once it has two items in its possession: the public portion – the Workload Credential itself, and the secret Credential Key necessary to utilize this Credential.
 
-A stable authorization policy can only be achieved if Workloads can have Stable identities. The decision about what constitutes a trustworthy Workload and a trustworthy configuration is a composition verification, with multiple entities providing Reference Values for the components they vouch for. For the issued Workload Identity to be Stable in addition to trustworthy, a mapping must be performed between these Reference Values and the issued Identities. In a typical enterprise, stable authorization policies are expressed in terms of business- rather than technology-oriented concepts, e.g., "Payroll Application", "Located in Germany", "Cleared for handling Personally Identifiable Information", etc. This contrasts with what RATS has historically thought of as Attestation Results, which may relate to hardware manufacturer, firmware and software versions, etc.
+A stable authorization policy can only be achieved if Workloads can have Stable identities. The decision about what constitutes a trustworthy Workload and a trustworthy configuration is a composition verification, with multiple entities providing Reference Values for the components they vouch for. For the issued Workload Identity to be Stable in addition to Trustworthy, a mapping must be performed between these Reference Values and the issued Identities. In a typical enterprise, stable authorization policies are expressed in terms of business- rather than technology-oriented concepts, e.g., "Payroll Application", "Located in Germany", "Cleared for handling Personally Identifiable Information", etc. This contrasts with what RATS has historically thought of as Attestation Results, which may relate to hardware manufacturer, firmware and software versions, etc.
 
-In some implementations, a Credential is precomputed, and the Credential Key is obtained from a key store following successful Remote Attestation. In other implementations, the Workload generates its own Credential Key and uses remote attestation to certify it.
+In some implementations, a Credential is precomputed, and the Credential Key is obtained from a key store following successful Remote Attestation. In other implementations, the Workload generates its own Credential Key and uses Remote Attestation to certify it.
 
 Within the RATS Architecture, either of these options can be accomplished in one of two ways:
 
 1. The Attestation Results convey to the attesting Workload everything it needs.
 2. The Attestation Results are encoded in a proprietary, Verifier-specific format, and can be used by the attesting Workload to obtain an industry-standard Bound Credential and/or an associated Credential Key without further involving the Verifier.
 
-In either case, the detailed information about the workload’s composition conveyed to the Verifier using RATS “Evidence” is mapped to stable technology-agnostic business-oriented claims about the workload.
+In either case, the detailed information about the workload’s composition conveyed to the Verifier using RATS “Evidence” is mapped to stable technology-agnostic business-oriented claims about the Workload.
 
-Variant 2 carries with it an extra roundtrip (the first roundtrip being the workload exchanging “evidence” for “attestation results”). It is the only option available to the attestor for existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.
-
-Variant 1 does not carry with it the extra round trip and thus does not carry the additional performance costs or reliability risks.
+These two options can be visualised as:
 
 TODO: Insert the "Variant1/Variant2" ASCII art generated from our existing documents.
 
-Several distinct options are possible, outlined below. In all cases, the Credential is generated and signed by the Identity Provider (IDP), but may get to the Workload in one of several ways, described later. The main pivots are:
+Variant 2 carries with it an extra roundtrip (the first roundtrip being the workload exchanging “evidence” for “attestation results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.
 
-1. Where the Credential Key is generated:
-    1. By the Workload itself
-    2. By an Identity Provider
-2. Where the Workload gets its Credential from:
+Variant 1 does not carry with it the extra roundtrip and thus does not carry the additional performance costs or reliability risks.
+
+Several distinct options are possible. In all cases, the Credential is generated and signed by the Identity Provider (IDP). The difference is in how the Workload obtains these Credentials. The main pivots are:
+
+1. Where the Credential Key is generated (Key Source):
+    1. Inside the Workload Instance
+    2. Inside a secure Key Store such as a Hardware Security Module (HSM), by the Workload Owner
+2. Where the Workload gets its Credential from (Credential Source):
     1. The Verifier
-    2. The IDP
+    2. The Credential Authority (e.g., a Certificate Authority, a Security Token Service, or similar)
     3. The Control Plane
 
-| No. | Credential Key Generated By | Credential Obtained From | Description |
-| ---: | :--- | :--- | :--- |
-| A | Workload Instance (Attester) | Verifier | A Proof-of-Possession of the Credential Key is included in Evidence submitted by the Workload to the Verifier. The Verifier contacts the IDP to create a Credential based on this Credential Key and returns it to the Workload Instance as part of Attestation Results. |
-| B | Workload Instance (Attester) | Identity Provider | A Proof-of-Possession of the Credential Key is included in Evidence submitted by the Workload to the Verifier, and also in the Attestation Results returned by the Verifier. The Workload sends the Attestation Results obtained from the Verifier to the IDP, which creates and returns to the Workload Instance a Credential based on these Attestation Results. |
-| C | Workload Instance (Attester) | Identity Provider | A Proof-of-Possession of the Credential Key is included in a Credential Request submitted by the Workload to the Identity Provider alongside Evidence destined to the Verifier. IDP handles the Credential Request by contacting the Verifier on the Workload's behalf, supplying the Evidence from the Credential Request. The Verifier responds with Attestation Results which the IDP uses to construct a Credential, which it then returns to the Workload. |
-| N/A | Workload Instance (Attester) | Control Plane | This is not a viable option since a Workload that generates its own Credential Key must contact either the Verifier or the IDP to build a credential for this Key. |
-| D | Identity Provider | Verifier | The Workload generates an asymmetric encryption key and sends its public portion to the Verifier as part of Evidence. The Verifier obtains the Credential and the Credential Key from the IDP or a Key Store and returns these to the Workload, encrypted with the public encryption key. |
-| E | Identity Provider | Identity Provider | The Workload generates an asymmetric encryption key and sends the public portion to the Verifier as part of Evidence. The Verifier includes the public portion of the Encryption Key in the Attestation Results. The Workload sends the Attestation Results to the IDP which returns to it the Credential and the Credential Key encrypted to the public encryption key in the Attestation Results. |
-| F | Identity Provider | Control Plane | The Credential is given to the Workload by the Control Plane. The Workload obtains the Credential Key from the Identity Provider or a Key store using the same mechanism as in the previous row. |
+Note that it is safe to receive the Credential from an untrusted source such as the Control Plane, because it is public. The only requirement is that the obtained Credential matches the Credential Key, which MUST always be obtained securely and only by an authorized Workload instance.
+  
+Furhter under pivot 2.i, the sequence of events involved in Credential generation might differ:
 
-These options are illustrated below with interaction diagrams.
+1. A Workload invokes the Verifier which collaborates with the Credential Authority to compute and return Credentials, returning these Credentials inside the Attestation Results, or
+2. A Workload invokes the Verifier, obtains from it the Attestation Results, and forwards these Attestation Results to the Credential Authority inside a Credential Request to get the Credential.
+
+This set of variants results in several distinct credential acquisition mechanisms (CAMs):
+
+| CAM | Key Source | Credential Source | Description |
+| :---: | :--- | :--- | :--- |
+| A | Workload | Verifier | A Proof-of-Possession of the Credential Key is included in Evidence submitted by the Workload to the Verifier. The Verifier contacts the Credential Authority to compute a Credential based on this Credential Key and returns it to the Workload Instance as part of Attestation Results. |
+| B | Workload | Credential Authority | A Proof-of-Possession of the Credential Key is included in Evidence submitted by the Workload to the Verifier, and also in the Attestation Results returned by the Verifier. The Workload sends the Attestation Results obtained from the Verifier to the Credential Authority, which computes and returns to the Workload Instance a Credential based on these Attestation Results. |
+| C | Workload | Credential Authority | A Proof-of-Possession of the Credential Key is included in a Credential Request submitted by the Workload to the Credential Authority alongside Evidence destined for the Verifier. Credential Authority handles the Credential Request by contacting the Verifier on the Workload's behalf, supplying the Evidence from the Credential Request. The Verifier responds with Attestation Results which the Credential Authority uses to compute a Credential, which it then returns to the Workload. |
+| N/A | Workload | Control Plane | This is not a viable option since a Workload that generates its own Credential Key MUST contact either the Verifier or the Credential Authority to build a Credential for this Key. |
+| D | Key Store | Verifier | The Workload generates an asymmetric encryption key and sends its public portion to the Verifier as part of Evidence. The Verifier obtains the Credential and the Credential Key from the IDP or a Key Store and returns these to the Workload, encrypted with the public encryption key. |
+| E | Key Store | Credential Authority | The Workload generates an asymmetric encryption key and sends the public portion to the Verifier as part of Evidence. The Verifier includes the public portion of the Encryption Key in the Attestation Results. The Workload sends the Attestation Results to the IDP which returns to it the Credential and the Credential Key encrypted to the public encryption key in the Attestation Results. |
+| F | Key Store | Control Plane | The Credential is given to the Workload by the Control Plane. The Workload obtains the Credential Key from the Identity Provider or a Key store using the same mechanism as in the previous row. |
+
+These options are illustrated below with sequence diagrams.
 
 TODO: Generate ASCII art around each of the  sequence diagrams.
 
 ## Option A
 
-File: Option_A.sd
+File: CAM_A.sd
 
 ## Option B
 
-File: Option_B.sd
+File: CAM_B.sd
 
 ## Option C
 
-File: Option_C.sd
+File: CAM_C.sd
 
 ## Option D
 
-File: Option_D.sd
+File: CAM_D.sd
 
 ## Option E
 
-File: Option_E.sd
+File: CAM_E.sd
 
 ## Option F
 
-File: Option_F.sd
+File: CAM_F.sd
 
 # Security Considerations
 
