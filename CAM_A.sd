@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant W as Workload
+    participant V as Verifier
+    participant CA as Credential<br/>Authority
+    note over W, CA: Credential Acquisition Phase
+    W->>+W: Generate Key
+    W->>+W: Create Credential Request<br/>including Key PoP
+    W->>+W: Create Evidence (Quote)<br/>including Credential Request
+    W->>+V: Request Attestation Results<br/>with Quote as Evidence
+    V->>+V: Convert Evidence<br/>to Credential Attributes
+    V->>+CA: Request Credential<br/>passing Credential Request<br/>and Credential Attributes
+    CA->>+CA: Create and Sign Credential<br/>from Credential Request<br/>and Credential Attributes
+    CA->>+V: Credential
+    V->>+W: Credential in <br/>Attestation Results
