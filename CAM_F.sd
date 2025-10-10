@@ -11,9 +11,10 @@ sequenceDiagram
     KS->>KS: Generate and Store<br/>Credential Key and Policy
     KS->>WO: Public Portion of Credential Key
     WO->>KS: Create Credential Request
-    KS->>KS: Compute Credential Request<br/>and Sign with Private Credential Key
+    KS->>KS: Generate Credential Request<br/>and Sign with Private Credential Key
     KS->>WO: Credential Request
     WO->>CA: Credential Request<br/>plus Workload Identity<br/>and Associated Claims
+    CA->>CA: Generate and Sign Credential
     CA->>WO: Credential
     WO->>W: Provide Workload<br/>with Credential
     note over WO, CA: Credential Acquisition Phase
