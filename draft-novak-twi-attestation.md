@@ -113,8 +113,6 @@ For a complete glossary, see {{Section 4 of -rats-arch}} , {{-WIMSE}} & {{-TWISI
 
 The definitions of terms like Workload Identity and Workload Credential match those specified by the TWI SIG Definitions {{-TWISIGDef}}.
 
-TODO: Define Credential Authority
-
 Workload:
 
 : {{-WIMSE}} defines 'Workload' as "an instance of software executing for a specific purpose". Here we restrict that definition to the portions of the deployed software and its configuration that are subject to Remote Attestation.
@@ -131,15 +129,21 @@ Workload Credential:
 
 : an ephemeral identity document containing the Workload Identifier and a number of additional claims, that can be short-lived or long-lived, and that is used to represent and prove Workload Identity to a Relying Party.
 
-Stable Workload Identity:
+Stable Workload Identity, Stable Authorization Policy:
 
-: a Workload Identity is considered Stable if it remains constant in the face of software and hardware changes (updates and rollbacks), so long as those updates and rollbacks are authorized, i.e., complies with the policy of what consitutes the allowed version(s) of the software and hardware in question.
+: a Workload Identity or Authorization Policy is considered Stable if it remains constant in the face of software and hardware changes (updates and rollbacks), so long as those updates and rollbacks are authorized, i.e., comply with the policy of what consitutes the allowed version(s) of the software and hardware in question.
+
+Credential Authority:
+
+: an entity trusted to issue Workload Credentials
 
 Bound Workload Credential:
 
 : a Workload Credential is considered Bound if it can only be used in conjunction with a secret Credential Key that only a Workload authorized for the use of that Key can obtain, either by generating and certifying it, or by retrieving it from a secure Key Store.
 
-TODO: Define Workload Owner
+Workload Owner:
+
+: an entity tasked with specifying policies concerning what Workload composition is considered valid for the purposes of issuing Workload Credentials
 
 # Available Options
 
