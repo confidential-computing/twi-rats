@@ -6,6 +6,7 @@ sequenceDiagram
     W->>W: Generate Asymmetric<br/>Encryption Key
     W->>W: Generate Evidence (Quote)<br/>including Encryption Key
     W->>V: Request Attestation Results<br/>passing Quote as Evidence
+    V->>V: Check Evidence against Reference Values
     V->>V: Compute Attestation Results
     V->>W: Attestation Results<br/>including Encryption Key
     W->>KS: Attestation Results<br/>including Encryption Key
