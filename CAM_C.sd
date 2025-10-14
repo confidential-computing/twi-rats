@@ -3,13 +3,14 @@ sequenceDiagram
     participant CA as Credential<br/>Authority
     participant V as Verifier
     note over W, V: Credential Acquisition Phase
-    W->>+W: Generate Key
-    W->>+W: Create Credential Request<br/>including Key PoP
-    W->>+W: Create Evidence (Quote)<br/> including Credential Request
-    W->>+CA: Request Credential<br/>passing Quote as Evidence
-    CA->>+V: Forward Quote<br/>from Credential Request
-    V->>+V: Compute<br/>Attestation Results<br/>from Evidence
-    V->>+CA: Attestation<br/>Results
-    CA->>+CA: Convert Attestation Results<br/>to Credential Attributes
-    CA->>+CA: Create and Sign Credential<br/>from Credential Request<br/>and Credential Attributes
-    CA->>+W: Credential
+    W->>W: Generate Key
+    W->>W: Create Credential Request<br/>including Key PoP
+    W->>W: Create Evidence (Quote)<br/> including Credential Request
+    W->>CA: Request Credential<br/>passing Quote as Evidence
+    CA->>V: Forward Quote<br/>from Credential Request
+    V->>V: Check Evidence against Reference Values
+    V->>V: Compute<br/>Attestation Results<br/>from Evidence
+    V->>CA: Attestation<br/>Results
+    CA->>CA: Convert Attestation Results<br/>to Credential Attributes
+    CA->>CA: Create and Sign Credential<br/>from Credential Request<br/>and Credential Attributes
+    CA->>W: Credential
