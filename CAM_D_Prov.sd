@@ -8,11 +8,11 @@ sequenceDiagram
     WO->>WO: Create Credential Key Release Policy<br/>based on Workload Reference Values
     WO->>KS: Create Credential Key<br/>and Set Key Release Policy
     KS->>KS: Generate and Store<br/>Credential Key and Policy
-    KS->>WO: Public Portion of Credential Key
+    KS->>WO: Public Portion of Credential Key<br/>or Key Identifier
     WO->>KS: Create Credential Request
     KS->>KS: Compute Credential Request<br/>and Sign with Private Credential Key
     KS->>WO: Credential Request
     WO->>CA: Credential Request<br/>plus Workload Identity<br/>and Associated Claims
-    CA->>CA: Generate and Sign Credential
+    CA->>CA: Generate and<br/>Sign Credential
     CA->>WO: Credential
     WO->>W: Provide Workload<br/>with Credential
