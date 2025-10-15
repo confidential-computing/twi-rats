@@ -342,15 +342,126 @@ Table of Contents
 
 3.1.  Mechanism A
 
-   File: CAM_A.sd
+    ┌──────────────┐        ┌──────────────┐        ┌────────────────────────┐
+    │   Workload   │        │   Verifier   │        │  Credential Authority  │
+    │      (W)     │        │      (V)     │        │          (CA)          │
+    └──────┬───────┘        └──────┬───────┘        └──────────┬─────────────┘
+           │                        │                           │
+           │   ────────────────────────────────────────────────────────────────
+           │        NOTE: Credential Acquisition Phase
+           │   ────────────────────────────────────────────────────────────────
+           │                        │                           │
+           │ Generate Key            │                           │
+           │────────────────────────>│                           │
+           │ Create Credential Request (incl. Key PoP)           │
+           │────────────────────────>│                           │
+           │ Create Evidence (Quote) incl. Credential Request     │
+           │────────────────────────>│                           │
+           │                        │                           │
+           │ Request Attestation Results (Quote as Evidence)     │
+           │────────────────────────>│                           │
+           │                        │                           │
+           │                        │ Check Evidence vs Reference Values
+           │                        │<──────────────────────────>│
+           │                        │ Compute Credential Attributes
+           │                        │<──────────────────────────>│
+           │                        │                           │
+           │                        │ Request Credential (Request + Attributes)
+           │                        │────────────────────────────>│
+           │                        │                           │
+           │                        │      Create & Sign Credential
+           │                        │<──────────────────────────>│
+           │                        │ Receive Credential
+           │                        │<────────────────────────────│
+           │                        │                           │
+           │ Receive Credential in Attestation Results           │
+           │<────────────────────────│                           │
+           │                        │                           │
+    ┌──────┴───────┐        ┌──────┴───────┐        ┌──────────┴─────────────┐
+    │   Workload   │        │   Verifier   │        │  Credential Authority  │
+    └──────────────┘        └──────────────┘        └────────────────────────┘
 
 3.2.  Mechanism B
 
-   File: CAM_B.sd
+    ┌──────────────┐        ┌──────────────┐        ┌────────────────────────┐
+    │   Workload   │        │   Verifier   │        │  Credential Authority  │
+    │      (W)     │        │      (V)     │        │          (CA)          │
+    └──────┬───────┘        └──────┬───────┘        └──────────┬─────────────┘
+           │                        │                           │
+           │   ────────────────────────────────────────────────────────────────
+           │        NOTE: Credential Acquisition Phase
+           │   ────────────────────────────────────────────────────────────────
+           │                        │                           │
+           │ Generate Key            │                           │
+           │────────────────────────>│                           │
+           │ Create Evidence (Quote) including Key PoP            │
+           │────────────────────────>│                           │
+           │ Request Attestation Results with Quote as Evidence   │
+           │────────────────────────>│                           │
+           │                        │ Check Evidence vs Reference Values
+           │                        │<──────────────────────────>│
+           │                        │ Compute Attestation Results from Evidence
+           │                        │<──────────────────────────>│
+           │                        │ Send Attestation Results
+           │<────────────────────────│                           │
+           │ Create Credential Request using Attestation Results  │
+           │────────────────────────>│                           │
+           │ Send Credential Request                               │
+           │─────────────────────────────────────────────────────>│
+           │                        │                           │ Convert Attestation Results
+           │                        │                           │ to Credential Attributes
+           │                        │                           │<──────────────────────────>│
+           │                        │                           │ Create & Sign Credential from
+           │                        │                           │ Request + Attributes
+           │                        │                           │<──────────────────────────>│
+           │ Receive Credential                                     │
+           │<──────────────────────────────────────────────────────│
+           │                        │                           │
+    ┌──────┴───────┐        ┌──────┴───────┐        ┌──────────┴─────────────┐
+    │   Workload   │        │   Verifier   │        │  Credential Authority  │
+    └──────────────┘        └──────────────┘        └────────────────────────┘
 
 3.3.  Mechanism C
 
-   File: CAM_C.sd
+    ┌──────────────┐        ┌────────────────────────┐        ┌──────────────┐
+    │   Workload   │        │  Credential Authority  │        │   Verifier   │
+    │      (W)     │        │          (CA)          │        │      (V)     │
+    └──────┬───────┘        └──────────┬─────────────┘        └──────┬───────┘
+           │                           │                            │
+           │   ───────────────────────────────────────────────────────────────
+           │        NOTE: Credential Acquisition Phase
+           │   ───────────────────────────────────────────────────────────────
+           │                           │                            │
+           │ Generate Key              │                            │
+           │──────────────────────────>│                            │
+           │ Create Credential Request (includes Key PoP)            │
+           │──────────────────────────>│                            │
+           │ Create Evidence (Quote) including Credential Request     │
+           │──────────────────────────>│                            │
+           │ Request Credential, passing Quote as Evidence            │
+           │──────────────────────────>│                            │
+           │                           │ Forward Quote from Credential Request
+           │                           │────────────────────────────>│
+           │                           │                            │
+           │                           │        Check Evidence vs Reference Values
+           │                           │        ────────────────────────────────>│
+           │                           │        Compute Attestation Results
+           │                           │        from Evidence
+           │                           │<────────────────────────────────────────│
+           │                           │ Receive Attestation Results
+           │                           │<────────────────────────────│
+           │                           │ Convert Attestation Results
+           │                           │ to Credential Attributes
+           │                           │<──────────────────────────>│
+           │                           │ Create & Sign Credential from
+           │                           │ Request + Attributes
+           │                           │<──────────────────────────>│
+           │ Receive Credential        │                            │
+           │<──────────────────────────│                            │
+           │                           │                            │
+    ┌──────┴───────┐        ┌──────────┴─────────────┐        ┌──────┴───────┐
+    │   Workload   │        │  Credential Authority  │        │   Verifier   │
+    └──────────────┘        └────────────────────────┘        └──────────────┘
 
 3.4.  Mechanisms D
 
@@ -359,11 +470,83 @@ Table of Contents
 
 3.4.1.  Credential Provisioning Phase
 
-   File: CAM_D_Prov.sd
+    ┌───────────────────┐      ┌──────────────┐      ┌──────────────┐      ┌────────────────────────┐
+    │ Workload Owner    │      │   Workload   │      │   KeyStore   │      │ Credential Authority   │
+    │       (WO)        │      │      (W)     │      │      (KS)    │      │          (CA)          │
+    └────────┬──────────┘      └──────┬───────┘      └──────┬───────┘      └──────────┬─────────────┘
+             │                         │                     │                           │
+             │   ─────────────────────────────────────────────────────────────────────────────────────
+             │        NOTE: Credential Provisioning Phase
+             │   ─────────────────────────────────────────────────────────────────────────────────────
+             │                         │                     │                           │
+             │ Create Workload Identity and Associated Claims │                           │
+             │────────────────────────>│                     │                           │
+             │ Create Credential Key Release Policy based on Reference Values             │
+             │────────────────────────>│                     │                           │
+             │ Create Credential Key and Set Key Release Policy                            │
+             │───────────────────────────────────────────────>│                           │
+             │                         │                     │ Generate and Store Credential Key + Policy
+             │                         │                     │<──────────────────────────>│
+             │                         │                     │ Return Public Portion or Key Identifier
+             │<───────────────────────────────────────────────│                           │
+             │ Create Credential Request                     │                           │
+             │───────────────────────────────────────────────>│                           │
+             │                         │                     │ Compute Credential Request & Sign
+             │                         │                     │ with Private Credential Key
+             │                         │                     │<──────────────────────────>│
+             │ Receive Credential Request                    │                           │
+             │<───────────────────────────────────────────────│                           │
+             │ Send Credential Request + Workload Identity + Claims                      │
+             │───────────────────────────────────────────────────────────────────────────>│
+             │                         │                     │ Generate and Sign Credential
+             │                         │                     │<──────────────────────────>│
+             │ Receive Credential                                                       │
+             │<───────────────────────────────────────────────────────────────────────────│
+             │ Provide Workload with Credential                                          │
+             │────────────────────────>│                     │                           │
+             │                         │                     │                           │
+    ┌────────┴──────────┐      ┌──────┴───────┐      ┌──────┴───────┐      ┌──────────┴─────────────┐
+    │ Workload Owner    │      │   Workload   │      │   KeyStore   │      │ Credential Authority   │
+    └───────────────────┘      └──────────────┘      └──────────────┘      └────────────────────────┘
 
 3.4.2.  Credential Acquisition Phase
 
-   File: CAM_D.sd
+    ┌──────────────┐        ┌──────────────┐        ┌──────────────┐
+    │   Workload   │        │   Verifier   │        │   KeyStore   │
+    │      (W)     │        │      (V)     │        │      (KS)    │
+    └──────┬───────┘        └──────┬───────┘        └──────┬───────┘
+           │                        │                       │
+           │   ───────────────────────────────────────────────────────────────
+           │        NOTE: Credential Acquisition Phase
+           │   ───────────────────────────────────────────────────────────────
+           │                        │                       │
+           │ Generate Asymmetric Encryption Key             │
+           │────────────────────────>│                       │
+           │ Generate Evidence (Quote) including Encryption Key
+           │────────────────────────>│                       │
+           │ Request Attestation Results (passing Quote as Evidence)
+           │────────────────────────>│                       │
+           │                        │ Check Evidence vs Reference Values
+           │                        │<──────────────────────>│
+           │                        │ Compute Attestation Results
+           │                        │<──────────────────────>│
+           │ Receive Attestation Results (incl. Encryption Key)
+           │<────────────────────────│                       │
+           │ Forward Attestation Results (incl. Encryption Key)
+           │────────────────────────────────────────────────>│
+           │                        │                       │ Validate Attestation Results
+           │                        │                       │ against Key Release Policy
+           │                        │                       │<──────────────────────────>│
+           │                        │                       │ Encrypt Credential Key to Encryption Key
+           │                        │                       │<──────────────────────────>│
+           │ Receive Encrypted Credential Key                │
+           │<────────────────────────────────────────────────│
+           │ Decrypt Credential Key                          │
+           │────────────────────────>│                       │
+           │                        │                       │
+    ┌──────┴───────┐        ┌──────┴───────┐        ┌──────┴───────┐
+    │   Workload   │        │   Verifier   │        │   KeyStore   │
+    └──────────────┘        └──────────────┘        └──────────────┘
 
 4.  Security Considerations
 
