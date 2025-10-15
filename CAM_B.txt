@@ -1,0 +1,37 @@
+    ┌──────────────┐        ┌──────────────┐        ┌────────────────────────┐
+    │   Workload   │        │   Verifier   │        │  Credential Authority  │
+    │      (W)     │        │      (V)     │        │          (CA)          │
+    └──────┬───────┘        └──────┬───────┘        └──────────┬─────────────┘
+           │                        │                           │
+           │   ────────────────────────────────────────────────────────────────
+           │        NOTE: Credential Acquisition Phase
+           │   ────────────────────────────────────────────────────────────────
+           │                        │                           │
+           │ Generate Key            │                           │
+           │────────────────────────>│                           │
+           │ Create Evidence (Quote) including Key PoP            │
+           │────────────────────────>│                           │
+           │ Request Attestation Results with Quote as Evidence   │
+           │────────────────────────>│                           │
+           │                        │ Check Evidence vs Reference Values
+           │                        │<──────────────────────────>│
+           │                        │ Compute Attestation Results from Evidence
+           │                        │<──────────────────────────>│
+           │                        │ Send Attestation Results
+           │<────────────────────────│                           │
+           │ Create Credential Request using Attestation Results  │
+           │────────────────────────>│                           │
+           │ Send Credential Request                               │
+           │─────────────────────────────────────────────────────>│
+           │                        │                           │ Convert Attestation Results
+           │                        │                           │ to Credential Attributes
+           │                        │                           │<──────────────────────────>│
+           │                        │                           │ Create & Sign Credential from
+           │                        │                           │ Request + Attributes
+           │                        │                           │<──────────────────────────>│
+           │ Receive Credential                                     │
+           │<──────────────────────────────────────────────────────│
+           │                        │                           │
+    ┌──────┴───────┐        ┌──────┴───────┐        ┌──────────┴─────────────┐
+    │   Workload   │        │   Verifier   │        │  Credential Authority  │
+    └──────────────┘        └──────────────┘        └────────────────────────┘

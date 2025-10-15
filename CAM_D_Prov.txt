@@ -1,0 +1,38 @@
+    ┌───────────────────┐      ┌──────────────┐      ┌──────────────┐      ┌────────────────────────┐
+    │ Workload Owner    │      │   Workload   │      │   KeyStore   │      │ Credential Authority   │
+    │       (WO)        │      │      (W)     │      │      (KS)    │      │          (CA)          │
+    └────────┬──────────┘      └──────┬───────┘      └──────┬───────┘      └──────────┬─────────────┘
+             │                         │                     │                           │
+             │   ─────────────────────────────────────────────────────────────────────────────────────
+             │        NOTE: Credential Provisioning Phase
+             │   ─────────────────────────────────────────────────────────────────────────────────────
+             │                         │                     │                           │
+             │ Create Workload Identity and Associated Claims │                           │
+             │────────────────────────>│                     │                           │
+             │ Create Credential Key Release Policy based on Reference Values             │
+             │────────────────────────>│                     │                           │
+             │ Create Credential Key and Set Key Release Policy                            │
+             │───────────────────────────────────────────────>│                           │
+             │                         │                     │ Generate and Store Credential Key + Policy
+             │                         │                     │<──────────────────────────>│
+             │                         │                     │ Return Public Portion or Key Identifier
+             │<───────────────────────────────────────────────│                           │
+             │ Create Credential Request                     │                           │
+             │───────────────────────────────────────────────>│                           │
+             │                         │                     │ Compute Credential Request & Sign
+             │                         │                     │ with Private Credential Key
+             │                         │                     │<──────────────────────────>│
+             │ Receive Credential Request                    │                           │
+             │<───────────────────────────────────────────────│                           │
+             │ Send Credential Request + Workload Identity + Claims                      │
+             │───────────────────────────────────────────────────────────────────────────>│
+             │                         │                     │ Generate and Sign Credential
+             │                         │                     │<──────────────────────────>│
+             │ Receive Credential                                                       │
+             │<───────────────────────────────────────────────────────────────────────────│
+             │ Provide Workload with Credential                                          │
+             │────────────────────────>│                     │                           │
+             │                         │                     │                           │
+    ┌────────┴──────────┐      ┌──────┴───────┐      ┌──────┴───────┐      ┌──────────┴─────────────┐
+    │ Workload Owner    │      │   Workload   │      │   KeyStore   │      │ Credential Authority   │
+    └───────────────────┘      └──────────────┘      └──────────────┘      └────────────────────────┘
