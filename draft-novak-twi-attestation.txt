@@ -350,36 +350,44 @@ Table of Contents
            │   ────────────────────────────────────────────────────────────────
            │        NOTE: Credential Acquisition Phase
            │   ────────────────────────────────────────────────────────────────
-           │                        │                           │
+           │                         │                           │
            │ Generate Key            │                           │
            │────────────────────────>│                           │
            │ Create Credential Request (incl. Key PoP)           │
            │────────────────────────>│                           │
-           │ Create Evidence (Quote) incl. Credential Request     │
+           │ Create Evidence (Quote) incl. Credential Request    │
            │────────────────────────>│                           │
-           │                        │                           │
-           │ Request Attestation Results (Quote as Evidence)     │
+           │                        │                            │
+           │ Request Attestation ( Evidence)                     │
            │────────────────────────>│                           │
-           │                        │                           │
-           │                        │ Check Evidence vs Reference Values
+           │                        │                            │
+           │                        │                            │
+           │                        │                            │
+           │                        │ Appraise Evidence          |
+           │                        +<------.                    |
+           │                        |        |                   |
+           |                        |        |                   |
+           |                        +<------+                    |
+           |                        |Request Credential          |
+           │                        +<------.                    |
+           │                        |        |                   |
+           |                        |        |                   |
+           |                        +<------+                    |
+           │                        │                            │
+           │                        │  (Request + Attributes)    |
+           │                        │──────────────────────────->│
+           │                        │                            │
+           │                        │   Create & Sign Credential |
            │                        │<──────────────────────────>│
-           │                        │ Compute Credential Attributes
-           │                        │<──────────────────────────>│
-           │                        │                           │
-           │                        │ Request Credential (Request + Attributes)
-           │                        │────────────────────────────>│
-           │                        │                           │
-           │                        │      Create & Sign Credential
-           │                        │<──────────────────────────>│
-           │                        │ Receive Credential
-           │                        │<────────────────────────────│
-           │                        │                           │
+           │                        │ Receive Credential         |
+           │                        │<───────────────────────────│
+           │                        │                            │
            │ Receive Credential in Attestation Results           │
            │<────────────────────────│                           │
-           │                        │                           │
-    ┌──────┴───────┐        ┌──────┴───────┐        ┌──────────┴─────────────┐
-    │   Workload   │        │   Verifier   │        │  Credential Authority  │
-    └──────────────┘        └──────────────┘        └────────────────────────┘
+           │                         │                           │
+    ┌──────┴───────┐          ┌──────┴───────┐        ┌──────────┴─────────────┐
+    │   Workload   │          │   Verifier   │        │  Credential Authority  │
+    └──────────────┘          └──────────────┘        └────────────────────────┘
 
 3.2.  Mechanism B
 
