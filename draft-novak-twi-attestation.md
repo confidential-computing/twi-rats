@@ -179,7 +179,7 @@ Several distinct options are possible. In all cases, the Credential is generated
     3. The Workload Owner (via the Control Plane)
 
 Note that it is safe to receive the Credential from an untrusted source such as the Control Plane, because it is public. The only requirement is that the obtained Credential matches the Credential Key, which MUST always be obtained securely and only by an authorized Workload instance.
-  
+
 Further, under pivot 2.i, the order of interactions involved in Credential generation might differ:
 
 1. A Workload invokes the Verifier which collaborates with the Credential Authority to compute and return Credentials, returning these Credentials inside the Attestation Results, or
