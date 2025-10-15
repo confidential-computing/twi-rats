@@ -201,15 +201,21 @@ TODO: Generate ASCII art around each of the  sequence diagrams.
 
 ## Mechanism A
 
-File: CAM_A.sd
+~~~ aasvg
+{::include CAM_A.txt}
+~~~
 
 ## Mechanism B
 
-File: CAM_B.sd
+~~~ aasvg
+{::include CAM_B.txt}
+~~~
 
 ## Mechanism C
 
-File: CAM_C.sd
+~~~ aasvg
+{::include CAM_C.txt}
+~~~
 
 ## Mechanisms D
 
@@ -217,11 +223,15 @@ Mechanism D consists of a "Credential Provisioning" phase followed by the "Crede
 
 ### Credential Provisioning Phase
 
-File: CAM_D_Prov.sd
+~~~ aasvg
+{::include CAM_D_Prov.txt}
+~~~
 
 ### Credential Acquisition Phase
 
-File: CAM_D.sd
+~~~ aasvg
+{::include CAM_D.txt}
+~~~
 
 # Security Considerations
 
