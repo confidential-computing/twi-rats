@@ -1,0 +1,36 @@
+    ┌──────────────┐        ┌──────────────┐        ┌──────────────┐
+    │   Workload   │        │   Verifier   │        │   KeyStore   │
+    │      (W)     │        │      (V)     │        │      (KS)    │
+    └──────┬───────┘        └──────┬───────┘        └──────┬───────┘
+           │                        │                       │
+           │   ───────────────────────────────────────────────────────────────
+           │        NOTE: Credential Acquisition Phase
+           │   ───────────────────────────────────────────────────────────────
+           │                        │                       │
+           │ Generate Asymmetric Encryption Key             │
+           │────────────────────────>│                       │
+           │ Generate Evidence (Quote) including Encryption Key
+           │────────────────────────>│                       │
+           │ Request Attestation Results (passing Quote as Evidence)
+           │────────────────────────>│                       │
+           │                        │ Check Evidence vs Reference Values
+           │                        │<──────────────────────>│
+           │                        │ Compute Attestation Results
+           │                        │<──────────────────────>│
+           │ Receive Attestation Results (incl. Encryption Key)
+           │<────────────────────────│                       │
+           │ Forward Attestation Results (incl. Encryption Key)
+           │────────────────────────────────────────────────>│
+           │                        │                       │ Validate Attestation Results
+           │                        │                       │ against Key Release Policy
+           │                        │                       │<──────────────────────────>│
+           │                        │                       │ Encrypt Credential Key to Encryption Key
+           │                        │                       │<──────────────────────────>│
+           │ Receive Encrypted Credential Key                │
+           │<────────────────────────────────────────────────│
+           │ Decrypt Credential Key                          │
+           │────────────────────────>│                       │
+           │                        │                       │
+    ┌──────┴───────┐        ┌──────┴───────┐        ┌──────┴───────┐
+    │   Workload   │        │   Verifier   │        │   KeyStore   │
+    └──────────────┘        └──────────────┘        └──────────────┘
