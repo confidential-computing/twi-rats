@@ -5,10 +5,10 @@
 Network Working Group                                           M. Novak
 Internet-Draft                                         J.P. Morgan Chase
 Intended status: Informational                              Y. Deshpande
-Expires: 18 April 2026                                               Arm
+Expires: 19 April 2026                                               Arm
                                                              H. Birkholz
                                                         Franhaufer Inst.
-                                                         15 October 2025
+                                                         16 October 2025
 
 
           Remote Attestation for Trustworthy Workload Identity
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 April 2026.
+   This Internet-Draft will expire on 19 April 2026.
 
 Copyright Notice
 
@@ -345,49 +345,42 @@ Table of Contents
     ┌──────────────┐        ┌──────────────┐        ┌────────────────────────┐
     │   Workload   │        │   Verifier   │        │  Credential Authority  │
     │      (W)     │        │      (V)     │        │          (CA)          │
-    └──────┬───────┘        └──────┬───────┘        └──────────┬─────────────┘
-           │                        │                           │
-           │   ────────────────────────────────────────────────────────────────
-           │        NOTE: Credential Acquisition Phase
-           │   ────────────────────────────────────────────────────────────────
-           │                         │                           │
-           │ Generate Key            │                           │
-           │────────────────────────>│                           │
+    └──────┬───────┘        └───────┬──────┘        └────────────┬───────────┘
+           │                        │                            │
+    ┌──────┴────────────────────────┴────────────────────────────┴───────────┐
+    │                NOTE: Credential Acquisition Phase                      |
+    └──────┬────────────────────────┬────────────────────────────┬───────────┘
+           │ Generate Key           │                            │
+           │────────────┐           |                            |
+           |<───────────┘           |                            |
            │ Create Credential Request (incl. Key PoP)           │
-           │────────────────────────>│                           │
+           │────────────┐           |                            |
+           |<───────────┘           |                            |
            │ Create Evidence (Quote) incl. Credential Request    │
-           │────────────────────────>│                           │
-           │                        │                            │
+           │────────────┐           |                            |
+           |<───────────┘           |                            |
            │ Request Attestation ( Evidence)                     │
-           │────────────────────────>│                           │
-           │                        │                            │
-           │                        │                            │
-           │                        │                            │
+           │───────────────────────>│                            │
            │                        │ Appraise Evidence          |
-           │                        +<------.                    |
-           │                        |        |                   |
-           |                        |        |                   |
-           |                        +<------+                    |
-           |                        |Request Credential          |
-           │                        +<------.                    |
-           │                        |        |                   |
-           |                        |        |                   |
-           |                        +<------+                    |
-           │                        │                            │
-           │                        │  (Request + Attributes)    |
-           │                        │──────────────────────────->│
-           │                        │                            │
+           |                        │────────────┐               |
+           |                        |<───────────┘               |
+           |                        | Compute Credential Attributes
+           |                        │────────────┐               |
+           |                        |<───────────┘               |
+           │                        │ Request Credentials        │
+           │                        │ (Credential Request + Attributes)
+           │                        │───────────────────────────>│
            │                        │   Create & Sign Credential |
-           │                        │<──────────────────────────>│
-           │                        │ Receive Credential         |
+           |                        │              ┌──────────── |
+           |                        │              └────────────>|
+           │                        │          Return Credential |
            │                        │<───────────────────────────│
-           │                        │                            │
-           │ Receive Credential in Attestation Results           │
-           │<────────────────────────│                           │
-           │                         │                           │
-    ┌──────┴───────┐          ┌──────┴───────┐        ┌──────────┴─────────────┐
-    │   Workload   │          │   Verifier   │        │  Credential Authority  │
-    └──────────────┘          └──────────────┘        └────────────────────────┘
+           │      Return Credential |                            │
+           | in Attestation Results |                            |
+           │<───────────────────────│                            │
+    ┌──────┴───────┐        ┌───────┴──────┐        ┌────────────┴───────────┐
+    │   Workload   │        │   Verifier   │        │  Credential Authority  │
+    └──────────────┘        └──────────────┘        └────────────────────────┘
 
 3.2.  Mechanism B
 
