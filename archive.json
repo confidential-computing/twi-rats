@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-14T01:37:22.086674+00:00",
+  "timestamp": "2025-10-16T01:39:32.835965+00:00",
   "repo": "confidential-computing/twi-rats",
   "labels": [
     {
@@ -85,6 +85,34 @@
           "updatedAt": "2025-10-07T15:23:28Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOP1Ynus6t9_3m",
+      "title": "Introduce Asciiart diags",
+      "url": "https://github.com/confidential-computing/twi-rats/pull/2",
+      "state": "MERGED",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-15T21:13:10Z",
+      "updatedAt": "2025-10-15T21:15:21Z",
+      "baseRepository": "confidential-computing/twi-rats",
+      "baseRefName": "main",
+      "baseRefOid": "558c9ac419b8bf84fd0b7eca5fe14cac90c16572",
+      "headRepository": "confidential-computing/twi-rats",
+      "headRefName": "asciiart-diags",
+      "headRefOid": "7fb8d781ed50423105a09756097698d58ab8373c",
+      "closedAt": "2025-10-15T21:15:15Z",
+      "mergedAt": "2025-10-15T21:15:15Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "dc46940c7e88993e4efe4b0dfbf7ece13ce495ed"
+      },
+      "comments": [],
       "reviews": []
     }
   ]
