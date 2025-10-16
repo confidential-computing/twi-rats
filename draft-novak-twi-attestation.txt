@@ -348,7 +348,7 @@ Table of Contents
     └──────┬───────┘        └───────┬──────┘        └────────────┬───────────┘
            │                        │                            │
     ┌──────┴────────────────────────┴────────────────────────────┴───────────┐
-    │                NOTE: Credential Acquisition Phase                      |
+    │                    Credential Acquisition Phase                        |
     └──────┬────────────────────────┬────────────────────────────┬───────────┘
            │ Generate Key           │                            │
            │────────────┐           |                            |
@@ -359,7 +359,7 @@ Table of Contents
            │ Create Evidence (Quote) incl. Credential Request    │
            │────────────┐           |                            |
            |<───────────┘           |                            |
-           │ Request Attestation ( Evidence)                     │
+           │ Request Attestation (Evidence)                      │
            │───────────────────────>│                            │
            │                        │ Appraise Evidence          |
            |                        │────────────┐               |
@@ -371,7 +371,7 @@ Table of Contents
            │                        │ (Credential Request + Attributes)
            │                        │───────────────────────────>│
            │                        │   Create & Sign Credential |
-           |                        │              ┌──────────── |
+           |                        │              ┌─────────────|
            |                        │              └────────────>|
            │                        │          Return Credential |
            │                        │<───────────────────────────│
