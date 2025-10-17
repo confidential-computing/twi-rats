@@ -1,16 +1,16 @@
 sequenceDiagram
     participant W as Workload
     participant V as Verifier
-    participant KS as KeyStore
+    participant KS as Key Store
     note over W, KS: Credential Acquisition Phase
     W->>W: Generate Asymmetric<br/>Encryption Key
-    W->>W: Generate Evidence (Quote)<br/>including Encryption Key
-    W->>V: Request Attestation Results<br/>passing Quote as Evidence
+    W->>W: Generate Evidence<br/>(incl. Public Encryption Key)
+    W->>V: Request Attestation (Evidence)
     V->>V: Check Evidence against Reference Values
     V->>V: Compute Attestation Results
-    V->>W: Attestation Results<br/>including Encryption Key
-    W->>KS: Attestation Results<br/>including Encryption Key
-    KS->>KS: Validate Attestation Results<br/>against Key Release Policy
+    V->>W: Return Attestation Results<br/>(incl. Encryption Key)
+    W->>KS: Request Credential Key (Attestation Results)
+    KS->>KS: Validate Attestation Results<br/>against Credential Key Release Policy
     KS->>KS: Encrypt Credential Key<br/>to Encryption Key
-    KS->>W: Encrypted Credential Key
+    KS->>W: Return Encrypted Credential Key
     W->>W: Decrypt Credential Key
