@@ -530,19 +530,17 @@ Table of Contents
 
        ┌──────────────┐        ┌──────────────┐        ┌──────────────┐
        │   Workload   │        │   Verifier   │        │   Key Store  │
-       │      (W)     │        │      (V)     │        │     (KS)     │
        └──────┬───────┘        └───────┬──────┘        └───────┬──────┘
-              │                        │                       │
        ┌──────┴────────────────────────┴───────────────────────┴──────┐
        │                  Credential Acquisition Phase                |
        └──────┬────────────────────────┬───────────────────────┬──────┘
               │ Generate Asymmetric Encryption Key             │
               │────────────┐           |                       |
               |<───────────┘           |                       |
-              │ Generate Evidence (Quote) including Encryption Key
+              │ Generate Evidence (incl. Public Encryption Key)
               │────────────┐           |                       |
               |<───────────┘           |                       |
-              │ Request Attestation Results (Evidence)         |
+              │ Request Attestation (Evidence)                 |
               │───────────────────────>│                       │
               │                        │ Appraise Evidence     |
               |                        │────────────┐          |
@@ -557,7 +555,7 @@ Table of Contents
               │ Request Credential Key (Attestation Results)   |
               │───────────────────────────────────────────────>│
               │                   Validate Attestation Results |
-              │                     against Key Release Policy |
+              │          against Credential Key Release Policy |
               |                        │         ┌─────────────|
               |                        │         └────────────>|
               │       Encrypt Credential Key to Encryption Key |
@@ -569,7 +567,7 @@ Table of Contents
               │────────────┐           |                       |
               |<───────────┘           |                       |
        ┌──────┴───────┐        ┌───────┴──────┐        ┌───────┴──────┐
-       │   Workload   │        │   Verifier   │        │   KeyStore   │
+       │   Workload   │        │   Verifier   │        │   Key Store  │
        └──────────────┘        └──────────────┘        └──────────────┘
 
 4.  Security Considerations
