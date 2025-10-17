@@ -2,22 +2,23 @@
     │   Workload   │        │  Credential Authority  │        │   Verifier   │
     │      (W)     │        │          (CA)          │        │      (V)     │
     └──────┬───────┘        └────────────┬───────────┘        └───────┬──────┘
-           │                             │                            │
     ┌──────┴─────────────────────────────┴────────────────────────────┴──────┐
     │                         Credential Acquisition Phase                   |
     └──────┬─────────────────────────────┬────────────────────────────┬──────┘
-           │ Generate Key Pair           │                            │
+           │ Generate Credential Key     │                            │
            │────────────┐                |                            |
            |<───────────┘                |                            |
-           │ Create Evidence (Quote) incl. Public Key                 │
+           │ Create Evidence             |                            |
+           | (incl. Credential Key PoP)  |                            │
            │────────────┐                |                            |
            |<───────────┘                |                            |
-           │ Create Credential Request (Evidence, Key PoP)            │
+           │ Create Credential Request (Evidence, Credential Key PoP) │
            │────────────┐                |                            |
            |<───────────┘                |                            |
            │ Request Credential (Credential Request)                  |
            │────────────────────────────>│                            │
-           │                             │ Forward Evidence from Credential Request
+           │                             │ Request Attestation        |
+           |                             | (Evidence from Credential Request)
            │                             │───────────────────────────>│
            │                             │          Appraise Evidence |
            |                             │              ┌─────────────|
@@ -31,8 +32,7 @@
            |                             | from Attestation Results   |
            |                             │────────────┐               |
            |                             |<───────────┘               |
-           │                             │ Create & Sign Credential from
-           │                             │ Request + Attributes       |
+           │                             │ Create & Sign Credential   |
            |                             │────────────┐               |
            |                             |<───────────┘               |
            │           Return Credential │                            │
