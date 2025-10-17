@@ -1,18 +1,16 @@
     ┌──────────────┐        ┌──────────────┐        ┌──────────────┐
     │   Workload   │        │   Verifier   │        │   Key Store  │
-    │      (W)     │        │      (V)     │        │     (KS)     │
     └──────┬───────┘        └───────┬──────┘        └───────┬──────┘
-           │                        │                       │
     ┌──────┴────────────────────────┴───────────────────────┴──────┐
     │                  Credential Acquisition Phase                |
     └──────┬────────────────────────┬───────────────────────┬──────┘
            │ Generate Asymmetric Encryption Key             │
            │────────────┐           |                       |
            |<───────────┘           |                       |
-           │ Generate Evidence (Quote) including Encryption Key
+           │ Generate Evidence (incl. Public Encryption Key)
            │────────────┐           |                       |
            |<───────────┘           |                       |
-           │ Request Attestation Results (Evidence)         |
+           │ Request Attestation (Evidence)                 |
            │───────────────────────>│                       │
            │                        │ Appraise Evidence     |
            |                        │────────────┐          |
@@ -27,7 +25,7 @@
            │ Request Credential Key (Attestation Results)   |
            │───────────────────────────────────────────────>│
            │                   Validate Attestation Results |
-           │                     against Key Release Policy |
+           │          against Credential Key Release Policy |
            |                        │         ┌─────────────|
            |                        │         └────────────>|
            │       Encrypt Credential Key to Encryption Key |
@@ -39,5 +37,5 @@
            │────────────┐           |                       |
            |<───────────┘           |                       |
     ┌──────┴───────┐        ┌───────┴──────┐        ┌───────┴──────┐
-    │   Workload   │        │   Verifier   │        │   KeyStore   │
+    │   Workload   │        │   Verifier   │        │   Key Store  │
     └──────────────┘        └──────────────┘        └──────────────┘
