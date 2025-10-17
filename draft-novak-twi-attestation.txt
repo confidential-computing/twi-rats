@@ -389,14 +389,14 @@ Table of Contents
     │   Workload   │        │   Verifier   │        │  Credential Authority  │
     │      (W)     │        │      (V)     │        │          (CA)          │
     └──────┬───────┘        └───────┬──────┘        └────────────┬───────────┘
-           │                        │                            │
     ┌──────┴────────────────────────┴────────────────────────────┴───────────┐
     │                    Credential Acquisition Phase                        |
     └──────┬────────────────────────┬────────────────────────────┬───────────┘
-           │ Generate Key           │                            │
+           │ Generate Credential Key                             │
            │────────────┐           |                            |
            |<───────────┘           |                            |
-           │ Create Evidence (Quote) including Key PoP           │
+           │ Create Evidence        |                            |
+           | (incl. Credential Key PoP)                          │
            │────────────┐           |                            |
            |<───────────┘           |                            |
            │ Request Attestation (Evidence)                      |
@@ -404,17 +404,17 @@ Table of Contents
            │                        │ Appraise Evidence          |
            |                        │────────────┐               |
            |                        |<───────────┘               |
-           │                        │ Compute Attestation Results from Evidence
+           │                        │ Compute Attestation Results
            |                        │────────────┐               |
            |                        |<───────────┘               |
            |                 Return |                            |
            │    Attestation Results │                            |
            │<───────────────────────│                            │
            │ Create Credential Request                           |
-           | incl. Key PoP and Attestation Results               │
+           | (incl. Credential Key PoP and Attestation Results)  │
            │────────────┐           |                            |
            |<───────────┘           |                            |
-           │ Request Credentials (Credential Request)            |
+           │ Request Credential (Credential Request)            |
            │────────────────────────────────────────────────────>│
            │                         Convert Attestation Results |
            │                        │   to Credential Attributes |
