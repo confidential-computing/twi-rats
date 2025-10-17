@@ -4,15 +4,15 @@ sequenceDiagram
     participant KS as KeyStore
     participant CA as Credential Authority
     note over WO, CA: Credential Provisioning Phase
-    WO->>WO: Create Workload Identity<br/>and Associated Claims
+    WO->>WO: Create Workload Identity<br/>and Associated Credential Attributes
     WO->>WO: Create Credential Key Release Policy<br/>based on Workload Reference Values
     WO->>KS: Create Credential Key<br/>and Set Key Release Policy
     KS->>KS: Generate and Store<br/>Credential Key and Policy
-    KS->>WO: Public Portion of Credential Key<br/>or Key Identifier
+    KS->>WO: Return Public Portion of Credential Key<br/>or Credential Key Identifier
     WO->>KS: Create Credential Request
-    KS->>KS: Compute Credential Request<br/>and Sign with Private Credential Key
-    KS->>WO: Credential Request
-    WO->>CA: Credential Request<br/>plus Workload Identity<br/>and Associated Claims
-    CA->>CA: Generate and<br/>Sign Credential
-    CA->>WO: Credential
+    KS->>KS: Create Credential Request and<br/>Sign with Private Credential Key
+    KS->>WO: Return Credential Request
+    WO->>CA: Request Credential (Credential Request,<br/>Workload Identity, Credential Attributes)
+    CA->>CA: Create and<br/>Sign Credential
+    CA->>WO: Return Credential
     WO->>W: Provide Workload<br/>with Credential
