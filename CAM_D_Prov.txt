@@ -1,21 +1,19 @@
     ┌──────────────────┐      ┌─────────────┐      ┌─────────────┐      ┌────────────────────────┐
     │  Workload Owner  │      │  Workload   │      │  Key Store  │      │  Credential Authority  │
-    │        (WO)      │      │     (W)     │      │     (KS)    │      │          (CA)          │
     └─────────┬────────┘      └──────┬──────┘      └──────┬──────┘      └───────────┬────────────┘
-              │                      │                    │                         │
     ┌─────────┴──────────────────────┴────────────────────┴─────────────────────────┴────────────┐
     │                                Credential Provisioning Phase                               |
     └─────────┬──────────────────────┬────────────────────┬─────────────────────────┬────────────┘
-              │ Create Workload Identity                  |                         |
-              | and Associated Claims                     │                         |
+              │ Create Workload Identifier                |                         |
+              | and Associated Credential Attributes      │                         |
               │────────────┐         |                    |                         |
               |<───────────┘         |                    |                         |
               │ Create Credential Key Release Policy      |                         |
-              | based on Reference Values                 │                         |
+              | based on Workload Reference Values        │                         |
               │────────────┐         |                    |                         |
               |<───────────┘         |                    |                         |
-              │ Create Credential Key and                 |                         |
-              | Set Key Release Policy                    |                         │
+              │ Create Credential Key                     |                         |
+              | and Set Key Release Policy                |                         │
               │──────────────────────────────────────────>│                         │
               │                      │                    │ Generate and Store Credential Key
               |                      |                    | and Key Release Policy  |
@@ -26,15 +24,15 @@
               │<──────────────────────────────────────────│                         │
               │ Create Credential Request                 │                         │
               │──────────────────────────────────────────>│                         │
-              │                      │                    │ Compute Credential Request & Sign
-              │                      │                    │ with Private Credential Key
+              │                      │                    │ Create Credential Request and
+              │                      │                    │ Sign with Private Credential Key
               |                      |                    │────────────┐            |
               |                      |                    |<───────────┘            |
               │                 Return Credential Request |                         │
               │<──────────────────────────────────────────│                         │
-              │ Send Credential Request + Workload Identity + Claims                │
+              │ Request Credential (Credential Request, Workload Identity, Credential Attributes)
               │────────────────────────────────────────────────────────────────────>│
-              │                      │                 Generate and Sign Credential |
+              │                      │                   Create and Sign Credential |
               |                      │                    |           ┌─────────────|
               |                      │                    |           └────────────>|
               │                      │                    |       Return Credential |
@@ -43,5 +41,4 @@
               │─────────────────────>│                    │                         │
     ┌─────────┴────────┐      ┌──────┴──────┐      ┌──────┴──────┐      ┌───────────┴────────────┐
     │  Workload Owner  │      │  Workload   │      │  Key Store  │      │  Credential Authority  │
-    │        (WO)      │      │     (W)     │      │     (KS)    │      │          (CA)          │
     └──────────────────┘      └─────────────┘      └─────────────┘      └────────────────────────┘
