@@ -2,17 +2,18 @@
     │   Workload   │        │   Verifier   │        │  Credential Authority  │
     │      (W)     │        │      (V)     │        │          (CA)          │
     └──────┬───────┘        └───────┬──────┘        └────────────┬───────────┘
-           │                        │                            │
     ┌──────┴────────────────────────┴────────────────────────────┴───────────┐
     │                    Credential Acquisition Phase                        |
     └──────┬────────────────────────┬────────────────────────────┬───────────┘
-           │ Generate Key           │                            │
+           │ Generate Credential Key                             │
            │────────────┐           |                            |
            |<───────────┘           |                            |
-           │ Create Credential Request (incl. Key PoP)           │
+           │ Create Credential Request                           |
+           | (incl. Credential Key PoP)                          │
            │────────────┐           |                            |
            |<───────────┘           |                            |
-           │ Create Evidence (Quote) incl. Credential Request    │
+           │ Create Evidence        |                            |
+           | (incl. Credential Request)                          │
            │────────────┐           |                            |
            |<───────────┘           |                            |
            │ Request Attestation (Evidence)                      │
@@ -23,7 +24,7 @@
            |                        | Compute Credential Attributes
            |                        │────────────┐               |
            |                        |<───────────┘               |
-           │                        │ Request Credentials        │
+           │                        │ Request Credential         │
            │                        │ (Credential Request + Attributes)
            │                        │───────────────────────────>│
            │                        │   Create & Sign Credential |
