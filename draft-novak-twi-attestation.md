@@ -145,6 +145,10 @@ Workload Owner:
 
 : an entity tasked with specifying policies concerning what Workload composition is considered valid for the purposes of issuing Workload Credentials
 
+Verifier:
+
+: an entity performing the role of Attestation Verification, as documented in {{Section 4 of -rats-arch}}
+
 # Available Options
 
 When dealing with a client Workload that is running inside a remotely attested Trusted Execution Environment, the goal of having a Relying Party having a stable authorization policy and utilizing industry-standard mechanisms for authorization can be achieved by issuing Credentials in a relying party-friendly format, such as those specified by {{-WIMSE}}. Such Credentials may take the form of x.509 certificates or Workload Identity Tokens (WITs) defined in Section 3.1 of {{-WIMSES2S}}. A Workload can start using the Credential for authentication and authorization once it has two items in its possession: the public portion – the Workload Credential itself, and the secret Credential Key necessary to utilize this Credential.
@@ -164,7 +168,7 @@ These two options can be visualised at a high level as:
 
 TODO: Insert the "Variant1/Variant2" ASCII art generated from our existing documents.
 
-From the Workload's perspective, Variant 1 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “evidence” for “attestation results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.
+From the Workload's perspective, Variant 1 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “Evidence” for “Attestation Results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.
 
 Variant 2 does not carry with it the extra roundtrip, and thus does not carry the additional performance costs or reliability risks.
 
@@ -196,8 +200,6 @@ This set of variants results in several distinct Credential Acquisition Mechanis
 | D | Key Store | Workload Owner | The Credential is generated and handed to the Workload by the Workload Owner. The Workload Owner stores the Credential Key in the Key Store. The Workload obtains the Credential Key from the Key Store after completing Remote Attestation. |
 
 These options are illustrated below with sequence diagrams.
-
-TODO: Generate ASCII art around each of the  sequence diagrams.
 
 ## Mechanism A
 
@@ -248,4 +250,7 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge.
+
+The following persons, in no specific order, contributed to the work directly, participated in design team meetings, or provided valuable comments during the review of this document.
+
+Pieter Kasselman (SPIRL), Arieal Feldman (Google), Mateusz Bronk (Intel), Manu Fontaine (Hushmesh Inc.), Benedict Lau (EQTY Lab), Zvonko Kaiser (NVIDIA), David Quigley (Intel), Sal Kimmich (GadflyAI), Alex Dalton (Shielded Technologies), Eric Wolfe (Mainsail Industries), Nicolae Paladi(Canary Bit), Mark Gentry (JPMorgan Chase), Jag Raman (Oracle), Brian Hugenbruch (IBM), Jens Alberts (Fr0ntierX), Mira Spina (MITRE) and John Suykerbuyk.
