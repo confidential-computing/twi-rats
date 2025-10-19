@@ -12,24 +12,23 @@
        Trustworthy Workloads are workloads that operate in environments that provide isolation of data in use.
 This document describes how Trustworthy workloads can acquire credentials containing stable identifiers, upon proving the trust in the environments in which they operate via Remote Attestation. 
     " name="description">
-<meta content="xml2rfc 3.30.2" name="generator">
+<meta content="xml2rfc 3.31.0" name="generator">
 <meta content="trustworthy workload identity" name="keyword">
 <meta content="remote attestation" name="keyword">
 <meta content="stable workload credentials" name="keyword">
 <meta content="draft-novak-twi-attestation-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.30.2
-    Python 3.12.11
+  xml2rfc 3.31.0
+    Python 3.12.12
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.6
     lxml 5.3.1
-    platformdirs 4.4.0
+    platformdirs 4.5.0
     pycountry 24.6.1
     PyYAML 6.0.2
     requests 2.32.5
-    setuptools 80.9.0
     wcwidth 0.2.14
 -->
 <link href="draft-novak-twi-attestation.xml" rel="alternate" type="application/rfc+xml">
@@ -1053,7 +1052,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Novak, et al.</td>
-<td class="center">Expires 20 April 2026</td>
+<td class="center">Expires 22 April 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1066,12 +1065,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-novak-twi-attestation-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-10-17" class="published">17 October 2025</time>
+<time datetime="2025-10-19" class="published">19 October 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-04-20">20 April 2026</time></dd>
+<dd class="expires"><time datetime="2026-04-22">22 April 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1124,7 @@ This document describes how Trustworthy workloads can acquire credentials contai
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 20 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1273,6 +1272,11 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
         <dd style="margin-left: 1.5em" id="section-2-4.16">
           <p id="section-2-4.16.1">an entity tasked with specifying policies concerning what Workload composition is considered valid for the purposes of issuing Workload Credentials<a href="#section-2-4.16.1" class="pilcrow">¶</a></p>
 </dd>
+        <dd class="break"></dd>
+<dt id="section-2-4.17">Verifier:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.18">
+          <p id="section-2-4.18.1">an entity performing the role of Attestation Verification, as documented in <span><a href="https://rfc-editor.org/rfc/rfc9334#section-4" class="relref">Section 4</a> of [<a href="#RFC9334" class="cite xref">RFC9334</a>]</span><a href="#section-2-4.18.1" class="pilcrow">¶</a></p>
+</dd>
       <dd class="break"></dd>
 </dl>
 </section>
@@ -1297,7 +1301,7 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
 <p id="section-3-6">In either case, the detailed information about the Workload’s composition conveyed to the Verifier using RATS “Evidence” is mapped to Stable, technology-agnostic, business-oriented claims about the Workload.<a href="#section-3-6" class="pilcrow">¶</a></p>
 <p id="section-3-7">These two options can be visualised at a high level as:<a href="#section-3-7" class="pilcrow">¶</a></p>
 <p id="section-3-8">TODO: Insert the "Variant1/Variant2" ASCII art generated from our existing documents.<a href="#section-3-8" class="pilcrow">¶</a></p>
-<p id="section-3-9">From the Workload's perspective, Variant 1 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “evidence” for “attestation results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.<a href="#section-3-9" class="pilcrow">¶</a></p>
+<p id="section-3-9">From the Workload's perspective, Variant 1 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “Evidence” for “Attestation Results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.<a href="#section-3-9" class="pilcrow">¶</a></p>
 <p id="section-3-10">Variant 2 does not carry with it the extra roundtrip, and thus does not carry the additional performance costs or reliability risks.<a href="#section-3-10" class="pilcrow">¶</a></p>
 <p id="section-3-11">Several distinct options are possible. In all cases, the Credential is generated and signed by a Credential Authority. The difference is in how the Workload obtains these Credentials. The main pivots are:<a href="#section-3-11" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3-12">
@@ -1382,7 +1386,6 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
         </tbody>
       </table>
 <p id="section-3-18">These options are illustrated below with sequence diagrams.<a href="#section-3-18" class="pilcrow">¶</a></p>
-<p id="section-3-19">TODO: Generate ASCII art around each of the  sequence diagrams.<a href="#section-3-19" class="pilcrow">¶</a></p>
 <div id="mechanism-a">
 <section id="section-3.1">
         <h3 id="name-mechanism-a">
@@ -1390,147 +1393,133 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
         </h3>
 <div id="section-3.1-1">
           <div class="alignLeft art-svg artwork" id="section-3.1-1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="672" width="600" viewBox="0 0 600 672" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-              <path d="M 64,352 L 64,416" fill="none" stroke="black"></path>
-              <path d="M 64,496 L 64,512" fill="none" stroke="black"></path>
-              <path d="M 264,144 L 264,160" fill="none" stroke="black"></path>
-              <path d="M 264,208 L 264,240" fill="none" stroke="black"></path>
-              <path d="M 264,272 L 264,288" fill="none" stroke="black"></path>
-              <path d="M 264,368 L 264,384" fill="none" stroke="black"></path>
-              <path d="M 264,560 L 264,576" fill="none" stroke="black"></path>
-              <path d="M 496,144 L 496,176" fill="none" stroke="black"></path>
-              <path d="M 496,208 L 496,240" fill="none" stroke="black"></path>
-              <path d="M 496,272 L 496,288" fill="none" stroke="black"></path>
-              <path d="M 496,336 L 496,368" fill="none" stroke="black"></path>
-              <path d="M 496,400 L 496,416" fill="none" stroke="black"></path>
-              <path d="M 496,480 L 496,528" fill="none" stroke="black"></path>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="688" width="600" viewBox="0 0 600 688" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,32 L 8,64" fill="none" stroke="black"></path>
+              <path d="M 8,96 L 8,128" fill="none" stroke="black"></path>
+              <path d="M 8,624 L 8,656" fill="none" stroke="black"></path>
+              <path d="M 64,64 L 64,96" fill="none" stroke="black"></path>
+              <path d="M 64,128 L 64,432" fill="none" stroke="black"></path>
+              <path d="M 64,512 L 64,528" fill="none" stroke="black"></path>
+              <path d="M 64,592 L 64,624" fill="none" stroke="black"></path>
+              <path d="M 128,32 L 128,64" fill="none" stroke="black"></path>
+              <path d="M 128,624 L 128,656" fill="none" stroke="black"></path>
+              <path d="M 160,160 L 160,176" fill="none" stroke="black"></path>
+              <path d="M 168,224 L 168,240" fill="none" stroke="black"></path>
+              <path d="M 168,288 L 168,304" fill="none" stroke="black"></path>
+              <path d="M 200,32 L 200,64" fill="none" stroke="black"></path>
+              <path d="M 200,624 L 200,656" fill="none" stroke="black"></path>
+              <path d="M 264,64 L 264,96" fill="none" stroke="black"></path>
+              <path d="M 264,128 L 264,624" fill="none" stroke="black"></path>
+              <path d="M 320,32 L 320,64" fill="none" stroke="black"></path>
+              <path d="M 320,624 L 320,656" fill="none" stroke="black"></path>
+              <path d="M 360,368 L 360,384" fill="none" stroke="black"></path>
+              <path d="M 360,416 L 360,432" fill="none" stroke="black"></path>
+              <path d="M 384,512 L 384,528" fill="none" stroke="black"></path>
+              <path d="M 392,32 L 392,64" fill="none" stroke="black"></path>
+              <path d="M 392,624 L 392,656" fill="none" stroke="black"></path>
+              <path d="M 496,64 L 496,96" fill="none" stroke="black"></path>
+              <path d="M 496,128 L 496,624" fill="none" stroke="black"></path>
+              <path d="M 592,32 L 592,64" fill="none" stroke="black"></path>
+              <path d="M 592,96 L 592,128" fill="none" stroke="black"></path>
+              <path d="M 592,624 L 592,656" fill="none" stroke="black"></path>
+              <path d="M 8,32 L 128,32" fill="none" stroke="black"></path>
+              <path d="M 200,32 L 320,32" fill="none" stroke="black"></path>
+              <path d="M 392,32 L 592,32" fill="none" stroke="black"></path>
+              <path d="M 8,64 L 128,64" fill="none" stroke="black"></path>
+              <path d="M 200,64 L 320,64" fill="none" stroke="black"></path>
+              <path d="M 392,64 L 592,64" fill="none" stroke="black"></path>
+              <path d="M 8,96 L 592,96" fill="none" stroke="black"></path>
+              <path d="M 8,128 L 592,128" fill="none" stroke="black"></path>
+              <path d="M 64,160 L 160,160" fill="none" stroke="black"></path>
+              <path d="M 72,176 L 160,176" fill="none" stroke="black"></path>
+              <path d="M 64,224 L 168,224" fill="none" stroke="black"></path>
+              <path d="M 72,240 L 168,240" fill="none" stroke="black"></path>
+              <path d="M 64,288 L 168,288" fill="none" stroke="black"></path>
+              <path d="M 72,304 L 168,304" fill="none" stroke="black"></path>
+              <path d="M 64,336 L 256,336" fill="none" stroke="black"></path>
+              <path d="M 264,368 L 360,368" fill="none" stroke="black"></path>
+              <path d="M 272,384 L 360,384" fill="none" stroke="black"></path>
+              <path d="M 264,416 L 360,416" fill="none" stroke="black"></path>
+              <path d="M 272,432 L 360,432" fill="none" stroke="black"></path>
+              <path d="M 264,480 L 488,480" fill="none" stroke="black"></path>
+              <path d="M 384,512 L 496,512" fill="none" stroke="black"></path>
+              <path d="M 384,528 L 488,528" fill="none" stroke="black"></path>
+              <path d="M 272,576 L 496,576" fill="none" stroke="black"></path>
+              <path d="M 72,608 L 264,608" fill="none" stroke="black"></path>
+              <path d="M 8,624 L 128,624" fill="none" stroke="black"></path>
+              <path d="M 200,624 L 320,624" fill="none" stroke="black"></path>
+              <path d="M 392,624 L 592,624" fill="none" stroke="black"></path>
+              <path d="M 8,656 L 128,656" fill="none" stroke="black"></path>
+              <path d="M 200,656 L 320,656" fill="none" stroke="black"></path>
+              <path d="M 392,656 L 592,656" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="496,528 484,522.4 484,533.6" fill="black" transform="rotate(0,488,528)"></polygon>
+              <polygon class="arrowhead" points="496,480 484,474.4 484,485.6" fill="black" transform="rotate(0,488,480)"></polygon>
+              <polygon class="arrowhead" points="280,576 268,570.4 268,581.6" fill="black" transform="rotate(180,272,576)"></polygon>
+              <polygon class="arrowhead" points="280,432 268,426.4 268,437.6" fill="black" transform="rotate(180,272,432)"></polygon>
+              <polygon class="arrowhead" points="280,384 268,378.4 268,389.6" fill="black" transform="rotate(180,272,384)"></polygon>
+              <polygon class="arrowhead" points="264,336 252,330.4 252,341.6" fill="black" transform="rotate(0,256,336)"></polygon>
+              <polygon class="arrowhead" points="80,608 68,602.4 68,613.6" fill="black" transform="rotate(180,72,608)"></polygon>
+              <polygon class="arrowhead" points="80,304 68,298.4 68,309.6" fill="black" transform="rotate(180,72,304)"></polygon>
+              <polygon class="arrowhead" points="80,240 68,234.4 68,245.6" fill="black" transform="rotate(180,72,240)"></polygon>
+              <polygon class="arrowhead" points="80,176 68,170.4 68,181.6" fill="black" transform="rotate(180,72,176)"></polygon>
               <g class="text">
-                <text x="68" y="36">┌──────────────┐</text>
-                <text x="260" y="36">┌──────────────┐</text>
-                <text x="492" y="36">┌────────────────────────┐</text>
-                <text x="8" y="52">│</text>
                 <text x="68" y="52">Workload</text>
-                <text x="128" y="52">│</text>
-                <text x="200" y="52">│</text>
                 <text x="260" y="52">Verifier</text>
-                <text x="320" y="52">│</text>
-                <text x="392" y="52">│</text>
                 <text x="452" y="52">Credential</text>
                 <text x="536" y="52">Authority</text>
-                <text x="592" y="52">│</text>
-                <text x="68" y="68">└──────┬───────┘</text>
-                <text x="260" y="68">└───────┬──────┘</text>
-                <text x="492" y="68">└────────────┬───────────┘</text>
-                <text x="300" y="84">┌──────┴────────────────────────┴────────────────────────────┴───────────┐</text>
-                <text x="8" y="100">│</text>
-                <text x="212" y="100">Credential</text>
-                <text x="304" y="100">Acquisition</text>
-                <text x="376" y="100">Phase</text>
-                <text x="592" y="100">|</text>
-                <text x="300" y="116">└──────┬────────────────────────┬────────────────────────────┬───────────┘</text>
-                <text x="64" y="132">│</text>
-                <text x="108" y="132">Generate</text>
-                <text x="188" y="132">Credential</text>
-                <text x="248" y="132">Key</text>
-                <text x="496" y="132">│</text>
-                <text x="116" y="148">│────────────┐</text>
-                <text x="116" y="164">|&lt;───────────┘</text>
-                <text x="64" y="180">│</text>
-                <text x="100" y="180">Create</text>
-                <text x="172" y="180">Credential</text>
-                <text x="248" y="180">Request</text>
-                <text x="64" y="196">|</text>
-                <text x="100" y="196">(incl.</text>
+                <text x="212" y="116">Credential</text>
+                <text x="304" y="116">Acquisition</text>
+                <text x="376" y="116">Phase</text>
+                <text x="108" y="148">Generate</text>
+                <text x="188" y="148">Credential</text>
+                <text x="192" y="164">Key</text>
+                <text x="100" y="196">Create</text>
                 <text x="172" y="196">Credential</text>
-                <text x="232" y="196">Key</text>
-                <text x="268" y="196">PoP)</text>
-                <text x="496" y="196">│</text>
-                <text x="116" y="212">│────────────┐</text>
-                <text x="116" y="228">|&lt;───────────┘</text>
-                <text x="64" y="244">│</text>
-                <text x="100" y="244">Create</text>
-                <text x="164" y="244">Evidence</text>
-                <text x="64" y="260">|</text>
-                <text x="100" y="260">(incl.</text>
-                <text x="172" y="260">Credential</text>
-                <text x="252" y="260">Request)</text>
-                <text x="496" y="260">│</text>
-                <text x="116" y="276">│────────────┐</text>
-                <text x="116" y="292">|&lt;───────────┘</text>
-                <text x="64" y="308">│</text>
-                <text x="104" y="308">Request</text>
-                <text x="184" y="308">Attestation</text>
-                <text x="276" y="308">(Evidence)</text>
-                <text x="496" y="308">│</text>
-                <text x="164" y="324">│───────────────────────&gt;│</text>
-                <text x="496" y="324">│</text>
-                <text x="64" y="340">│</text>
-                <text x="264" y="340">│</text>
-                <text x="308" y="340">Appraise</text>
-                <text x="380" y="340">Evidence</text>
-                <text x="316" y="356">│────────────┐</text>
-                <text x="320" y="372">&lt;───────────┘</text>
-                <text x="304" y="388">Compute</text>
-                <text x="380" y="388">Credential</text>
-                <text x="468" y="388">Attributes</text>
-                <text x="316" y="404">│────────────┐</text>
-                <text x="316" y="420">|&lt;───────────┘</text>
-                <text x="64" y="436">│</text>
-                <text x="264" y="436">│</text>
-                <text x="304" y="436">Request</text>
-                <text x="380" y="436">Credential</text>
-                <text x="496" y="436">│</text>
+                <text x="232" y="196">Req</text>
+                <text x="92" y="212">(incl.</text>
+                <text x="164" y="212">Credential</text>
+                <text x="224" y="212">Key</text>
+                <text x="212" y="228">Pop)</text>
+                <text x="100" y="260">Create</text>
+                <text x="164" y="260">Evidence</text>
+                <text x="100" y="276">(incl.</text>
+                <text x="172" y="276">Credential</text>
+                <text x="236" y="276">Req)</text>
+                <text x="104" y="324">Request</text>
+                <text x="184" y="324">Attestation</text>
+                <text x="124" y="356">(Evidence)</text>
+                <text x="308" y="356">Appraise</text>
+                <text x="380" y="356">Evidence</text>
+                <text x="304" y="404">Compute</text>
+                <text x="380" y="404">Credential</text>
+                <text x="412" y="420">Attributes</text>
                 <text x="64" y="452">│</text>
-                <text x="264" y="452">│</text>
-                <text x="320" y="452">(Credential</text>
-                <text x="400" y="452">Request</text>
-                <text x="440" y="452">+</text>
-                <text x="496" y="452">Attributes)</text>
+                <text x="304" y="452">Request</text>
+                <text x="380" y="452">Credential</text>
                 <text x="64" y="468">│</text>
-                <text x="380" y="468">│───────────────────────────&gt;│</text>
+                <text x="320" y="468">(Credential</text>
+                <text x="388" y="468">Req+</text>
+                <text x="440" y="468">Attrib)</text>
                 <text x="64" y="484">│</text>
-                <text x="264" y="484">│</text>
-                <text x="316" y="484">Create</text>
-                <text x="352" y="484">&amp;</text>
-                <text x="380" y="484">Sign</text>
-                <text x="444" y="484">Credential</text>
-                <text x="264" y="500">│</text>
-                <text x="436" y="500">┌─────────────</text>
-                <text x="264" y="516">│</text>
-                <text x="436" y="516">└────────────&gt;</text>
-                <text x="64" y="532">│</text>
-                <text x="264" y="532">│</text>
-                <text x="372" y="532">Return</text>
-                <text x="444" y="532">Credential</text>
+                <text x="64" y="500">│</text>
+                <text x="316" y="500">Create</text>
+                <text x="352" y="500">&amp;</text>
+                <text x="380" y="500">Sign</text>
+                <text x="444" y="500">Credential</text>
                 <text x="64" y="548">│</text>
-                <text x="380" y="548">│&lt;───────────────────────────│</text>
                 <text x="64" y="564">│</text>
-                <text x="140" y="564">Return</text>
-                <text x="212" y="564">Credential</text>
-                <text x="496" y="564">│</text>
-                <text x="64" y="580">|</text>
-                <text x="84" y="580">in</text>
-                <text x="144" y="580">Attestation</text>
-                <text x="224" y="580">Results</text>
-                <text x="496" y="580">|</text>
-                <text x="164" y="596">│&lt;───────────────────────│</text>
-                <text x="496" y="596">│</text>
-                <text x="68" y="612">┌──────┴───────┐</text>
-                <text x="260" y="612">┌───────┴──────┐</text>
-                <text x="492" y="612">┌────────────┴───────────┐</text>
-                <text x="8" y="628">│</text>
-                <text x="68" y="628">Workload</text>
-                <text x="128" y="628">│</text>
-                <text x="200" y="628">│</text>
-                <text x="260" y="628">Verifier</text>
-                <text x="320" y="628">│</text>
-                <text x="392" y="628">│</text>
-                <text x="452" y="628">Credential</text>
-                <text x="536" y="628">Authority</text>
-                <text x="592" y="628">│</text>
-                <text x="68" y="644">└──────────────┘</text>
-                <text x="260" y="644">└──────────────┘</text>
-                <text x="492" y="644">└────────────────────────┘</text>
+                <text x="308" y="564">Return</text>
+                <text x="380" y="564">Credential</text>
+                <text x="64" y="580">│</text>
+                <text x="140" y="580">Return</text>
+                <text x="212" y="580">Credential</text>
+                <text x="84" y="596">in</text>
+                <text x="144" y="596">Attestation</text>
+                <text x="224" y="596">Results</text>
+                <text x="68" y="644">Workload</text>
+                <text x="260" y="644">Verifier</text>
+                <text x="452" y="644">Credential</text>
+                <text x="536" y="644">Authority</text>
               </g>
             </svg><a href="#section-3.1-1.1" class="pilcrow">¶</a>
 </div>
@@ -1544,155 +1533,155 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
         </h3>
 <div id="section-3.2-1">
           <div class="alignLeft art-svg artwork" id="section-3.2-1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="720" width="600" viewBox="0 0 600 720" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-              <path d="M 64,288 L 64,304" fill="none" stroke="black"></path>
-              <path d="M 64,336 L 64,368" fill="none" stroke="black"></path>
-              <path d="M 64,544 L 64,560" fill="none" stroke="black"></path>
-              <path d="M 64,592 L 64,624" fill="none" stroke="black"></path>
-              <path d="M 264,144 L 264,176" fill="none" stroke="black"></path>
-              <path d="M 264,208 L 264,224" fill="none" stroke="black"></path>
-              <path d="M 264,352 L 264,368" fill="none" stroke="black"></path>
-              <path d="M 264,448 L 264,464" fill="none" stroke="black"></path>
-              <path d="M 496,144 L 496,176" fill="none" stroke="black"></path>
-              <path d="M 496,208 L 496,240" fill="none" stroke="black"></path>
-              <path d="M 496,272 L 496,304" fill="none" stroke="black"></path>
-              <path d="M 496,336 L 496,384" fill="none" stroke="black"></path>
-              <path d="M 496,448 L 496,464" fill="none" stroke="black"></path>
-              <path d="M 496,512 L 496,624" fill="none" stroke="black"></path>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="736" width="640" viewBox="0 0 640 736" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,32 L 8,64" fill="none" stroke="black"></path>
+              <path d="M 8,96 L 8,128" fill="none" stroke="black"></path>
+              <path d="M 8,672 L 8,704" fill="none" stroke="black"></path>
+              <path d="M 64,64 L 64,96" fill="none" stroke="black"></path>
+              <path d="M 64,160 L 64,176" fill="none" stroke="black"></path>
+              <path d="M 64,208 L 64,240" fill="none" stroke="black"></path>
+              <path d="M 64,304 L 64,320" fill="none" stroke="black"></path>
+              <path d="M 64,352 L 64,384" fill="none" stroke="black"></path>
+              <path d="M 64,448 L 64,480" fill="none" stroke="black"></path>
+              <path d="M 64,560 L 64,576" fill="none" stroke="black"></path>
+              <path d="M 64,608 L 64,640" fill="none" stroke="black"></path>
+              <path d="M 128,32 L 128,64" fill="none" stroke="black"></path>
+              <path d="M 128,672 L 128,704" fill="none" stroke="black"></path>
+              <path d="M 168,160 L 168,176" fill="none" stroke="black"></path>
+              <path d="M 168,224 L 168,240" fill="none" stroke="black"></path>
+              <path d="M 168,464 L 168,480" fill="none" stroke="black"></path>
+              <path d="M 200,32 L 200,64" fill="none" stroke="black"></path>
+              <path d="M 200,672 L 200,704" fill="none" stroke="black"></path>
+              <path d="M 264,64 L 264,96" fill="none" stroke="black"></path>
+              <path d="M 264,160 L 264,272" fill="none" stroke="black"></path>
+              <path d="M 264,304 L 264,672" fill="none" stroke="black"></path>
+              <path d="M 320,32 L 320,64" fill="none" stroke="black"></path>
+              <path d="M 320,672 L 320,704" fill="none" stroke="black"></path>
+              <path d="M 368,304 L 368,320" fill="none" stroke="black"></path>
+              <path d="M 368,352 L 368,368" fill="none" stroke="black"></path>
+              <path d="M 384,560 L 384,576" fill="none" stroke="black"></path>
+              <path d="M 384,608 L 384,624" fill="none" stroke="black"></path>
+              <path d="M 392,32 L 392,64" fill="none" stroke="black"></path>
+              <path d="M 392,672 L 392,704" fill="none" stroke="black"></path>
+              <path d="M 496,64 L 496,96" fill="none" stroke="black"></path>
+              <path d="M 496,128 L 496,672" fill="none" stroke="black"></path>
+              <path d="M 592,32 L 592,64" fill="none" stroke="black"></path>
+              <path d="M 592,96 L 592,128" fill="none" stroke="black"></path>
+              <path d="M 592,672 L 592,704" fill="none" stroke="black"></path>
+              <path d="M 8,32 L 128,32" fill="none" stroke="black"></path>
+              <path d="M 200,32 L 320,32" fill="none" stroke="black"></path>
+              <path d="M 392,32 L 592,32" fill="none" stroke="black"></path>
+              <path d="M 8,64 L 128,64" fill="none" stroke="black"></path>
+              <path d="M 200,64 L 320,64" fill="none" stroke="black"></path>
+              <path d="M 392,64 L 592,64" fill="none" stroke="black"></path>
+              <path d="M 8,96 L 592,96" fill="none" stroke="black"></path>
+              <path d="M 8,128 L 592,128" fill="none" stroke="black"></path>
+              <path d="M 64,160 L 168,160" fill="none" stroke="black"></path>
+              <path d="M 72,176 L 168,176" fill="none" stroke="black"></path>
+              <path d="M 64,224 L 168,224" fill="none" stroke="black"></path>
+              <path d="M 72,240 L 168,240" fill="none" stroke="black"></path>
+              <path d="M 64,272 L 256,272" fill="none" stroke="black"></path>
+              <path d="M 264,304 L 368,304" fill="none" stroke="black"></path>
+              <path d="M 272,320 L 368,320" fill="none" stroke="black"></path>
+              <path d="M 264,352 L 368,352" fill="none" stroke="black"></path>
+              <path d="M 272,368 L 368,368" fill="none" stroke="black"></path>
+              <path d="M 72,416 L 264,416" fill="none" stroke="black"></path>
+              <path d="M 64,464 L 168,464" fill="none" stroke="black"></path>
+              <path d="M 72,480 L 168,480" fill="none" stroke="black"></path>
+              <path d="M 64,512 L 488,512" fill="none" stroke="black"></path>
+              <path d="M 384,560 L 496,560" fill="none" stroke="black"></path>
+              <path d="M 384,576 L 488,576" fill="none" stroke="black"></path>
+              <path d="M 384,608 L 496,608" fill="none" stroke="black"></path>
+              <path d="M 384,624 L 488,624" fill="none" stroke="black"></path>
+              <path d="M 72,656 L 496,656" fill="none" stroke="black"></path>
+              <path d="M 8,672 L 128,672" fill="none" stroke="black"></path>
+              <path d="M 200,672 L 320,672" fill="none" stroke="black"></path>
+              <path d="M 392,672 L 592,672" fill="none" stroke="black"></path>
+              <path d="M 8,704 L 128,704" fill="none" stroke="black"></path>
+              <path d="M 200,704 L 320,704" fill="none" stroke="black"></path>
+              <path d="M 392,704 L 592,704" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="496,624 484,618.4 484,629.6" fill="black" transform="rotate(0,488,624)"></polygon>
+              <polygon class="arrowhead" points="496,576 484,570.4 484,581.6" fill="black" transform="rotate(0,488,576)"></polygon>
+              <polygon class="arrowhead" points="496,512 484,506.4 484,517.6" fill="black" transform="rotate(0,488,512)"></polygon>
+              <polygon class="arrowhead" points="280,368 268,362.4 268,373.6" fill="black" transform="rotate(180,272,368)"></polygon>
+              <polygon class="arrowhead" points="280,320 268,314.4 268,325.6" fill="black" transform="rotate(180,272,320)"></polygon>
+              <polygon class="arrowhead" points="264,272 252,266.4 252,277.6" fill="black" transform="rotate(0,256,272)"></polygon>
+              <polygon class="arrowhead" points="80,656 68,650.4 68,661.6" fill="black" transform="rotate(180,72,656)"></polygon>
+              <polygon class="arrowhead" points="80,480 68,474.4 68,485.6" fill="black" transform="rotate(180,72,480)"></polygon>
+              <polygon class="arrowhead" points="80,416 68,410.4 68,421.6" fill="black" transform="rotate(180,72,416)"></polygon>
+              <polygon class="arrowhead" points="80,240 68,234.4 68,245.6" fill="black" transform="rotate(180,72,240)"></polygon>
+              <polygon class="arrowhead" points="80,176 68,170.4 68,181.6" fill="black" transform="rotate(180,72,176)"></polygon>
               <g class="text">
-                <text x="68" y="36">┌──────────────┐</text>
-                <text x="260" y="36">┌──────────────┐</text>
-                <text x="492" y="36">┌────────────────────────┐</text>
-                <text x="8" y="52">│</text>
                 <text x="68" y="52">Workload</text>
-                <text x="128" y="52">│</text>
-                <text x="200" y="52">│</text>
                 <text x="260" y="52">Verifier</text>
-                <text x="320" y="52">│</text>
-                <text x="392" y="52">│</text>
                 <text x="452" y="52">Credential</text>
                 <text x="536" y="52">Authority</text>
-                <text x="592" y="52">│</text>
-                <text x="68" y="68">└──────┬───────┘</text>
-                <text x="260" y="68">└───────┬──────┘</text>
-                <text x="492" y="68">└────────────┬───────────┘</text>
-                <text x="300" y="84">┌──────┴────────────────────────┴────────────────────────────┴───────────┐</text>
-                <text x="8" y="100">│</text>
-                <text x="212" y="100">Credential</text>
-                <text x="304" y="100">Acquisition</text>
-                <text x="376" y="100">Phase</text>
-                <text x="592" y="100">|</text>
-                <text x="300" y="116">└──────┬────────────────────────┬────────────────────────────┬───────────┘</text>
-                <text x="64" y="132">│</text>
-                <text x="108" y="132">Generate</text>
-                <text x="188" y="132">Credential</text>
-                <text x="248" y="132">Key</text>
-                <text x="496" y="132">│</text>
-                <text x="116" y="148">│────────────┐</text>
-                <text x="116" y="164">|&lt;───────────┘</text>
-                <text x="64" y="180">│</text>
-                <text x="100" y="180">Create</text>
-                <text x="164" y="180">Evidence</text>
-                <text x="64" y="196">|</text>
-                <text x="100" y="196">(incl.</text>
-                <text x="172" y="196">Credential</text>
-                <text x="232" y="196">Key</text>
-                <text x="268" y="196">PoP)</text>
-                <text x="496" y="196">│</text>
-                <text x="116" y="212">│────────────┐</text>
-                <text x="116" y="228">|&lt;───────────┘</text>
-                <text x="64" y="244">│</text>
-                <text x="104" y="244">Request</text>
-                <text x="184" y="244">Attestation</text>
-                <text x="276" y="244">(Evidence)</text>
-                <text x="164" y="260">│───────────────────────&gt;│</text>
-                <text x="496" y="260">│</text>
-                <text x="64" y="276">│</text>
-                <text x="264" y="276">│</text>
-                <text x="308" y="276">Appraise</text>
-                <text x="380" y="276">Evidence</text>
-                <text x="316" y="292">│────────────┐</text>
-                <text x="316" y="308">|&lt;───────────┘</text>
-                <text x="64" y="324">│</text>
-                <text x="264" y="324">│</text>
-                <text x="304" y="324">Compute</text>
-                <text x="384" y="324">Attestation</text>
-                <text x="464" y="324">Results</text>
-                <text x="316" y="340">│────────────┐</text>
-                <text x="320" y="356">&lt;───────────┘</text>
-                <text x="228" y="372">Return</text>
-                <text x="64" y="388">│</text>
-                <text x="144" y="388">Attestation</text>
-                <text x="224" y="388">Results</text>
-                <text x="264" y="388">│</text>
-                <text x="164" y="404">│&lt;───────────────────────│</text>
-                <text x="496" y="404">│</text>
-                <text x="64" y="420">│</text>
-                <text x="100" y="420">Create</text>
-                <text x="172" y="420">Credential</text>
-                <text x="248" y="420">Request</text>
-                <text x="496" y="420">|</text>
-                <text x="64" y="436">|</text>
-                <text x="100" y="436">(incl.</text>
+                <text x="212" y="116">Credential</text>
+                <text x="304" y="116">Acquisition</text>
+                <text x="376" y="116">Phase</text>
+                <text x="64" y="148">│</text>
+                <text x="108" y="148">Generate</text>
+                <text x="188" y="148">Credential</text>
+                <text x="248" y="148">Key</text>
+                <text x="64" y="196">│</text>
+                <text x="100" y="196">Create</text>
+                <text x="164" y="196">Evidence</text>
+                <text x="100" y="212">(incl.</text>
+                <text x="172" y="212">Credential</text>
+                <text x="232" y="212">Key</text>
+                <text x="204" y="228">PoP)</text>
+                <text x="64" y="260">│</text>
+                <text x="104" y="260">Request</text>
+                <text x="184" y="260">Attestation</text>
+                <text x="64" y="292">│</text>
+                <text x="116" y="292">(Evidence)</text>
+                <text x="300" y="292">Appraise</text>
+                <text x="372" y="292">Evidence</text>
+                <text x="64" y="340">│</text>
+                <text x="304" y="340">Compute</text>
+                <text x="384" y="340">Attestation</text>
+                <text x="228" y="388">Return</text>
+                <text x="64" y="404">│</text>
+                <text x="144" y="404">Attestation</text>
+                <text x="224" y="404">Results</text>
+                <text x="64" y="420">+</text>
+                <text x="64" y="436">│</text>
+                <text x="100" y="436">Create</text>
                 <text x="172" y="436">Credential</text>
-                <text x="232" y="436">Key</text>
-                <text x="264" y="436">PoP</text>
-                <text x="296" y="436">and</text>
-                <text x="360" y="436">Attestation</text>
-                <text x="444" y="436">Results)</text>
-                <text x="496" y="436">│</text>
-                <text x="116" y="452">│────────────┐</text>
-                <text x="116" y="468">|&lt;───────────┘</text>
-                <text x="64" y="484">│</text>
-                <text x="104" y="484">Request</text>
-                <text x="180" y="484">Credential</text>
-                <text x="272" y="484">(Credential</text>
-                <text x="356" y="484">Request)</text>
-                <text x="488" y="484">|</text>
-                <text x="280" y="500">│────────────────────────────────────────────────────&gt;│</text>
-                <text x="64" y="516">│</text>
-                <text x="296" y="516">Convert</text>
-                <text x="376" y="516">Attestation</text>
-                <text x="456" y="516">Results</text>
+                <text x="236" y="436">Req.</text>
+                <text x="100" y="452">(incl.</text>
+                <text x="172" y="452">Credential</text>
+                <text x="232" y="452">Key</text>
+                <text x="192" y="468">Pop</text>
+                <text x="216" y="468">&amp;</text>
+                <text x="240" y="468">AR)</text>
+                <text x="64" y="500">│</text>
+                <text x="104" y="500">Request</text>
+                <text x="180" y="500">Credential</text>
+                <text x="244" y="500">(Cre</text>
+                <text x="296" y="500">dential</text>
+                <text x="364" y="500">Request)</text>
+                <text x="632" y="500">|</text>
                 <text x="64" y="532">│</text>
-                <text x="264" y="532">│</text>
-                <text x="300" y="532">to</text>
-                <text x="356" y="532">Credential</text>
-                <text x="444" y="532">Attributes</text>
-                <text x="264" y="548">│</text>
-                <text x="436" y="548">┌─────────────</text>
-                <text x="264" y="564">│</text>
-                <text x="436" y="564">└────────────&gt;</text>
-                <text x="64" y="580">│</text>
-                <text x="264" y="580">│</text>
-                <text x="316" y="580">Create</text>
-                <text x="352" y="580">&amp;</text>
-                <text x="380" y="580">Sign</text>
-                <text x="444" y="580">Credential</text>
-                <text x="264" y="596">│</text>
-                <text x="436" y="596">┌─────────────</text>
-                <text x="264" y="612">│</text>
-                <text x="436" y="612">└────────────&gt;</text>
-                <text x="264" y="628">|</text>
-                <text x="372" y="628">Return</text>
-                <text x="444" y="628">Credential</text>
-                <text x="280" y="644">│&lt;────────────────────────────────────────────────────│</text>
-                <text x="68" y="660">┌──────┴───────┐</text>
-                <text x="260" y="660">┌───────┴──────┐</text>
-                <text x="492" y="660">┌────────────┴───────────┐</text>
-                <text x="8" y="676">│</text>
-                <text x="68" y="676">Workload</text>
-                <text x="128" y="676">│</text>
-                <text x="200" y="676">│</text>
-                <text x="260" y="676">Verifier</text>
-                <text x="320" y="676">│</text>
-                <text x="392" y="676">│</text>
-                <text x="452" y="676">Credential</text>
-                <text x="536" y="676">Authority</text>
-                <text x="592" y="676">│</text>
-                <text x="68" y="692">└──────────────┘</text>
-                <text x="260" y="692">└──────────────┘</text>
-                <text x="492" y="692">└────────────────────────┘</text>
+                <text x="296" y="532">Convert</text>
+                <text x="376" y="532">Attestation</text>
+                <text x="456" y="532">Results</text>
+                <text x="64" y="548">│</text>
+                <text x="300" y="548">to</text>
+                <text x="356" y="548">Credential</text>
+                <text x="444" y="548">Attributes</text>
+                <text x="64" y="596">│</text>
+                <text x="316" y="596">Create</text>
+                <text x="352" y="596">&amp;</text>
+                <text x="380" y="596">Sign</text>
+                <text x="444" y="596">Credential</text>
+                <text x="372" y="644">Return</text>
+                <text x="444" y="644">Credential</text>
+                <text x="64" y="660">│</text>
+                <text x="68" y="692">Workload</text>
+                <text x="260" y="692">Verifier</text>
+                <text x="452" y="692">Credential</text>
+                <text x="536" y="692">Authority</text>
               </g>
             </svg><a href="#section-3.2-1.1" class="pilcrow">¶</a>
 </div>
@@ -1706,155 +1695,156 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
         </h3>
 <div id="section-3.3-1">
           <div class="alignLeft art-svg artwork" id="section-3.3-1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="704" width="600" viewBox="0 0 600 704" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="768" width="640" viewBox="0 0 640 768" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,32 L 8,64" fill="none" stroke="black"></path>
+              <path d="M 8,96 L 8,128" fill="none" stroke="black"></path>
+              <path d="M 8,704 L 8,736" fill="none" stroke="black"></path>
+              <path d="M 64,64 L 64,96" fill="none" stroke="black"></path>
+              <path d="M 64,160 L 64,176" fill="none" stroke="black"></path>
+              <path d="M 64,208 L 64,240" fill="none" stroke="black"></path>
+              <path d="M 64,272 L 64,320" fill="none" stroke="black"></path>
               <path d="M 64,384 L 64,400" fill="none" stroke="black"></path>
-              <path d="M 64,432 L 64,448" fill="none" stroke="black"></path>
-              <path d="M 64,496 L 64,544" fill="none" stroke="black"></path>
-              <path d="M 64,576 L 64,592" fill="none" stroke="black"></path>
-              <path d="M 304,144 L 304,224" fill="none" stroke="black"></path>
-              <path d="M 304,256 L 304,272" fill="none" stroke="black"></path>
-              <path d="M 304,496 L 304,512" fill="none" stroke="black"></path>
-              <path d="M 536,144 L 536,176" fill="none" stroke="black"></path>
-              <path d="M 536,208 L 536,224" fill="none" stroke="black"></path>
-              <path d="M 536,256 L 536,288" fill="none" stroke="black"></path>
-              <path d="M 536,368 L 536,464" fill="none" stroke="black"></path>
-              <path d="M 536,512 L 536,592" fill="none" stroke="black"></path>
+              <path d="M 64,448 L 64,464" fill="none" stroke="black"></path>
+              <path d="M 64,496 L 64,512" fill="none" stroke="black"></path>
+              <path d="M 64,560 L 64,608" fill="none" stroke="black"></path>
+              <path d="M 64,640 L 64,656" fill="none" stroke="black"></path>
+              <path d="M 64,688 L 64,704" fill="none" stroke="black"></path>
+              <path d="M 128,32 L 128,64" fill="none" stroke="black"></path>
+              <path d="M 128,704 L 128,736" fill="none" stroke="black"></path>
+              <path d="M 168,160 L 168,176" fill="none" stroke="black"></path>
+              <path d="M 168,224 L 168,240" fill="none" stroke="black"></path>
+              <path d="M 168,272 L 168,304" fill="none" stroke="black"></path>
+              <path d="M 200,32 L 200,64" fill="none" stroke="black"></path>
+              <path d="M 248,704 L 248,736" fill="none" stroke="black"></path>
+              <path d="M 304,64 L 304,96" fill="none" stroke="black"></path>
+              <path d="M 304,128 L 304,704" fill="none" stroke="black"></path>
+              <path d="M 368,704 L 368,736" fill="none" stroke="black"></path>
+              <path d="M 400,32 L 400,64" fill="none" stroke="black"></path>
+              <path d="M 408,592 L 408,608" fill="none" stroke="black"></path>
+              <path d="M 408,640 L 408,656" fill="none" stroke="black"></path>
+              <path d="M 424,448 L 424,464" fill="none" stroke="black"></path>
+              <path d="M 424,496 L 424,512" fill="none" stroke="black"></path>
+              <path d="M 432,704 L 432,736" fill="none" stroke="black"></path>
+              <path d="M 472,32 L 472,64" fill="none" stroke="black"></path>
+              <path d="M 536,64 L 536,96" fill="none" stroke="black"></path>
+              <path d="M 536,128 L 536,336" fill="none" stroke="black"></path>
+              <path d="M 536,368 L 536,704" fill="none" stroke="black"></path>
+              <path d="M 592,32 L 592,64" fill="none" stroke="black"></path>
+              <path d="M 632,96 L 632,128" fill="none" stroke="black"></path>
+              <path d="M 632,704 L 632,736" fill="none" stroke="black"></path>
+              <path d="M 8,32 L 128,32" fill="none" stroke="black"></path>
+              <path d="M 200,32 L 400,32" fill="none" stroke="black"></path>
+              <path d="M 472,32 L 592,32" fill="none" stroke="black"></path>
+              <path d="M 8,64 L 128,64" fill="none" stroke="black"></path>
+              <path d="M 200,64 L 400,64" fill="none" stroke="black"></path>
+              <path d="M 472,64 L 592,64" fill="none" stroke="black"></path>
+              <path d="M 8,96 L 632,96" fill="none" stroke="black"></path>
+              <path d="M 8,128 L 632,128" fill="none" stroke="black"></path>
+              <path d="M 64,160 L 168,160" fill="none" stroke="black"></path>
+              <path d="M 72,176 L 168,176" fill="none" stroke="black"></path>
+              <path d="M 64,224 L 168,224" fill="none" stroke="black"></path>
+              <path d="M 72,240 L 168,240" fill="none" stroke="black"></path>
+              <path d="M 64,272 L 176,272" fill="none" stroke="black"></path>
+              <path d="M 72,304 L 168,304" fill="none" stroke="black"></path>
+              <path d="M 64,352 L 296,352" fill="none" stroke="black"></path>
+              <path d="M 304,416 L 528,416" fill="none" stroke="black"></path>
+              <path d="M 424,448 L 536,448" fill="none" stroke="black"></path>
+              <path d="M 424,464 L 528,464" fill="none" stroke="black"></path>
+              <path d="M 424,496 L 536,496" fill="none" stroke="black"></path>
+              <path d="M 424,512 L 528,512" fill="none" stroke="black"></path>
+              <path d="M 312,544 L 536,544" fill="none" stroke="black"></path>
+              <path d="M 304,592 L 408,592" fill="none" stroke="black"></path>
+              <path d="M 312,608 L 408,608" fill="none" stroke="black"></path>
+              <path d="M 304,640 L 408,640" fill="none" stroke="black"></path>
+              <path d="M 312,656 L 408,656" fill="none" stroke="black"></path>
+              <path d="M 72,688 L 304,688" fill="none" stroke="black"></path>
+              <path d="M 8,704 L 128,704" fill="none" stroke="black"></path>
+              <path d="M 248,704 L 368,704" fill="none" stroke="black"></path>
+              <path d="M 432,704 L 632,704" fill="none" stroke="black"></path>
+              <path d="M 8,736 L 128,736" fill="none" stroke="black"></path>
+              <path d="M 248,736 L 368,736" fill="none" stroke="black"></path>
+              <path d="M 432,736 L 632,736" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="536,512 524,506.4 524,517.6" fill="black" transform="rotate(0,528,512)"></polygon>
+              <polygon class="arrowhead" points="536,464 524,458.4 524,469.6" fill="black" transform="rotate(0,528,464)"></polygon>
+              <polygon class="arrowhead" points="536,416 524,410.4 524,421.6" fill="black" transform="rotate(0,528,416)"></polygon>
+              <polygon class="arrowhead" points="320,656 308,650.4 308,661.6" fill="black" transform="rotate(180,312,656)"></polygon>
+              <polygon class="arrowhead" points="320,608 308,602.4 308,613.6" fill="black" transform="rotate(180,312,608)"></polygon>
+              <polygon class="arrowhead" points="320,544 308,538.4 308,549.6" fill="black" transform="rotate(180,312,544)"></polygon>
+              <polygon class="arrowhead" points="304,352 292,346.4 292,357.6" fill="black" transform="rotate(0,296,352)"></polygon>
+              <polygon class="arrowhead" points="80,688 68,682.4 68,693.6" fill="black" transform="rotate(180,72,688)"></polygon>
+              <polygon class="arrowhead" points="80,304 68,298.4 68,309.6" fill="black" transform="rotate(180,72,304)"></polygon>
+              <polygon class="arrowhead" points="80,240 68,234.4 68,245.6" fill="black" transform="rotate(180,72,240)"></polygon>
+              <polygon class="arrowhead" points="80,176 68,170.4 68,181.6" fill="black" transform="rotate(180,72,176)"></polygon>
               <g class="text">
-                <text x="68" y="36">┌──────────────┐</text>
-                <text x="300" y="36">┌────────────────────────┐</text>
-                <text x="532" y="36">┌──────────────┐</text>
-                <text x="8" y="52">│</text>
                 <text x="68" y="52">Workload</text>
-                <text x="128" y="52">│</text>
-                <text x="200" y="52">│</text>
-                <text x="260" y="52">Credential</text>
-                <text x="344" y="52">Authority</text>
-                <text x="400" y="52">│</text>
-                <text x="472" y="52">│</text>
-                <text x="532" y="52">Verifier</text>
-                <text x="592" y="52">│</text>
-                <text x="68" y="68">└──────┬───────┘</text>
-                <text x="300" y="68">└────────────┬───────────┘</text>
-                <text x="532" y="68">└───────┬──────┘</text>
-                <text x="300" y="84">┌──────┴─────────────────────────────┴────────────────────────────┴──────┐</text>
-                <text x="8" y="100">│</text>
-                <text x="252" y="100">Credential</text>
-                <text x="344" y="100">Acquisition</text>
-                <text x="416" y="100">Phase</text>
-                <text x="592" y="100">|</text>
-                <text x="300" y="116">└──────┬─────────────────────────────┬────────────────────────────┬──────┘</text>
-                <text x="64" y="132">│</text>
-                <text x="108" y="132">Generate</text>
-                <text x="188" y="132">Credential</text>
-                <text x="248" y="132">Key</text>
-                <text x="304" y="132">│</text>
-                <text x="536" y="132">│</text>
-                <text x="116" y="148">│────────────┐</text>
-                <text x="116" y="164">|&lt;───────────┘</text>
-                <text x="64" y="180">│</text>
-                <text x="100" y="180">Create</text>
-                <text x="164" y="180">Evidence</text>
-                <text x="64" y="196">|</text>
-                <text x="100" y="196">(incl.</text>
-                <text x="172" y="196">Credential</text>
-                <text x="232" y="196">Key</text>
-                <text x="268" y="196">PoP)</text>
-                <text x="536" y="196">│</text>
-                <text x="116" y="212">│────────────┐</text>
-                <text x="116" y="228">|&lt;───────────┘</text>
-                <text x="64" y="244">│</text>
-                <text x="100" y="244">Create</text>
-                <text x="172" y="244">Credential</text>
-                <text x="248" y="244">Request</text>
-                <text x="324" y="244">(Evidence,</text>
-                <text x="412" y="244">Credential</text>
-                <text x="472" y="244">Key</text>
-                <text x="508" y="244">PoP)</text>
-                <text x="536" y="244">│</text>
-                <text x="116" y="260">│────────────┐</text>
-                <text x="116" y="276">|&lt;───────────┘</text>
-                <text x="64" y="292">│</text>
-                <text x="104" y="292">Request</text>
-                <text x="180" y="292">Credential</text>
-                <text x="272" y="292">(Credential</text>
-                <text x="356" y="292">Request)</text>
-                <text x="184" y="308">│────────────────────────────&gt;│</text>
-                <text x="536" y="308">│</text>
-                <text x="64" y="324">│</text>
-                <text x="304" y="324">│</text>
-                <text x="344" y="324">Request</text>
-                <text x="424" y="324">Attestation</text>
-                <text x="536" y="324">|</text>
-                <text x="64" y="340">|</text>
-                <text x="304" y="340">|</text>
-                <text x="352" y="340">(Evidence</text>
-                <text x="412" y="340">from</text>
-                <text x="476" y="340">Credential</text>
-                <text x="556" y="340">Request)</text>
-                <text x="64" y="356">│</text>
-                <text x="420" y="356">│───────────────────────────&gt;│</text>
+                <text x="268" y="52">Credential</text>
+                <text x="352" y="52">Authority</text>
+                <text x="516" y="52">Verifier</text>
+                <text x="212" y="116">Credential</text>
+                <text x="304" y="116">Acquisition</text>
+                <text x="376" y="116">Phase</text>
+                <text x="64" y="148">│</text>
+                <text x="108" y="148">Generate</text>
+                <text x="188" y="148">Credential</text>
+                <text x="248" y="148">Key</text>
+                <text x="64" y="196">│</text>
+                <text x="100" y="196">Create</text>
+                <text x="164" y="196">Evidence</text>
+                <text x="100" y="212">(incl.</text>
+                <text x="172" y="212">Credential</text>
+                <text x="232" y="212">Key</text>
+                <text x="204" y="228">PoP)</text>
+                <text x="64" y="260">│</text>
+                <text x="100" y="260">Create</text>
+                <text x="172" y="260">Credential</text>
+                <text x="248" y="260">Request</text>
+                <text x="216" y="276">Evidence,</text>
+                <text x="212" y="292">Credential</text>
+                <text x="184" y="308">Key</text>
+                <text x="220" y="308">PoP)</text>
+                <text x="64" y="340">│</text>
+                <text x="104" y="340">Request</text>
+                <text x="180" y="340">Credential</text>
+                <text x="536" y="356">│</text>
                 <text x="64" y="372">│</text>
-                <text x="304" y="372">│</text>
-                <text x="420" y="372">Appraise</text>
-                <text x="492" y="372">Evidence</text>
-                <text x="304" y="388">│</text>
-                <text x="476" y="388">┌─────────────</text>
-                <text x="304" y="404">│</text>
-                <text x="476" y="404">└────────────&gt;</text>
+                <text x="120" y="372">(Credential</text>
+                <text x="204" y="372">Request)</text>
+                <text x="344" y="372">Request</text>
+                <text x="424" y="372">Attestation</text>
+                <text x="352" y="388">(Evidence</text>
+                <text x="412" y="388">from</text>
+                <text x="364" y="404">Credential</text>
+                <text x="444" y="404">Request)</text>
                 <text x="64" y="420">│</text>
-                <text x="336" y="420">Compute</text>
-                <text x="416" y="420">Attestation</text>
-                <text x="496" y="420">Results</text>
-                <text x="304" y="436">│</text>
-                <text x="476" y="436">┌─────────────</text>
-                <text x="304" y="452">│</text>
-                <text x="476" y="452">└────────────&gt;</text>
-                <text x="64" y="468">│</text>
-                <text x="304" y="468">│</text>
-                <text x="340" y="468">Return</text>
-                <text x="416" y="468">Attestation</text>
-                <text x="496" y="468">Results</text>
+                <text x="64" y="436">│</text>
+                <text x="420" y="436">Appraise</text>
+                <text x="492" y="436">Evidence</text>
                 <text x="64" y="484">│</text>
-                <text x="420" y="484">│&lt;───────────────────────────│</text>
-                <text x="344" y="500">Compute</text>
-                <text x="420" y="500">Credential</text>
-                <text x="508" y="500">Attributes</text>
-                <text x="332" y="516">from</text>
-                <text x="400" y="516">Attestation</text>
-                <text x="480" y="516">Results</text>
-                <text x="356" y="532">│────────────┐</text>
-                <text x="356" y="548">|&lt;───────────┘</text>
-                <text x="64" y="564">│</text>
-                <text x="304" y="564">│</text>
-                <text x="340" y="564">Create</text>
-                <text x="376" y="564">&amp;</text>
-                <text x="404" y="564">Sign</text>
-                <text x="468" y="564">Credential</text>
-                <text x="356" y="580">│────────────┐</text>
-                <text x="356" y="596">|&lt;───────────┘</text>
-                <text x="64" y="612">│</text>
-                <text x="180" y="612">Return</text>
-                <text x="252" y="612">Credential</text>
-                <text x="304" y="612">│</text>
-                <text x="536" y="612">│</text>
-                <text x="184" y="628">│&lt;────────────────────────────│</text>
-                <text x="536" y="628">│</text>
-                <text x="68" y="644">┌──────┴───────┐</text>
-                <text x="300" y="644">┌────────────┴───────────┐</text>
-                <text x="532" y="644">┌───────┴──────┐</text>
-                <text x="8" y="660">│</text>
-                <text x="68" y="660">Workload</text>
-                <text x="128" y="660">│</text>
-                <text x="200" y="660">│</text>
-                <text x="260" y="660">Credential</text>
-                <text x="344" y="660">Authority</text>
-                <text x="400" y="660">│</text>
-                <text x="472" y="660">│</text>
-                <text x="532" y="660">Verifier</text>
-                <text x="592" y="660">│</text>
-                <text x="68" y="676">└──────────────┘</text>
-                <text x="300" y="676">└────────────────────────┘</text>
-                <text x="532" y="676">└──────────────┘</text>
+                <text x="344" y="484">Compute</text>
+                <text x="424" y="484">Attestation</text>
+                <text x="504" y="484">Results</text>
+                <text x="64" y="532">│</text>
+                <text x="340" y="532">Return</text>
+                <text x="416" y="532">Attestation</text>
+                <text x="496" y="532">Results</text>
+                <text x="64" y="548">│</text>
+                <text x="336" y="580">Compute</text>
+                <text x="412" y="580">Credential</text>
+                <text x="484" y="580">Attrib</text>
+                <text x="440" y="596">(from</text>
+                <text x="480" y="596">AR)</text>
+                <text x="64" y="628">│</text>
+                <text x="340" y="628">Create</text>
+                <text x="376" y="628">&amp;</text>
+                <text x="404" y="628">Sign</text>
+                <text x="468" y="628">Credential</text>
+                <text x="64" y="676">│</text>
+                <text x="180" y="676">Return</text>
+                <text x="252" y="676">Credential</text>
+                <text x="68" y="724">Workload</text>
+                <text x="308" y="724">Verifier</text>
+                <text x="492" y="724">Credential</text>
+                <text x="576" y="724">Authority</text>
               </g>
             </svg><a href="#section-3.3-1.1" class="pilcrow">¶</a>
 </div>
@@ -1874,214 +1864,233 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
           </h4>
 <div id="section-3.4.1-1">
             <div class="alignLeft art-svg artwork" id="section-3.4.1-1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="752" width="760" viewBox="0 0 760 752" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-                <path d="M 88,320 L 88,352" fill="none" stroke="black"></path>
-                <path d="M 88,480 L 88,496" fill="none" stroke="black"></path>
-                <path d="M 88,592 L 88,608" fill="none" stroke="black"></path>
-                <path d="M 272,160 L 272,176" fill="none" stroke="black"></path>
-                <path d="M 272,224 L 272,240" fill="none" stroke="black"></path>
-                <path d="M 272,320 L 272,352" fill="none" stroke="black"></path>
-                <path d="M 272,480 L 272,496" fill="none" stroke="black"></path>
-                <path d="M 440,160 L 440,192" fill="none" stroke="black"></path>
-                <path d="M 440,224 L 440,272" fill="none" stroke="black"></path>
-                <path d="M 440,352 L 440,384" fill="none" stroke="black"></path>
-                <path d="M 440,496 L 440,512" fill="none" stroke="black"></path>
-                <path d="M 440,592 L 440,624" fill="none" stroke="black"></path>
-                <path d="M 648,128 L 648,256" fill="none" stroke="black"></path>
-                <path d="M 648,320 L 648,384" fill="none" stroke="black"></path>
-                <path d="M 648,480 L 648,496" fill="none" stroke="black"></path>
-                <path d="M 648,576 L 648,624" fill="none" stroke="black"></path>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="768" width="760" viewBox="0 0 760 768" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,32 L 8,64" fill="none" stroke="black"></path>
+                <path d="M 8,704 L 8,736" fill="none" stroke="black"></path>
+                <path d="M 16,96 L 16,128" fill="none" stroke="black"></path>
+                <path d="M 88,64 L 88,96" fill="none" stroke="black"></path>
+                <path d="M 88,160 L 88,192" fill="none" stroke="black"></path>
+                <path d="M 88,224 L 88,256" fill="none" stroke="black"></path>
+                <path d="M 88,288 L 88,304" fill="none" stroke="black"></path>
+                <path d="M 88,336 L 88,368" fill="none" stroke="black"></path>
+                <path d="M 88,400 L 88,416" fill="none" stroke="black"></path>
+                <path d="M 88,496 L 88,512" fill="none" stroke="black"></path>
+                <path d="M 88,608 L 88,624" fill="none" stroke="black"></path>
+                <path d="M 88,656 L 88,704" fill="none" stroke="black"></path>
+                <path d="M 160,32 L 160,64" fill="none" stroke="black"></path>
+                <path d="M 160,704 L 160,736" fill="none" stroke="black"></path>
+                <path d="M 192,176 L 192,192" fill="none" stroke="black"></path>
+                <path d="M 192,240 L 192,256" fill="none" stroke="black"></path>
+                <path d="M 216,32 L 216,64" fill="none" stroke="black"></path>
+                <path d="M 216,704 L 216,736" fill="none" stroke="black"></path>
+                <path d="M 272,64 L 272,96" fill="none" stroke="black"></path>
+                <path d="M 272,176 L 272,192" fill="none" stroke="black"></path>
+                <path d="M 272,240 L 272,256" fill="none" stroke="black"></path>
+                <path d="M 272,336 L 272,368" fill="none" stroke="black"></path>
+                <path d="M 272,448 L 272,512" fill="none" stroke="black"></path>
+                <path d="M 272,688 L 272,704" fill="none" stroke="black"></path>
+                <path d="M 328,32 L 328,64" fill="none" stroke="black"></path>
+                <path d="M 384,32 L 384,64" fill="none" stroke="black"></path>
+                <path d="M 384,704 L 384,736" fill="none" stroke="black"></path>
+                <path d="M 440,64 L 440,96" fill="none" stroke="black"></path>
+                <path d="M 440,128 L 440,144" fill="none" stroke="black"></path>
+                <path d="M 440,176 L 440,208" fill="none" stroke="black"></path>
+                <path d="M 440,240 L 440,304" fill="none" stroke="black"></path>
+                <path d="M 440,336 L 440,416" fill="none" stroke="black"></path>
+                <path d="M 440,496 L 440,544" fill="none" stroke="black"></path>
+                <path d="M 440,608 L 440,704" fill="none" stroke="black"></path>
+                <path d="M 496,32 L 496,64" fill="none" stroke="black"></path>
+                <path d="M 496,704 L 496,736" fill="none" stroke="black"></path>
+                <path d="M 536,608 L 536,624" fill="none" stroke="black"></path>
+                <path d="M 544,352 L 544,368" fill="none" stroke="black"></path>
+                <path d="M 544,496 L 544,512" fill="none" stroke="black"></path>
+                <path d="M 552,32 L 552,64" fill="none" stroke="black"></path>
+                <path d="M 552,704 L 552,736" fill="none" stroke="black"></path>
+                <path d="M 648,64 L 648,96" fill="none" stroke="black"></path>
+                <path d="M 648,128 L 648,272" fill="none" stroke="black"></path>
+                <path d="M 648,336 L 648,400" fill="none" stroke="black"></path>
+                <path d="M 648,496 L 648,512" fill="none" stroke="black"></path>
+                <path d="M 648,576 L 648,656" fill="none" stroke="black"></path>
+                <path d="M 648,688 L 648,704" fill="none" stroke="black"></path>
+                <path d="M 744,96 L 744,128" fill="none" stroke="black"></path>
+                <path d="M 752,32 L 752,64" fill="none" stroke="black"></path>
+                <path d="M 752,704 L 752,736" fill="none" stroke="black"></path>
+                <path d="M 8,32 L 160,32" fill="none" stroke="black"></path>
+                <path d="M 216,32 L 328,32" fill="none" stroke="black"></path>
+                <path d="M 384,32 L 496,32" fill="none" stroke="black"></path>
+                <path d="M 552,32 L 752,32" fill="none" stroke="black"></path>
+                <path d="M 8,64 L 160,64" fill="none" stroke="black"></path>
+                <path d="M 216,64 L 328,64" fill="none" stroke="black"></path>
+                <path d="M 384,64 L 496,64" fill="none" stroke="black"></path>
+                <path d="M 552,64 L 752,64" fill="none" stroke="black"></path>
+                <path d="M 16,96 L 744,96" fill="none" stroke="black"></path>
+                <path d="M 16,128 L 744,128" fill="none" stroke="black"></path>
+                <path d="M 88,176 L 192,176" fill="none" stroke="black"></path>
+                <path d="M 96,192 L 192,192" fill="none" stroke="black"></path>
+                <path d="M 88,240 L 192,240" fill="none" stroke="black"></path>
+                <path d="M 96,256 L 192,256" fill="none" stroke="black"></path>
+                <path d="M 88,304 L 432,304" fill="none" stroke="black"></path>
+                <path d="M 440,352 L 544,352" fill="none" stroke="black"></path>
+                <path d="M 448,368 L 544,368" fill="none" stroke="black"></path>
+                <path d="M 96,416 L 440,416" fill="none" stroke="black"></path>
+                <path d="M 88,448 L 432,448" fill="none" stroke="black"></path>
+                <path d="M 440,496 L 544,496" fill="none" stroke="black"></path>
+                <path d="M 448,512 L 544,512" fill="none" stroke="black"></path>
+                <path d="M 96,544 L 440,544" fill="none" stroke="black"></path>
+                <path d="M 88,576 L 640,576" fill="none" stroke="black"></path>
+                <path d="M 536,608 L 648,608" fill="none" stroke="black"></path>
+                <path d="M 536,624 L 640,624" fill="none" stroke="black"></path>
+                <path d="M 96,656 L 648,656" fill="none" stroke="black"></path>
+                <path d="M 88,688 L 264,688" fill="none" stroke="black"></path>
+                <path d="M 8,704 L 160,704" fill="none" stroke="black"></path>
+                <path d="M 216,704 L 328,704" fill="none" stroke="black"></path>
+                <path d="M 384,704 L 496,704" fill="none" stroke="black"></path>
+                <path d="M 552,704 L 752,704" fill="none" stroke="black"></path>
+                <path d="M 8,736 L 160,736" fill="none" stroke="black"></path>
+                <path d="M 216,736 L 328,736" fill="none" stroke="black"></path>
+                <path d="M 384,736 L 496,736" fill="none" stroke="black"></path>
+                <path d="M 552,736 L 752,736" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="648,624 636,618.4 636,629.6" fill="black" transform="rotate(0,640,624)"></polygon>
+                <polygon class="arrowhead" points="648,576 636,570.4 636,581.6" fill="black" transform="rotate(0,640,576)"></polygon>
+                <polygon class="arrowhead" points="456,512 444,506.4 444,517.6" fill="black" transform="rotate(180,448,512)"></polygon>
+                <polygon class="arrowhead" points="456,368 444,362.4 444,373.6" fill="black" transform="rotate(180,448,368)"></polygon>
+                <polygon class="arrowhead" points="440,448 428,442.4 428,453.6" fill="black" transform="rotate(0,432,448)"></polygon>
+                <polygon class="arrowhead" points="440,304 428,298.4 428,309.6" fill="black" transform="rotate(0,432,304)"></polygon>
+                <polygon class="arrowhead" points="272,688 260,682.4 260,693.6" fill="black" transform="rotate(0,264,688)"></polygon>
+                <polygon class="arrowhead" points="104,656 92,650.4 92,661.6" fill="black" transform="rotate(180,96,656)"></polygon>
+                <polygon class="arrowhead" points="104,544 92,538.4 92,549.6" fill="black" transform="rotate(180,96,544)"></polygon>
+                <polygon class="arrowhead" points="104,416 92,410.4 92,421.6" fill="black" transform="rotate(180,96,416)"></polygon>
+                <polygon class="arrowhead" points="104,256 92,250.4 92,261.6" fill="black" transform="rotate(180,96,256)"></polygon>
+                <polygon class="arrowhead" points="104,192 92,186.4 92,197.6" fill="black" transform="rotate(180,96,192)"></polygon>
                 <g class="text">
-                  <text x="84" y="36">┌──────────────────┐</text>
-                  <text x="272" y="36">┌─────────────┐</text>
-                  <text x="440" y="36">┌─────────────┐</text>
-                  <text x="652" y="36">┌────────────────────────┐</text>
-                  <text x="8" y="52">│</text>
                   <text x="60" y="52">Workload</text>
                   <text x="120" y="52">Owner</text>
-                  <text x="160" y="52">│</text>
-                  <text x="216" y="52">│</text>
                   <text x="268" y="52">Workload</text>
-                  <text x="328" y="52">│</text>
-                  <text x="384" y="52">│</text>
                   <text x="416" y="52">Key</text>
                   <text x="456" y="52">Store</text>
-                  <text x="496" y="52">│</text>
-                  <text x="552" y="52">│</text>
                   <text x="612" y="52">Credential</text>
                   <text x="696" y="52">Authority</text>
-                  <text x="752" y="52">│</text>
-                  <text x="84" y="68">└─────────┬────────┘</text>
-                  <text x="272" y="68">└──────┬──────┘</text>
-                  <text x="440" y="68">└──────┬──────┘</text>
-                  <text x="652" y="68">└───────────┬────────────┘</text>
-                  <text x="380" y="84">┌─────────┴──────────────────────┴────────────────────┴─────────────────────────┴────────────┐</text>
-                  <text x="8" y="100">│</text>
-                  <text x="308" y="100">Credential</text>
-                  <text x="404" y="100">Provisioning</text>
-                  <text x="480" y="100">Phase</text>
-                  <text x="752" y="100">|</text>
-                  <text x="380" y="116">└─────────┬──────────────────────┬────────────────────┬─────────────────────────┬────────────┘</text>
-                  <text x="88" y="132">│</text>
-                  <text x="124" y="132">Create</text>
-                  <text x="188" y="132">Workload</text>
-                  <text x="268" y="132">Identifier</text>
-                  <text x="440" y="132">|</text>
-                  <text x="88" y="148">|</text>
-                  <text x="112" y="148">and</text>
-                  <text x="172" y="148">Associated</text>
-                  <text x="260" y="148">Credential</text>
-                  <text x="348" y="148">Attributes</text>
-                  <text x="440" y="148">│</text>
-                  <text x="140" y="164">│────────────┐</text>
-                  <text x="140" y="180">|&lt;───────────┘</text>
-                  <text x="88" y="196">│</text>
-                  <text x="124" y="196">Create</text>
-                  <text x="196" y="196">Credential</text>
-                  <text x="256" y="196">Key</text>
-                  <text x="304" y="196">Release</text>
-                  <text x="364" y="196">Policy</text>
-                  <text x="88" y="212">|</text>
-                  <text x="120" y="212">based</text>
-                  <text x="156" y="212">on</text>
-                  <text x="204" y="212">Workload</text>
-                  <text x="280" y="212">Reference</text>
-                  <text x="348" y="212">Values</text>
-                  <text x="440" y="212">│</text>
-                  <text x="140" y="228">│────────────┐</text>
-                  <text x="140" y="244">|&lt;───────────┘</text>
-                  <text x="88" y="260">│</text>
-                  <text x="124" y="260">Create</text>
-                  <text x="196" y="260">Credential</text>
-                  <text x="256" y="260">Key</text>
-                  <text x="88" y="276">|</text>
-                  <text x="112" y="276">and</text>
-                  <text x="144" y="276">Set</text>
-                  <text x="176" y="276">Key</text>
-                  <text x="224" y="276">Release</text>
-                  <text x="284" y="276">Policy</text>
-                  <text x="648" y="276">│</text>
-                  <text x="264" y="292">│──────────────────────────────────────────&gt;│</text>
+                  <text x="316" y="116">Credential</text>
+                  <text x="412" y="116">Provisioning</text>
+                  <text x="488" y="116">Phase</text>
+                  <text x="88" y="148">│</text>
+                  <text x="124" y="148">Create</text>
+                  <text x="188" y="148">Workload</text>
+                  <text x="268" y="148">Identifier</text>
+                  <text x="112" y="164">and</text>
+                  <text x="172" y="164">Associated</text>
+                  <text x="260" y="164">Credential</text>
+                  <text x="348" y="164">Attributes</text>
+                  <text x="440" y="164">│</text>
+                  <text x="88" y="212">│</text>
+                  <text x="124" y="212">Create</text>
+                  <text x="196" y="212">Credential</text>
+                  <text x="256" y="212">Key</text>
+                  <text x="304" y="212">Release</text>
+                  <text x="364" y="212">Policy</text>
+                  <text x="120" y="228">based</text>
+                  <text x="156" y="228">on</text>
+                  <text x="204" y="228">Workload</text>
+                  <text x="280" y="228">Reference</text>
+                  <text x="348" y="228">Values</text>
+                  <text x="440" y="228">│</text>
+                  <text x="88" y="276">│</text>
+                  <text x="124" y="276">Create</text>
+                  <text x="196" y="276">Credential</text>
+                  <text x="256" y="276">Key</text>
+                  <text x="112" y="292">and</text>
+                  <text x="144" y="292">Set</text>
+                  <text x="176" y="292">Key</text>
+                  <text x="224" y="292">Release</text>
+                  <text x="284" y="292">Policy</text>
                   <text x="648" y="292">│</text>
-                  <text x="88" y="308">│</text>
-                  <text x="272" y="308">│</text>
-                  <text x="440" y="308">│</text>
-                  <text x="484" y="308">Generate</text>
-                  <text x="536" y="308">and</text>
-                  <text x="576" y="308">Store</text>
-                  <text x="644" y="308">Credential</text>
-                  <text x="704" y="308">Key</text>
-                  <text x="440" y="324">|</text>
-                  <text x="464" y="324">and</text>
-                  <text x="496" y="324">Key</text>
-                  <text x="544" y="324">Release</text>
-                  <text x="604" y="324">Policy</text>
-                  <text x="492" y="340">│────────────┐</text>
-                  <text x="496" y="356">&lt;───────────┘</text>
-                  <text x="88" y="372">│</text>
-                  <text x="140" y="372">Return</text>
-                  <text x="196" y="372">Public</text>
-                  <text x="256" y="372">Portion</text>
-                  <text x="300" y="372">of</text>
-                  <text x="356" y="372">Credential</text>
-                  <text x="416" y="372">Key</text>
-                  <text x="88" y="388">|</text>
-                  <text x="212" y="388">or</text>
-                  <text x="268" y="388">Credential</text>
-                  <text x="328" y="388">Key</text>
-                  <text x="388" y="388">Identifier</text>
-                  <text x="264" y="404">│&lt;──────────────────────────────────────────│</text>
-                  <text x="648" y="404">│</text>
-                  <text x="88" y="420">│</text>
-                  <text x="124" y="420">Create</text>
-                  <text x="196" y="420">Credential</text>
-                  <text x="272" y="420">Request</text>
-                  <text x="440" y="420">│</text>
+                  <text x="648" y="308">│</text>
+                  <text x="88" y="324">│</text>
+                  <text x="272" y="324">│</text>
+                  <text x="440" y="324">│</text>
+                  <text x="484" y="324">Generate</text>
+                  <text x="536" y="324">and</text>
+                  <text x="576" y="324">Store</text>
+                  <text x="644" y="324">Credential</text>
+                  <text x="704" y="324">Key</text>
+                  <text x="464" y="340">and</text>
+                  <text x="496" y="340">Key</text>
+                  <text x="544" y="340">Release</text>
+                  <text x="604" y="340">Policy</text>
+                  <text x="88" y="388">│</text>
+                  <text x="140" y="388">Return</text>
+                  <text x="196" y="388">Public</text>
+                  <text x="256" y="388">Portion</text>
+                  <text x="300" y="388">of</text>
+                  <text x="356" y="388">Credential</text>
+                  <text x="416" y="388">Key</text>
+                  <text x="212" y="404">or</text>
+                  <text x="268" y="404">Credential</text>
+                  <text x="328" y="404">Key</text>
+                  <text x="388" y="404">Identifier</text>
                   <text x="648" y="420">│</text>
-                  <text x="264" y="436">│──────────────────────────────────────────&gt;│</text>
+                  <text x="88" y="436">│</text>
+                  <text x="124" y="436">Create</text>
+                  <text x="196" y="436">Credential</text>
+                  <text x="272" y="436">Request</text>
+                  <text x="440" y="436">│</text>
                   <text x="648" y="436">│</text>
-                  <text x="88" y="452">│</text>
-                  <text x="272" y="452">│</text>
-                  <text x="440" y="452">│</text>
-                  <text x="476" y="452">Create</text>
-                  <text x="548" y="452">Credential</text>
-                  <text x="624" y="452">Request</text>
-                  <text x="672" y="452">and</text>
+                  <text x="440" y="452">+</text>
+                  <text x="648" y="452">│</text>
                   <text x="88" y="468">│</text>
-                  <text x="272" y="468">│</text>
                   <text x="440" y="468">│</text>
-                  <text x="468" y="468">Sign</text>
-                  <text x="508" y="468">with</text>
-                  <text x="560" y="468">Private</text>
-                  <text x="636" y="468">Credential</text>
-                  <text x="696" y="468">Key</text>
-                  <text x="492" y="484">│────────────┐</text>
-                  <text x="496" y="500">&lt;───────────┘</text>
-                  <text x="88" y="516">│</text>
-                  <text x="252" y="516">Return</text>
-                  <text x="324" y="516">Credential</text>
-                  <text x="400" y="516">Request</text>
-                  <text x="648" y="516">│</text>
-                  <text x="264" y="532">│&lt;──────────────────────────────────────────│</text>
+                  <text x="476" y="468">Create</text>
+                  <text x="548" y="468">Credential</text>
+                  <text x="624" y="468">Request</text>
+                  <text x="672" y="468">and</text>
+                  <text x="88" y="484">│</text>
+                  <text x="440" y="484">│</text>
+                  <text x="468" y="484">Sign</text>
+                  <text x="508" y="484">with</text>
+                  <text x="560" y="484">Private</text>
+                  <text x="636" y="484">Credential</text>
+                  <text x="696" y="484">Key</text>
+                  <text x="88" y="532">│</text>
+                  <text x="252" y="532">Return</text>
+                  <text x="324" y="532">Credential</text>
+                  <text x="400" y="532">Request</text>
                   <text x="648" y="532">│</text>
-                  <text x="88" y="548">│</text>
-                  <text x="128" y="548">Request</text>
-                  <text x="204" y="548">Credential</text>
-                  <text x="296" y="548">(Credential</text>
-                  <text x="380" y="548">Request,</text>
-                  <text x="452" y="548">Workload</text>
-                  <text x="528" y="548">Identity,</text>
-                  <text x="612" y="548">Credential</text>
-                  <text x="704" y="548">Attributes)</text>
-                  <text x="368" y="564">│────────────────────────────────────────────────────────────────────&gt;│</text>
-                  <text x="88" y="580">│</text>
-                  <text x="272" y="580">│</text>
-                  <text x="452" y="580">Create</text>
-                  <text x="496" y="580">and</text>
-                  <text x="532" y="580">Sign</text>
-                  <text x="596" y="580">Credential</text>
+                  <text x="88" y="548">+</text>
+                  <text x="648" y="548">│</text>
+                  <text x="88" y="564">│</text>
+                  <text x="128" y="564">Request</text>
+                  <text x="204" y="564">Credential</text>
+                  <text x="296" y="564">(Credential</text>
+                  <text x="380" y="564">Request,</text>
+                  <text x="452" y="564">Workload</text>
+                  <text x="528" y="564">Identity,</text>
+                  <text x="612" y="564">Credential</text>
+                  <text x="704" y="564">Attributes)</text>
+                  <text x="88" y="596">│</text>
                   <text x="272" y="596">│</text>
-                  <text x="588" y="596">┌─────────────</text>
+                  <text x="452" y="596">Create</text>
+                  <text x="496" y="596">and</text>
+                  <text x="532" y="596">Sign</text>
+                  <text x="596" y="596">Credential</text>
                   <text x="272" y="612">│</text>
-                  <text x="588" y="612">└────────────&gt;</text>
-                  <text x="88" y="628">│</text>
                   <text x="272" y="628">│</text>
-                  <text x="524" y="628">Return</text>
-                  <text x="596" y="628">Credential</text>
-                  <text x="368" y="644">│&lt;────────────────────────────────────────────────────────────────────│</text>
-                  <text x="88" y="660">│</text>
-                  <text x="128" y="660">Provide</text>
-                  <text x="196" y="660">Workload</text>
-                  <text x="252" y="660">with</text>
-                  <text x="316" y="660">Credential</text>
-                  <text x="440" y="660">|</text>
-                  <text x="648" y="660">│</text>
-                  <text x="180" y="676">│─────────────────────&gt;│</text>
-                  <text x="440" y="676">│</text>
+                  <text x="88" y="644">│</text>
+                  <text x="272" y="644">│</text>
+                  <text x="524" y="644">Return</text>
+                  <text x="596" y="644">Credential</text>
+                  <text x="128" y="676">Provide</text>
+                  <text x="196" y="676">Workload</text>
+                  <text x="252" y="676">with</text>
+                  <text x="316" y="676">Credential</text>
                   <text x="648" y="676">│</text>
-                  <text x="84" y="692">┌─────────┴────────┐</text>
-                  <text x="272" y="692">┌──────┴──────┐</text>
-                  <text x="440" y="692">┌──────┴──────┐</text>
-                  <text x="652" y="692">┌───────────┴────────────┐</text>
-                  <text x="8" y="708">│</text>
-                  <text x="60" y="708">Workload</text>
-                  <text x="120" y="708">Owner</text>
-                  <text x="160" y="708">│</text>
-                  <text x="216" y="708">│</text>
-                  <text x="268" y="708">Workload</text>
-                  <text x="328" y="708">│</text>
-                  <text x="384" y="708">│</text>
-                  <text x="416" y="708">Key</text>
-                  <text x="456" y="708">Store</text>
-                  <text x="496" y="708">│</text>
-                  <text x="552" y="708">│</text>
-                  <text x="612" y="708">Credential</text>
-                  <text x="696" y="708">Authority</text>
-                  <text x="752" y="708">│</text>
-                  <text x="84" y="724">└──────────────────┘</text>
-                  <text x="272" y="724">└─────────────┘</text>
-                  <text x="440" y="724">└─────────────┘</text>
-                  <text x="652" y="724">└────────────────────────┘</text>
+                  <text x="60" y="724">Workload</text>
+                  <text x="120" y="724">Owner</text>
+                  <text x="268" y="724">Workload</text>
+                  <text x="328" y="724">│</text>
+                  <text x="416" y="724">Key</text>
+                  <text x="456" y="724">Store</text>
+                  <text x="612" y="724">Credential</text>
+                  <text x="696" y="724">Authority</text>
                 </g>
               </svg><a href="#section-3.4.1-1.1" class="pilcrow">¶</a>
 </div>
@@ -2095,153 +2104,172 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
           </h4>
 <div id="section-3.4.2-1">
             <div class="alignLeft art-svg artwork" id="section-3.4.2-1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="704" width="520" viewBox="0 0 520 704" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-                <path d="M 64,272 L 64,288" fill="none" stroke="black"></path>
-                <path d="M 64,320 L 64,336" fill="none" stroke="black"></path>
-                <path d="M 64,368 L 64,384" fill="none" stroke="black"></path>
-                <path d="M 64,480 L 64,496" fill="none" stroke="black"></path>
-                <path d="M 64,528 L 64,544" fill="none" stroke="black"></path>
-                <path d="M 264,144 L 264,208" fill="none" stroke="black"></path>
-                <path d="M 264,336 L 264,384" fill="none" stroke="black"></path>
-                <path d="M 264,592 L 264,624" fill="none" stroke="black"></path>
-                <path d="M 456,144 L 456,160" fill="none" stroke="black"></path>
-                <path d="M 456,192 L 456,224" fill="none" stroke="black"></path>
-                <path d="M 456,256 L 456,288" fill="none" stroke="black"></path>
-                <path d="M 456,320 L 456,384" fill="none" stroke="black"></path>
-                <path d="M 456,448 L 456,544" fill="none" stroke="black"></path>
-                <path d="M 456,608 L 456,624" fill="none" stroke="black"></path>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="720" width="560" viewBox="0 0 560 720" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,32 L 8,64" fill="none" stroke="black"></path>
+                <path d="M 8,96 L 8,128" fill="none" stroke="black"></path>
+                <path d="M 8,656 L 8,688" fill="none" stroke="black"></path>
+                <path d="M 64,64 L 64,96" fill="none" stroke="black"></path>
+                <path d="M 64,160 L 64,176" fill="none" stroke="black"></path>
+                <path d="M 64,208 L 64,224" fill="none" stroke="black"></path>
+                <path d="M 64,288 L 64,304" fill="none" stroke="black"></path>
+                <path d="M 64,336 L 64,352" fill="none" stroke="black"></path>
+                <path d="M 64,384 L 64,416" fill="none" stroke="black"></path>
+                <path d="M 64,496 L 64,512" fill="none" stroke="black"></path>
+                <path d="M 64,544 L 64,560" fill="none" stroke="black"></path>
+                <path d="M 64,624 L 64,656" fill="none" stroke="black"></path>
+                <path d="M 128,32 L 128,64" fill="none" stroke="black"></path>
+                <path d="M 128,656 L 128,688" fill="none" stroke="black"></path>
+                <path d="M 168,160 L 168,176" fill="none" stroke="black"></path>
+                <path d="M 168,208 L 168,224" fill="none" stroke="black"></path>
+                <path d="M 168,624 L 168,640" fill="none" stroke="black"></path>
+                <path d="M 200,32 L 200,64" fill="none" stroke="black"></path>
+                <path d="M 200,656 L 200,688" fill="none" stroke="black"></path>
+                <path d="M 264,64 L 264,96" fill="none" stroke="black"></path>
+                <path d="M 264,160 L 264,304" fill="none" stroke="black"></path>
+                <path d="M 264,336 L 264,424" fill="none" stroke="black"></path>
+                <path d="M 264,496 L 264,512" fill="none" stroke="black"></path>
+                <path d="M 264,544 L 264,560" fill="none" stroke="black"></path>
+                <path d="M 264,592 L 264,656" fill="none" stroke="black"></path>
+                <path d="M 320,32 L 320,64" fill="none" stroke="black"></path>
+                <path d="M 320,656 L 320,688" fill="none" stroke="black"></path>
+                <path d="M 344,496 L 344,512" fill="none" stroke="black"></path>
+                <path d="M 344,544 L 344,560" fill="none" stroke="black"></path>
+                <path d="M 368,288 L 368,304" fill="none" stroke="black"></path>
+                <path d="M 368,336 L 368,352" fill="none" stroke="black"></path>
+                <path d="M 392,32 L 392,64" fill="none" stroke="black"></path>
+                <path d="M 392,656 L 392,688" fill="none" stroke="black"></path>
+                <path d="M 456,64 L 456,96" fill="none" stroke="black"></path>
+                <path d="M 456,160 L 456,240" fill="none" stroke="black"></path>
+                <path d="M 456,272 L 456,400" fill="none" stroke="black"></path>
+                <path d="M 456,432 L 456,560" fill="none" stroke="black"></path>
+                <path d="M 456,592 L 456,656" fill="none" stroke="black"></path>
+                <path d="M 552,32 L 552,64" fill="none" stroke="black"></path>
+                <path d="M 552,96 L 552,128" fill="none" stroke="black"></path>
+                <path d="M 552,656 L 552,688" fill="none" stroke="black"></path>
+                <path d="M 8,32 L 128,32" fill="none" stroke="black"></path>
+                <path d="M 200,32 L 320,32" fill="none" stroke="black"></path>
+                <path d="M 392,32 L 552,32" fill="none" stroke="black"></path>
+                <path d="M 8,64 L 128,64" fill="none" stroke="black"></path>
+                <path d="M 200,64 L 320,64" fill="none" stroke="black"></path>
+                <path d="M 392,64 L 552,64" fill="none" stroke="black"></path>
+                <path d="M 8,96 L 552,96" fill="none" stroke="black"></path>
+                <path d="M 8,128 L 552,128" fill="none" stroke="black"></path>
+                <path d="M 64,160 L 168,160" fill="none" stroke="black"></path>
+                <path d="M 72,176 L 168,176" fill="none" stroke="black"></path>
+                <path d="M 64,208 L 168,208" fill="none" stroke="black"></path>
+                <path d="M 72,224 L 168,224" fill="none" stroke="black"></path>
+                <path d="M 64,256 L 256,256" fill="none" stroke="black"></path>
+                <path d="M 264,288 L 368,288" fill="none" stroke="black"></path>
+                <path d="M 272,304 L 368,304" fill="none" stroke="black"></path>
+                <path d="M 264,336 L 368,336" fill="none" stroke="black"></path>
+                <path d="M 272,352 L 368,352" fill="none" stroke="black"></path>
+                <path d="M 72,416 L 264,416" fill="none" stroke="black"></path>
+                <path d="M 64,448 L 448,448" fill="none" stroke="black"></path>
+                <path d="M 344,496 L 456,496" fill="none" stroke="black"></path>
+                <path d="M 344,512 L 448,512" fill="none" stroke="black"></path>
+                <path d="M 344,544 L 456,544" fill="none" stroke="black"></path>
+                <path d="M 344,560 L 448,560" fill="none" stroke="black"></path>
+                <path d="M 72,592 L 456,592" fill="none" stroke="black"></path>
+                <path d="M 64,624 L 168,624" fill="none" stroke="black"></path>
+                <path d="M 72,640 L 168,640" fill="none" stroke="black"></path>
+                <path d="M 8,656 L 128,656" fill="none" stroke="black"></path>
+                <path d="M 200,656 L 320,656" fill="none" stroke="black"></path>
+                <path d="M 392,656 L 552,656" fill="none" stroke="black"></path>
+                <path d="M 8,688 L 128,688" fill="none" stroke="black"></path>
+                <path d="M 200,688 L 320,688" fill="none" stroke="black"></path>
+                <path d="M 392,688 L 552,688" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="456,560 444,554.4 444,565.6" fill="black" transform="rotate(0,448,560)"></polygon>
+                <polygon class="arrowhead" points="456,512 444,506.4 444,517.6" fill="black" transform="rotate(0,448,512)"></polygon>
+                <polygon class="arrowhead" points="456,448 444,442.4 444,453.6" fill="black" transform="rotate(0,448,448)"></polygon>
+                <polygon class="arrowhead" points="280,352 268,346.4 268,357.6" fill="black" transform="rotate(180,272,352)"></polygon>
+                <polygon class="arrowhead" points="280,304 268,298.4 268,309.6" fill="black" transform="rotate(180,272,304)"></polygon>
+                <polygon class="arrowhead" points="264,256 252,250.4 252,261.6" fill="black" transform="rotate(0,256,256)"></polygon>
+                <polygon class="arrowhead" points="80,640 68,634.4 68,645.6" fill="black" transform="rotate(180,72,640)"></polygon>
+                <polygon class="arrowhead" points="80,592 68,586.4 68,597.6" fill="black" transform="rotate(180,72,592)"></polygon>
+                <polygon class="arrowhead" points="80,416 68,410.4 68,421.6" fill="black" transform="rotate(180,72,416)"></polygon>
+                <polygon class="arrowhead" points="80,224 68,218.4 68,229.6" fill="black" transform="rotate(180,72,224)"></polygon>
+                <polygon class="arrowhead" points="80,176 68,170.4 68,181.6" fill="black" transform="rotate(180,72,176)"></polygon>
                 <g class="text">
-                  <text x="68" y="36">┌──────────────┐</text>
-                  <text x="260" y="36">┌──────────────┐</text>
-                  <text x="452" y="36">┌──────────────┐</text>
-                  <text x="8" y="52">│</text>
                   <text x="68" y="52">Workload</text>
-                  <text x="128" y="52">│</text>
-                  <text x="200" y="52">│</text>
                   <text x="260" y="52">Verifier</text>
-                  <text x="320" y="52">│</text>
-                  <text x="392" y="52">│</text>
-                  <text x="432" y="52">Key</text>
-                  <text x="472" y="52">Store</text>
-                  <text x="512" y="52">│</text>
-                  <text x="68" y="68">└──────┬───────┘</text>
-                  <text x="260" y="68">└───────┬──────┘</text>
-                  <text x="452" y="68">└───────┬──────┘</text>
-                  <text x="260" y="84">┌──────┴────────────────────────┴───────────────────────┴──────┐</text>
-                  <text x="8" y="100">│</text>
-                  <text x="196" y="100">Credential</text>
-                  <text x="288" y="100">Acquisition</text>
-                  <text x="360" y="100">Phase</text>
-                  <text x="512" y="100">|</text>
-                  <text x="260" y="116">└──────┬────────────────────────┬───────────────────────┬──────┘</text>
-                  <text x="64" y="132">│</text>
-                  <text x="108" y="132">Generate</text>
-                  <text x="188" y="132">Asymmetric</text>
-                  <text x="276" y="132">Encryption</text>
-                  <text x="336" y="132">Key</text>
-                  <text x="456" y="132">│</text>
-                  <text x="116" y="148">│────────────┐</text>
-                  <text x="116" y="164">|&lt;───────────┘</text>
-                  <text x="64" y="180">│</text>
-                  <text x="108" y="180">Generate</text>
-                  <text x="180" y="180">Evidence</text>
-                  <text x="240" y="180">(incl</text>
-                  <text x="300" y="180">Public</text>
-                  <text x="372" y="180">Encryption</text>
-                  <text x="436" y="180">Key)</text>
-                  <text x="116" y="196">│────────────┐</text>
-                  <text x="116" y="212">|&lt;───────────┘</text>
-                  <text x="64" y="228">│</text>
-                  <text x="104" y="228">Request</text>
-                  <text x="184" y="228">Attestation</text>
-                  <text x="276" y="228">(Evidence)</text>
-                  <text x="164" y="244">│───────────────────────&gt;│</text>
-                  <text x="456" y="244">│</text>
-                  <text x="64" y="260">│</text>
-                  <text x="264" y="260">│</text>
-                  <text x="308" y="260">Appraise</text>
-                  <text x="380" y="260">Evidence</text>
-                  <text x="316" y="276">│────────────┐</text>
-                  <text x="316" y="292">|&lt;───────────┘</text>
-                  <text x="64" y="308">│</text>
-                  <text x="264" y="308">│</text>
-                  <text x="304" y="308">Compute</text>
-                  <text x="384" y="308">Attestation</text>
-                  <text x="464" y="308">Results</text>
-                  <text x="316" y="324">│────────────┐</text>
-                  <text x="320" y="340">&lt;───────────┘</text>
-                  <text x="64" y="356">│</text>
-                  <text x="228" y="356">Return</text>
-                  <text x="144" y="372">Attestation</text>
-                  <text x="224" y="372">Results</text>
-                  <text x="100" y="388">(incl.</text>
-                  <text x="172" y="388">Encryption</text>
-                  <text x="236" y="388">Key)</text>
-                  <text x="164" y="404">│&lt;───────────────────────│</text>
-                  <text x="456" y="404">│</text>
-                  <text x="64" y="420">│</text>
-                  <text x="104" y="420">Request</text>
-                  <text x="180" y="420">Credential</text>
-                  <text x="240" y="420">Key</text>
-                  <text x="308" y="420">(Attestation</text>
-                  <text x="396" y="420">Results)</text>
-                  <text x="456" y="420">|</text>
-                  <text x="260" y="436">│───────────────────────────────────────────────&gt;│</text>
-                  <text x="64" y="452">│</text>
-                  <text x="252" y="452">Validate</text>
-                  <text x="336" y="452">Attestation</text>
-                  <text x="416" y="452">Results</text>
+                  <text x="440" y="52">Key</text>
+                  <text x="480" y="52">Store</text>
+                  <text x="212" y="116">Credential</text>
+                  <text x="304" y="116">Acquisition</text>
+                  <text x="376" y="116">Phase</text>
+                  <text x="64" y="148">│</text>
+                  <text x="108" y="148">Generate</text>
+                  <text x="188" y="148">Asymmetric</text>
+                  <text x="276" y="148">Encryption</text>
+                  <text x="336" y="148">Key</text>
+                  <text x="456" y="148">│</text>
+                  <text x="64" y="196">│</text>
+                  <text x="108" y="196">Generate</text>
+                  <text x="180" y="196">Evidence</text>
+                  <text x="240" y="196">(incl</text>
+                  <text x="272" y="196">.</text>
+                  <text x="308" y="196">Public</text>
+                  <text x="380" y="196">Encryption</text>
+                  <text x="356" y="212">Key)</text>
+                  <text x="64" y="244">│</text>
+                  <text x="104" y="244">Request</text>
+                  <text x="184" y="244">Attestation</text>
+                  <text x="456" y="260">│</text>
+                  <text x="64" y="276">│</text>
+                  <text x="132" y="276">(Evidence)</text>
+                  <text x="308" y="276">Appraise</text>
+                  <text x="380" y="276">Evidence</text>
+                  <text x="64" y="324">│</text>
+                  <text x="264" y="324">│</text>
+                  <text x="304" y="324">Compute</text>
+                  <text x="384" y="324">Attestation</text>
+                  <text x="408" y="340">Results</text>
+                  <text x="64" y="372">│</text>
+                  <text x="228" y="372">Return</text>
+                  <text x="144" y="388">Attestation</text>
+                  <text x="224" y="388">Results</text>
+                  <text x="100" y="404">(incl.</text>
+                  <text x="172" y="404">Encryption</text>
+                  <text x="236" y="404">Key)</text>
+                  <text x="456" y="420">│</text>
+                  <text x="64" y="436">│</text>
+                  <text x="104" y="436">Request</text>
+                  <text x="180" y="436">Credential</text>
+                  <text x="240" y="436">Key</text>
+                  <text x="308" y="436">(Attestation</text>
+                  <text x="396" y="436">Results)</text>
                   <text x="64" y="468">│</text>
-                  <text x="176" y="468">against</text>
-                  <text x="252" y="468">Credential</text>
-                  <text x="312" y="468">Key</text>
-                  <text x="360" y="468">Release</text>
-                  <text x="420" y="468">Policy</text>
-                  <text x="264" y="484">│</text>
-                  <text x="396" y="484">┌─────────────</text>
-                  <text x="264" y="500">│</text>
-                  <text x="396" y="500">└────────────&gt;</text>
-                  <text x="64" y="516">│</text>
-                  <text x="152" y="516">Encrypt</text>
-                  <text x="228" y="516">Credential</text>
-                  <text x="288" y="516">Key</text>
-                  <text x="316" y="516">to</text>
-                  <text x="372" y="516">Encryption</text>
-                  <text x="432" y="516">Key</text>
-                  <text x="264" y="532">│</text>
-                  <text x="396" y="532">┌─────────────</text>
-                  <text x="264" y="548">│</text>
-                  <text x="396" y="548">└────────────&gt;</text>
-                  <text x="64" y="564">│</text>
-                  <text x="220" y="564">Return</text>
-                  <text x="288" y="564">Encrypted</text>
-                  <text x="372" y="564">Credential</text>
-                  <text x="432" y="564">Key</text>
-                  <text x="456" y="564">│</text>
-                  <text x="260" y="580">│&lt;───────────────────────────────────────────────│</text>
-                  <text x="64" y="596">│</text>
-                  <text x="104" y="596">Decrypt</text>
-                  <text x="180" y="596">Credential</text>
-                  <text x="240" y="596">Key</text>
-                  <text x="456" y="596">│</text>
-                  <text x="116" y="612">│────────────┐</text>
-                  <text x="116" y="628">|&lt;───────────┘</text>
-                  <text x="68" y="644">┌──────┴───────┐</text>
-                  <text x="260" y="644">┌───────┴──────┐</text>
-                  <text x="452" y="644">┌───────┴──────┐</text>
-                  <text x="8" y="660">│</text>
-                  <text x="68" y="660">Workload</text>
-                  <text x="128" y="660">│</text>
-                  <text x="200" y="660">│</text>
-                  <text x="260" y="660">Verifier</text>
-                  <text x="320" y="660">│</text>
-                  <text x="392" y="660">│</text>
-                  <text x="432" y="660">Key</text>
-                  <text x="472" y="660">Store</text>
-                  <text x="512" y="660">│</text>
-                  <text x="68" y="676">└──────────────┘</text>
-                  <text x="260" y="676">└──────────────┘</text>
-                  <text x="452" y="676">└──────────────┘</text>
+                  <text x="252" y="468">Validate</text>
+                  <text x="336" y="468">Attestation</text>
+                  <text x="416" y="468">Results</text>
+                  <text x="64" y="484">│</text>
+                  <text x="176" y="484">against</text>
+                  <text x="252" y="484">Credential</text>
+                  <text x="312" y="484">Key</text>
+                  <text x="360" y="484">Release</text>
+                  <text x="420" y="484">Policy</text>
+                  <text x="64" y="532">│</text>
+                  <text x="152" y="532">Encrypt</text>
+                  <text x="228" y="532">Credential</text>
+                  <text x="288" y="532">Key</text>
+                  <text x="316" y="532">to</text>
+                  <text x="372" y="532">Encryption</text>
+                  <text x="432" y="532">Key</text>
+                  <text x="64" y="580">│</text>
+                  <text x="220" y="580">Return</text>
+                  <text x="288" y="580">Encrypted</text>
+                  <text x="372" y="580">Credential</text>
+                  <text x="432" y="580">Key</text>
+                  <text x="456" y="580">│</text>
+                  <text x="64" y="596">+</text>
+                  <text x="64" y="612">│</text>
+                  <text x="104" y="612">Decrypt</text>
+                  <text x="180" y="612">Credential</text>
+                  <text x="240" y="612">Key</text>
+                  <text x="68" y="676">Workload</text>
+                  <text x="260" y="676">Verifier</text>
+                  <text x="440" y="676">Key</text>
+                  <text x="480" y="676">Store</text>
                 </g>
               </svg><a href="#section-3.4.2-1.1" class="pilcrow">¶</a>
 </div>
@@ -2334,7 +2362,8 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-A-1">TODO acknowledge.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">The following persons, in no specific order, contributed to the work directly, participated in design team meetings, or provided valuable comments during the review of this document.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-2">Pieter Kasselman (SPIRL), Arieal Feldman (Google), Mateusz Bronk (Intel), Manu Fontaine (Hushmesh Inc.), Benedict Lau (EQTY Lab), Zvonko Kaiser (NVIDIA), David Quigley (Intel), Sal Kimmich (GadflyAI), Alex Dalton (Shielded Technologies), Eric Wolfe (Mainsail Industries), Nicolae Paladi(Canary Bit), Mark Gentry (JPMorgan Chase), Jag Raman (Oracle), Brian Hugenbruch (IBM), Jens Alberts (Fr0ntierX), Mira Spina (MITRE) and John Suykerbuyk.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
