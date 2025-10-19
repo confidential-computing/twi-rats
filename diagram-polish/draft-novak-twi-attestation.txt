@@ -348,20 +348,20 @@ Table of Contents
     ┌──────┴──────────────────────-─┴────────────────────────────┴───────────┐
     │                    Credential Acquisition Phase                        |
     └──────┬────────────────────────┬────────────────────────────┬───────────┘
-           │ Generate Credential Key                             │
-           |────────────┐           |                            |
+           │ Generate Credential    |                            │
+           |────────────┐ Key       |                            |
            |<───────────┘           |                            |
            │ Create Credential Request                           |
-           | (incl. Credential Key PoP)                          │
-           │────────────┐           |                            |
+           |(incl. Credential Key   |                            │
+           │────────────┐   Pop)    |                            |
            |<───────────┘           |                            |
            │ Create Evidence        |                            |
-           | (incl. Credential Request)                          │
+           | (incl. Credential Req) |                            │
            |────────────┐           |                            |
            |<───────────┘           |                            |
-           │ Request Attestation (Evidence)                      │
+           │ Request Attestation    |                            │
            |───────────────────────>|                            │
-           │                        │ Appraise Evidence          |
+           │  (Evidence)            │ Appraise Evidence          |
            |                        |────────────┐               |
            |                        |<───────────┘               |
            |                        | Compute Credential Attributes
