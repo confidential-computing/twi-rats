@@ -450,19 +450,20 @@ Table of Contents
            │ Request Credential          |                            |
            +---------------------------->+                            │
            │ (Credential Request)        | Request Attestation        |
-           |                             | (Evidence from Credential Request)
-           │                             +───────────────────────────>│
+           |                             | (Evidence from             |
+           |                             |  Credential Request)       |
+           │                             +--------------------------->+
            │                             |          Appraise Evidence |
-           |                             |              ┌─────────────|
-           |                             |              └────────────>|
+           |                             |              +-------------+
+           |                             |              +------------>+
            │                             | Compute Attestation Results|
-           |                             |              ┌─────────────|
-           |                             |              └────────────>|
+           |                             |              +-------------+
+           |                             |              +------------>+
            │                             | Return Attestation Results |
            │                             +<---------------------------+
-           |                             | Compute Credential Attributes
-           |                             | from Attestation Results   |
-           |                             +------------+               |
+           |                             |                            |
+           |                             |Compute Credential Attrib   |
+           |                             +------------+ (from AR)     |
            |                             +<-----------+               |
            │                             | Create & Sign Credential   |
            |                             +------------+               |
@@ -480,50 +481,50 @@ Table of Contents
 
 3.4.1.  Credential Provisioning Phase
 
-    ┌──────────────────┐      ┌─────────────┐      ┌─────────────┐      ┌────────────────────────┐
-    │  Workload Owner  │      │  Workload   │      │  Key Store  │      │  Credential Authority  │
-    └─────────┬────────┘      └──────┬──────┘      └──────┬──────┘      └───────────┬────────────┘
-    ┌─────────┴──────────────────────┴────────────────────┴─────────────────────────┴────────────┐
-    │                                Credential Provisioning Phase                               |
-    └─────────┬──────────────────────┬────────────────────┬─────────────────────────┬────────────┘
+    +------------------+      +-------------+      +-------------+      +------------------------+
+    |  Workload Owner  |      |  Workload   │      |  Key Store  |      |  Credential Authority  |
+    +------------------+      +------+------+      +------+------+      +-----------+------------+
+    +---------+----------------------+--------------------+-------------------------+------------+
+    |                                Credential Provisioning Phase                               |
+    +---------+----------------------+--------------------+-------------------------+------------+
               │ Create Workload Identifier                |                         |
               | and Associated Credential Attributes      │                         |
-              │────────────┐         |                    |                         |
-              |<───────────┘         |                    |                         |
+              +------------+         |                    |                         |
+              +<-----------+         |                    |                         |
               │ Create Credential Key Release Policy      |                         |
               | based on Workload Reference Values        │                         |
-              │────────────┐         |                    |                         |
-              |<───────────┘         |                    |                         |
+              +------------+         |                    |                         |
+              +<-----------+         |                    |                         |
               │ Create Credential Key                     |                         |
               | and Set Key Release Policy                |                         │
-              │──────────────────────────────────────────>│                         │
+              +------------------------------------------>+                         │
               │                      │                    │ Generate and Store Credential Key
               |                      |                    | and Key Release Policy  |
-              |                      |                    │────────────┐            |
-              |                      |                    |<───────────┘            |
+              |                      |                    +------------+            |
+              |                      |                    +<-----------+            |
               │   Return Public Portion of Credential Key |                         |
               |              or Credential Key Identifier |                         |
-              │<──────────────────────────────────────────│                         │
+              +<------------------------------------------+                         │
               │ Create Credential Request                 │                         │
-              │──────────────────────────────────────────>│                         │
-              │                      │                    │ Create Credential Request and
-              │                      │                    │ Sign with Private Credential Key
-              |                      |                    │────────────┐            |
-              |                      |                    |<───────────┘            |
+              +----------------------+------------------->+                         │
+              │                      |                    │ Create Credential Request and
+              │                      |                    │ Sign with Private Credential Key
+              |                      |                    +------------+            |
+              |                      |                    +<-----------+            |
               │                 Return Credential Request |                         │
-              │<──────────────────────────────────────────│                         │
+              +<---------------------+--------------------+                         │
               │ Request Credential (Credential Request, Workload Identity, Credential Attributes)
-              │────────────────────────────────────────────────────────────────────>│
+              +----------------------+--------------------------------------------->+
               │                      │                   Create and Sign Credential |
-              |                      │                    |           ┌─────────────|
-              |                      │                    |           └────────────>|
+              |                      │                    |           +-------------+
+              |                      │                    |           +------------>+
               │                      │                    |       Return Credential |
-              │<────────────────────────────────────────────────────────────────────│
-              │ Provide Workload with Credential          |                         │
-              │─────────────────────>│                    │                         │
-    ┌─────────┴────────┐      ┌──────┴──────┐      ┌──────┴──────┐      ┌───────────┴────────────┐
-    │  Workload Owner  │      │  Workload   │      │  Key Store  │      │  Credential Authority  │
-    └──────────────────┘      └─────────────┘      └─────────────┘      └────────────────────────┘
+              +<---------------------+----------------------------------------------+
+              | Provide Workload with Credential          |                         │
+              +--------------------->│                    │                         │
+    +---------+--------+      +------+------+      +------+------+      +-----------+------------+
+    |  Workload Owner  |      |  Workload   │      |  Key Store  |      |  Credential Authority  |
+    +------------------+      +-------------+      +-------------+      +------------------------+
 
 3.4.2.  Credential Acquisition Phase
 
