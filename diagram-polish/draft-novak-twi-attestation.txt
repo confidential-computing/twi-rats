@@ -342,45 +342,45 @@ Table of Contents
 
 3.1.  Mechanism A
 
-    ┌──────────────┐        ┌──────────────┐        ┌────────────────────────┐
-    │   Workload   │        │   Verifier   │        │  Credential Authority  │
-    └──────┬───────┘        └───────┬──────┘        └────────────┬───────────┘
+    +--------------+        +--------------+        +------------------------+
+    |   Workload   |        |   Verifier   |        |  Credential Authority  |
+    +------+-------+        +--------------+        +------------------------+
     +------+------------------------+----------------------------+-----------+
     |                    Credential Acquisition Phase                        |
     +------+------------------------+----------------------------+-----------+
-           │ Generate Credential    |                            │
+           | Generate Credential    |                            |
            |────────────┐ Key       |                            |
            |<───────────┘           |                            |
            │ Create Credential Request                           |
-           |(incl. Credential Key   |                            │
+           |(incl. Credential Key   |                            |
            │────────────┐   Pop)    |                            |
            |<───────────┘           |                            |
            │ Create Evidence        |                            |
-           | (incl. Credential Req) |                            │
+           | (incl. Credential Req) |                            |
            |────────────┐           |                            |
            |<───────────┘           |                            |
-           │ Request Attestation    |                            │
-           |───────────────────────>|                            │
+           │ Request Attestation    |                            |
+           |───────────────────────>|                            |
            │  (Evidence)            │ Appraise Evidence          |
+           |                        |-----------+               |
+           |                        |<----------+               |
+           |                        | Compute Credential Attributes
            |                        |────────────┐               |
            |                        |<───────────┘               |
-           |                        | Compute Credential Attributes
-           |                        │────────────┐               |
-           |                        |<───────────┘               |
-           │                        │ Request Credential         │
-           │                        │ (Credential Req+ Attrib)   |
-           │                        │───────────────────────────>|
-           │                        │   Create & Sign Credential |
-           |                        │              ┌─────────────|
-           |                        │              └────────────>|
-           │                        │          Return Credential |
-           │                        |<───────────────────────────│
-           │      Return Credential |                            │
+           │                        | Request Credential         |
+           │                        | (Credential Req+ Attrib)   |
+           │                        |--------------------------->+
+           │                        |   Create & Sign Credential |
+           |                        |              ┌─────────────|
+           |                        |              └────────────>|
+           │                        |          Return Credential |
+           │                        |<───────────────────────────|
+           │      Return Credential |                            |
            | in Attestation Results |                            |
-           |<───────────────────────│                            │
-    ┌──────┴───────┐        ┌───────┴──────┐        ┌────────────┴───────────┐
-    │   Workload   │        │   Verifier   │        │  Credential Authority  │
-    └──────────────┘        └──────────────┘        └────────────────────────┘
+           |<───────────────────────|                            |
+    +------+-------+        +-------+------+        +------------+-----------+
+    |   Workload   |        |   Verifier   |        |  Credential Authority  |
+    +--------------+        +--------------+        +------------------------+
 
 3.2.  Mechanism B
 
