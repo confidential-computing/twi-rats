@@ -1272,6 +1272,11 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
         <dd style="margin-left: 1.5em" id="section-2-4.16">
           <p id="section-2-4.16.1">an entity tasked with specifying policies concerning what Workload composition is considered valid for the purposes of issuing Workload Credentials<a href="#section-2-4.16.1" class="pilcrow">¶</a></p>
 </dd>
+        <dd class="break"></dd>
+<dt id="section-2-4.17">Verifier:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.18">
+          <p id="section-2-4.18.1">an entity performing the role of Attestation Verification, as documented in <span><a href="https://rfc-editor.org/rfc/rfc9334#section-4" class="relref">Section 4</a> of [<a href="#RFC9334" class="cite xref">RFC9334</a>]</span><a href="#section-2-4.18.1" class="pilcrow">¶</a></p>
+</dd>
       <dd class="break"></dd>
 </dl>
 </section>
@@ -1296,7 +1301,7 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
 <p id="section-3-6">In either case, the detailed information about the Workload’s composition conveyed to the Verifier using RATS “Evidence” is mapped to Stable, technology-agnostic, business-oriented claims about the Workload.<a href="#section-3-6" class="pilcrow">¶</a></p>
 <p id="section-3-7">These two options can be visualised at a high level as:<a href="#section-3-7" class="pilcrow">¶</a></p>
 <p id="section-3-8">TODO: Insert the "Variant1/Variant2" ASCII art generated from our existing documents.<a href="#section-3-8" class="pilcrow">¶</a></p>
-<p id="section-3-9">From the Workload's perspective, Variant 1 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “evidence” for “attestation results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.<a href="#section-3-9" class="pilcrow">¶</a></p>
+<p id="section-3-9">From the Workload's perspective, Variant 1 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “Evidence” for “Attestation Results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.<a href="#section-3-9" class="pilcrow">¶</a></p>
 <p id="section-3-10">Variant 2 does not carry with it the extra roundtrip, and thus does not carry the additional performance costs or reliability risks.<a href="#section-3-10" class="pilcrow">¶</a></p>
 <p id="section-3-11">Several distinct options are possible. In all cases, the Credential is generated and signed by a Credential Authority. The difference is in how the Workload obtains these Credentials. The main pivots are:<a href="#section-3-11" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3-12">
@@ -1381,7 +1386,6 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
         </tbody>
       </table>
 <p id="section-3-18">These options are illustrated below with sequence diagrams.<a href="#section-3-18" class="pilcrow">¶</a></p>
-<p id="section-3-19">TODO: Generate ASCII art around each of the  sequence diagrams.<a href="#section-3-19" class="pilcrow">¶</a></p>
 <div id="mechanism-a">
 <section id="section-3.1">
         <h3 id="name-mechanism-a">
@@ -1883,6 +1887,7 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
                 <path d="M 272,336 L 272,368" fill="none" stroke="black"></path>
                 <path d="M 272,448 L 272,512" fill="none" stroke="black"></path>
                 <path d="M 272,688 L 272,704" fill="none" stroke="black"></path>
+                <path d="M 328,32 L 328,64" fill="none" stroke="black"></path>
                 <path d="M 384,32 L 384,64" fill="none" stroke="black"></path>
                 <path d="M 384,704 L 384,736" fill="none" stroke="black"></path>
                 <path d="M 440,64 L 440,96" fill="none" stroke="black"></path>
@@ -1959,7 +1964,6 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
                   <text x="60" y="52">Workload</text>
                   <text x="120" y="52">Owner</text>
                   <text x="268" y="52">Workload</text>
-                  <text x="328" y="52">│</text>
                   <text x="416" y="52">Key</text>
                   <text x="456" y="52">Store</text>
                   <text x="612" y="52">Credential</text>
@@ -2359,7 +2363,8 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-A-1">TODO acknowledge.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">The following persons, in no specific order, contributed to the work directly, participated in design team meetings, or provided valuable comments during the review of this document.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-2">Pieter Kasselman (SPIRL), Arieal Feldman (Google), Mateusz Bronk (Intel), Manu Fontaine (Hushmesh Inc.), Benedict Lau (EQTY Lab), Zvonko Kaiser (NVIDIA), David Quigley (Intel), Sal Kimmich (GadflyAI), Alex Dalton (Shielded Technologies), Eric Wolfe (Mainsail Industries), Nicolae Paladi(Canary Bit), Mark Gentry (JPMorgan Chase), Jag Raman (Oracle), Brian Hugenbruch (IBM), Jens Alberts (Fr0ntierX), Mira Spina (MITRE) and John Suykerbuyk.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
