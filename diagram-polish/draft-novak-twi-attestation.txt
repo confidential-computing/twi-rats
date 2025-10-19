@@ -402,7 +402,7 @@ Table of Contents
            +<-----------+           |                            |
            │ Request Attestation    |                            |
            +----------------------->+                            |
-           │                        | Appraise Evidence          |
+           │ (Evidence)              Appraise Evidence           |
            |                        +------------+               |
            |                        +<-----------+               |
            │                        | Compute Attestation        |
@@ -546,9 +546,9 @@ Table of Contents
            │ Generate Evidence (incl+. Public Encryption    |
            +------------+           |         Key)          |
            |<-----------+           |                       |
-           │ Request Attestation (Evidence)                 |
+           │ Request Attestation    |                       |
            +----------------------->+                       │
-           │                        │ Appraise Evidence     |
+           │   (Evidence)           | Appraise Evidence     |
            |                        +------------+          |
            |                        +<-----------+          |
            │                        │ Compute Attestation   |
