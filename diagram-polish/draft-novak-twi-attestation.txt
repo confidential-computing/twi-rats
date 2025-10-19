@@ -483,10 +483,10 @@ Table of Contents
 
     +------------------+      +-------------+      +-------------+      +------------------------+
     |  Workload Owner  |      |  Workload   │      |  Key Store  |      |  Credential Authority  |
-    +------------------+      +------+------+      +------+------+      +-----------+------------+
-    +---------+----------------------+--------------------+-------------------------+------------+
-    |                                Credential Provisioning Phase                               |
-    +---------+----------------------+--------------------+-------------------------+------------+
+    +---------+--------+      +------+------+      +------+------+      +-----------+------------+
+     +--------+----------------------+--------------------+-------------------------+-----------+
+     |                                Credential Provisioning Phase                             |
+     +--------+----------------------+--------------------+-------------------------+-----------+
               │ Create Workload Identifier                |                         |
               | and Associated Credential Attributes      │                         |
               +------------+         |                    |                         |
@@ -519,56 +519,56 @@ Table of Contents
               |                      │                    |           +-------------+
               |                      │                    |           +------------>+
               │                      │                    |       Return Credential |
-              +<---------------------+----------------------------------------------+
+              +<---------------------+--------------------+-------------------------+
               | Provide Workload with Credential          |                         │
-              +--------------------->│                    │                         │
+              +--------------------->+                    |                         |
     +---------+--------+      +------+------+      +------+------+      +-----------+------------+
     |  Workload Owner  |      |  Workload   │      |  Key Store  |      |  Credential Authority  |
     +------------------+      +-------------+      +-------------+      +------------------------+
 
 3.4.2.  Credential Acquisition Phase
 
-       ┌──────────────┐        ┌──────────────┐        ┌──────────────┐
-       │   Workload   │        │   Verifier   │        │   Key Store  │
-       └──────┬───────┘        └───────┬──────┘        └───────┬──────┘
-       ┌──────┴────────────────────────┴───────────────────────┴──────┐
-       │                  Credential Acquisition Phase                |
-       └──────┬────────────────────────┬───────────────────────┬──────┘
-              │ Generate Asymmetric Encryption Key             │
-              │────────────┐           |                       |
-              |<───────────┘           |                       |
-              │ Generate Evidence (incl. Public Encryption Key)
-              │────────────┐           |                       |
-              |<───────────┘           |                       |
-              │ Request Attestation (Evidence)                 |
-              │───────────────────────>│                       │
-              │                        │ Appraise Evidence     |
-              |                        │────────────┐          |
-              |                        |<───────────┘          |
-              │                        │ Compute Attestation Results
-              |                        │────────────┐          |
-              |                        |<───────────┘          |
-              │                 Return |                       |
-              |    Attestation Results |                       |
-              | (incl. Encryption Key) |                       |
-              │<───────────────────────│                       │
-              │ Request Credential Key (Attestation Results)   |
-              │───────────────────────────────────────────────>│
-              │                   Validate Attestation Results |
-              │          against Credential Key Release Policy |
-              |                        │         ┌─────────────|
-              |                        │         └────────────>|
-              │       Encrypt Credential Key to Encryption Key |
-              |                        │         ┌─────────────|
-              |                        │         └────────────>|
-              │                Return Encrypted Credential Key │
-              │<───────────────────────────────────────────────│
-              │ Decrypt Credential Key |                       │
-              │────────────┐           |                       |
-              |<───────────┘           |                       |
-       ┌──────┴───────┐        ┌───────┴──────┐        ┌───────┴──────┐
-       │   Workload   │        │   Verifier   │        │   Key Store  │
-       └──────────────┘        └──────────────┘        └──────────────┘
+    +--------------+        +--------------+        +-------------------+
+    |   Workload   |        |   Verifier   |        |    Key Store      |
+    +------+-------+        +-------+------+        +-------+-----------+
+    +------+------------------------+-----------------------+-----------+
+    |                    Credential Acquisition Phase                   |
+    +------+------------------------+-----------------------+-----------+
+           │ Generate Asymmetric Encryption Key             │
+           +------------+           |                       |
+           +<-----------+           |                       |
+           │ Generate Evidence (incl+. Public Encryption    |
+           +------------+           |         Key)          |
+           |<-----------+           |                       |
+           │ Request Attestation (Evidence)                 |
+           +----------------------->+                       │
+           │                        │ Appraise Evidence     |
+           |                        +------------+          |
+           |                        +<-----------+          |
+           │                        │ Compute Attestation   |
+           |                        +------------+ Results  |
+           |                        +<-----------+          |
+           │                 Return |                       |
+           |    Attestation Results |                       |
+           | (incl. Encryption Key) |                       |
+           +<-----------------------+                       │
+           │ Request Credential Key (Attestation Results)   |
+           +----------------------------------------------->+
+           │                   Validate Attestation Results |
+           │          against Credential Key Release Policy |
+           |                        |         +-------------+
+           |                        |         +------------>+
+           │       Encrypt Credential Key to Encryption Key |
+           |                        |         +-------------+
+           |                        |         +------------>+
+           │                Return Encrypted Credential Key │
+           +<-----------------------+-----------------------+
+           │ Decrypt Credential Key |                       |
+           +------------+           |                       |
+           +<-----------+           |                       |
+    +------+-------+        +-------+------+        +-------+-----------+
+    |   Workload   |        |   Verifier   |        |    Key Store      |
+    +------+-------+        +-------+------+        +-------+-----------+
 
 4.  Security Considerations
 
