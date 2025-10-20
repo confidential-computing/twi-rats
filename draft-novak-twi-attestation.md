@@ -108,7 +108,7 @@ This draft specifies how a Workload operating in Confidential Computing Environm
 This document uses terms and concepts defined by the WIMSE and RATS architectures, as well as the terms defined by the Trustworthy Workload Identity Special Interest Group at the Confidential Computing Consortium.
 For a complete glossary, see {{Section 4 of -rats-arch}} , {{-WIMSE}} & {{-TWISIGDef}}.
 
-The definitions of terms like Workload Identity and Workload Credential match those specified by the TWI SIG Definitions {{-TWISIGDef}}.
+The definitions of terms like Trustworthy Workload Identity and Workload Credential match those specified by the TWI SIG Definitions {{-TWISIGDef}}.
 
 Workload:
 
