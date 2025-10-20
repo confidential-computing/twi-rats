@@ -216,11 +216,10 @@ Table of Contents
    Workload.
 
    These two options can be visualised at a high level as:
+   // Tracked at: https://github.com/confidential-computing/twi-rats/
+   issues/5
 
-   TODO: Insert the "Variant1/Variant2" ASCII art generated from our
-   existing documents.
-
-   From the Workload's perspective, Variant 1 carries with it an extra
+   From the Workload's perspective, Variant 2 carries with it an extra
    network roundtrip (the first roundtrip being the workload exchanging
    “Evidence” for “Attestation Results”).  It is the only option
    available to the Workload for using existing Verifier implementations
@@ -228,7 +227,7 @@ Table of Contents
    however introduce additional latency and reliability costs inherent
    in an extra roundtrip.
 
-   Variant 2 does not carry with it the extra roundtrip, and thus does
+   Variant 1 does not carry with it the extra roundtrip, and thus does
    not carry the additional performance costs or reliability risks.
 
    Several distinct options are possible.  In all cases, the Credential

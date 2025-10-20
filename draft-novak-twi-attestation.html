@@ -1301,49 +1301,49 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
 </li>
       </ol>
 <p id="section-3-6">In either case, the detailed information about the Workload’s composition conveyed to the Verifier using RATS “Evidence” is mapped to Stable, technology-agnostic, business-oriented claims about the Workload.<a href="#section-3-6" class="pilcrow">¶</a></p>
-<p id="section-3-7">These two options can be visualised at a high level as:<a href="#section-3-7" class="pilcrow">¶</a></p>
-<p id="section-3-8">TODO: Insert the "Variant1/Variant2" ASCII art generated from our existing documents.<a href="#section-3-8" class="pilcrow">¶</a></p>
-<p id="section-3-9">From the Workload's perspective, Variant 1 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “Evidence” for “Attestation Results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.<a href="#section-3-9" class="pilcrow">¶</a></p>
-<p id="section-3-10">Variant 2 does not carry with it the extra roundtrip, and thus does not carry the additional performance costs or reliability risks.<a href="#section-3-10" class="pilcrow">¶</a></p>
-<p id="section-3-11">Several distinct options are possible. In all cases, the Credential is generated and signed by a Credential Authority. The difference is in how the Workload obtains these Credentials. The main pivots are:<a href="#section-3-11" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-3-12">
-<li id="section-3-12.1">
-          <p id="section-3-12.1.1">Where the Credential Key is generated (Key Source):<a href="#section-3-12.1.1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-3-12.1.2">
-<li id="section-3-12.1.2.1">
-              <p id="section-3-12.1.2.1.1">Inside the Workload Instance<a href="#section-3-12.1.2.1.1" class="pilcrow">¶</a></p>
+<p id="section-3-7">These two options can be visualised at a high level as:
+<span class="cref" id="tracked-at">Tracked at:</span> https://github.com/confidential-computing/twi-rats/issues/5<a href="#section-3-7" class="pilcrow">¶</a></p>
+<p id="section-3-8">From the Workload's perspective, Variant 2 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “Evidence” for “Attestation Results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.<a href="#section-3-8" class="pilcrow">¶</a></p>
+<p id="section-3-9">Variant 1 does not carry with it the extra roundtrip, and thus does not carry the additional performance costs or reliability risks.<a href="#section-3-9" class="pilcrow">¶</a></p>
+<p id="section-3-10">Several distinct options are possible. In all cases, the Credential is generated and signed by a Credential Authority. The difference is in how the Workload obtains these Credentials. The main pivots are:<a href="#section-3-10" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3-11">
+<li id="section-3-11.1">
+          <p id="section-3-11.1.1">Where the Credential Key is generated (Key Source):<a href="#section-3-11.1.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3-11.1.2">
+<li id="section-3-11.1.2.1">
+              <p id="section-3-11.1.2.1.1">Inside the Workload Instance<a href="#section-3-11.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-3-12.1.2.2">
-              <p id="section-3-12.1.2.2.1">Inside a secure Key Store such as a Hardware Security Module (HSM), by the Workload Owner<a href="#section-3-12.1.2.2.1" class="pilcrow">¶</a></p>
+            <li id="section-3-11.1.2.2">
+              <p id="section-3-11.1.2.2.1">Inside a secure Key Store such as a Hardware Security Module (HSM), by the Workload Owner<a href="#section-3-11.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
           </ol>
 </li>
-        <li id="section-3-12.2">
-          <p id="section-3-12.2.1">Where the Workload gets its Credential from (Credential Source):<a href="#section-3-12.2.1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-3-12.2.2">
-<li id="section-3-12.2.2.1">
-              <p id="section-3-12.2.2.1.1">The Verifier<a href="#section-3-12.2.2.1.1" class="pilcrow">¶</a></p>
+        <li id="section-3-11.2">
+          <p id="section-3-11.2.1">Where the Workload gets its Credential from (Credential Source):<a href="#section-3-11.2.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3-11.2.2">
+<li id="section-3-11.2.2.1">
+              <p id="section-3-11.2.2.1.1">The Verifier<a href="#section-3-11.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-3-12.2.2.2">
-              <p id="section-3-12.2.2.2.1">The Credential Authority (e.g., a Certificate Authority, a Security Token Service, or similar)<a href="#section-3-12.2.2.2.1" class="pilcrow">¶</a></p>
+            <li id="section-3-11.2.2.2">
+              <p id="section-3-11.2.2.2.1">The Credential Authority (e.g., a Certificate Authority, a Security Token Service, or similar)<a href="#section-3-11.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-3-12.2.2.3">
-              <p id="section-3-12.2.2.3.1">The Workload Owner (via the Control Plane)<a href="#section-3-12.2.2.3.1" class="pilcrow">¶</a></p>
+            <li id="section-3-11.2.2.3">
+              <p id="section-3-11.2.2.3.1">The Workload Owner (via the Control Plane)<a href="#section-3-11.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
           </ol>
 </li>
       </ol>
-<p id="section-3-13">Note that it is safe to receive the Credential from an untrusted source such as the Control Plane, because it is public. The only requirement is that the obtained Credential matches the Credential Key, which <span class="bcp14">MUST</span> always be obtained securely and only by an authorized Workload instance.<a href="#section-3-13" class="pilcrow">¶</a></p>
-<p id="section-3-14">Further, under pivot 2.i, the order of interactions involved in Credential generation might differ:<a href="#section-3-14" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-3-15">
-<li id="section-3-15.1">
-          <p id="section-3-15.1.1">A Workload invokes the Verifier which collaborates with the Credential Authority to compute and return Credentials, returning these Credentials inside the Attestation Results, or<a href="#section-3-15.1.1" class="pilcrow">¶</a></p>
+<p id="section-3-12">Note that it is safe to receive the Credential from an untrusted source such as the Control Plane, because it is public. The only requirement is that the obtained Credential matches the Credential Key, which <span class="bcp14">MUST</span> always be obtained securely and only by an authorized Workload instance.<a href="#section-3-12" class="pilcrow">¶</a></p>
+<p id="section-3-13">Further, under pivot 2.i, the order of interactions involved in Credential generation might differ:<a href="#section-3-13" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3-14">
+<li id="section-3-14.1">
+          <p id="section-3-14.1.1">A Workload invokes the Verifier which collaborates with the Credential Authority to compute and return Credentials, returning these Credentials inside the Attestation Results, or<a href="#section-3-14.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li id="section-3-15.2">
-          <p id="section-3-15.2.1">A Workload invokes the Verifier, obtains from it the Attestation Results, and forwards these Attestation Results to the Credential Authority inside a Credential Request to get the Credential.<a href="#section-3-15.2.1" class="pilcrow">¶</a></p>
+        <li id="section-3-14.2">
+          <p id="section-3-14.2.1">A Workload invokes the Verifier, obtains from it the Attestation Results, and forwards these Attestation Results to the Credential Authority inside a Credential Request to get the Credential.<a href="#section-3-14.2.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
-<p id="section-3-16">This set of variants results in several distinct Credential Acquisition Mechanisms (CAMs), some of which are listed in the table below:<a href="#section-3-16" class="pilcrow">¶</a></p>
+<p id="section-3-15">This set of variants results in several distinct Credential Acquisition Mechanisms (CAMs), some of which are listed in the table below:<a href="#section-3-15" class="pilcrow">¶</a></p>
 <table class="center" id="table-1">
         <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
 <thead>
@@ -1387,7 +1387,7 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
           </tr>
         </tbody>
       </table>
-<p id="section-3-18">These options are illustrated below with sequence diagrams.<a href="#section-3-18" class="pilcrow">¶</a></p>
+<p id="section-3-17">These options are illustrated below with sequence diagrams.<a href="#section-3-17" class="pilcrow">¶</a></p>
 <div id="mechanism-a">
 <section id="section-3.1">
         <h3 id="name-mechanism-a">
