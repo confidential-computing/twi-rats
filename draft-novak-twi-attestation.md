@@ -234,8 +234,11 @@ Mechanism D consists of a "Credential Provisioning" phase followed by the "Crede
 # Security Considerations
 
 All communications between entities (Workload to Credential Authority, Workload to Verifier etc) MUST be secured using mutually authenticated, confidential, and integrity-protected channels (e.g., TLS).
+The credential key MUST be obtained over a secure channel.
 
 In addition to the considerations herein, Verifier, which is a central point of anchor for Trustworthy Workload Identifer MUST follow the security guidance detailed in the "Security and Privacy considerations" as detailed in the RATS Architecture {{Section 11 and Section 12 of -rats-arch}}.
+
+The credential key MUST always be stored securely at all time, for example in a secure element within the workload.
 
 # Pivacy Considerations
 
