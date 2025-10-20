@@ -241,7 +241,7 @@ In addition to the considerations herein, Verifier, which is a central point of 
 
 Remote Attestation of a Workload requires exchange of attestation related messages, for example, Evidence and Attestation Results. This can potentially leak sensitive information about the Workload.
 
-Confidentiality: Encryption could be used to prevent unauthorized parties from accessing sensitive Evidence.
+Confidentiality: Encryption could be used to prevent unauthorised parties from accessing sensitive information from Evidence or Attestation Results.
 This is crucial in multi-tenant environments.
 The Credential Key to be released to a Workload MUST always be encrypted to avoid potential leakage to unauthorised actors.
 
