@@ -237,7 +237,7 @@ All communications between entities (Workload to Credential Authority, Workload 
 
 In addition to the considerations herein, Verifier, which is a central point of anchor for Trustworthy Workload Identifer MUST follow the security guidance detailed in the "Security and Privacy considerations" as detailed in the RATS Architecture {{Section 11 and Section 12 of -rats-arch}}.
 
-The credential key MUST always be stored securely at all time, for example in a secure element within the workload.
+The credential key MUST always be stored securely at all time, for example in a secure element of the underlying platform running the Workload.
 
 # Pivacy Considerations
 
