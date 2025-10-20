@@ -77,10 +77,11 @@ Table of Contents
        3.4.1.  Credential Provisioning Phase
        3.4.2.  Credential Acquisition Phase
    4.  Security Considerations
-   5.  IANA Considerations
-   6.  References
-     6.1.  Normative References
-     6.2.  Informative References
+   5.  Pivacy Considerations
+   6.  IANA Considerations
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -578,15 +579,36 @@ Table of Contents
 
 4.  Security Considerations
 
-   TODO Security
+   All communications between entities (Workload to Credential
+   Authority, Workload to Verifier etc) MUST be secured using mutually
+   authenticated, confidential, and integrity-protected channels (e.g.,
+   TLS).
 
-5.  IANA Considerations
+   In addition to the considerations herein, Verifier, which is a
+   central point of anchor for Trustworthy Workload Identifer MUST
+   follow the security guidance detailed in the "Security and Privacy
+   considerations" as detailed in the RATS Architecture Section 11 and
+   Section 12 of [RFC9334].
+
+5.  Pivacy Considerations
+
+   Remote Attestation of a Workload requires exchange of attestation
+   related messages, for example, Evidence and Attestation Results.
+   This can potentially leak sensitive information about the Workload.
+
+   Confidentiality: Encryption could be used to prevent unauthorised
+   parties from accessing sensitive information from Evidence or
+   Attestation Results.  This is crucial in multi-tenant environments.
+   The Credential Key to be released to a Workload MUST always be
+   encrypted to avoid potential leakage to unauthorised actors.
+
+6.  IANA Considerations
 
    This document has no IANA actions.
 
-6.  References
+7.  References
 
-6.1.  Normative References
+7.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -597,7 +619,7 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-6.2.  Informative References
+7.2.  Informative References
 
    [I-D.draft-ietf-wimse-arch]
               Salowey, J. A., Rosomakho, Y., and H. Tschofenig,
