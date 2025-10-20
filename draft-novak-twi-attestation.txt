@@ -117,8 +117,8 @@ Table of Contents
    Computing Consortium.  For a complete glossary, see Section 4 of
    [RFC9334] , [I-D.draft-ietf-wimse-arch] & [TWISIGDef].
 
-   The definitions of terms like Workload Identity and Workload
-   Credential match those specified by the TWI SIG Definitions
+   The definitions of terms like Trustworthy Workload Identity and
+   Workload Credential match those specified by the TWI SIG Definitions
    [TWISIGDef].
 
    Workload:  [I-D.draft-ietf-wimse-arch] defines 'Workload' as "an
