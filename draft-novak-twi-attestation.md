@@ -162,12 +162,11 @@ Within the RATS Architecture, either of these options can be accomplished in one
 In either case, the detailed information about the Workload’s composition conveyed to the Verifier using RATS “Evidence” is mapped to Stable, technology-agnostic, business-oriented claims about the Workload.
 
 These two options can be visualised at a high level as:
+[^tracked-at] https://github.com/confidential-computing/twi-rats/issues/5
 
-TODO: Insert the "Variant1/Variant2" ASCII art generated from our existing documents.
+From the Workload's perspective, Variant 2 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “Evidence” for “Attestation Results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.
 
-From the Workload's perspective, Variant 1 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “Evidence” for “Attestation Results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.
-
-Variant 2 does not carry with it the extra roundtrip, and thus does not carry the additional performance costs or reliability risks.
+Variant 1 does not carry with it the extra roundtrip, and thus does not carry the additional performance costs or reliability risks.
 
 Several distinct options are possible. In all cases, the Credential is generated and signed by a Credential Authority. The difference is in how the Workload obtains these Credentials. The main pivots are:
 
@@ -251,3 +250,5 @@ This document has no IANA actions.
 The following persons, in no specific order, contributed to the work directly, participated in design team meetings, or provided valuable comments during the review of this document.
 
 Pieter Kasselman (SPIRL), Arieal Feldman (Google), Mateusz Bronk (Intel), Manu Fontaine (Hushmesh Inc.), Benedict Lau (EQTY Lab), Zvonko Kaiser (NVIDIA), David Quigley (Intel), Sal Kimmich (GadflyAI), Alex Dalton (Shielded Technologies), Eric Wolfe (Mainsail Industries), Nicolae Paladi(Canary Bit), Mark Gentry (JPMorgan Chase), Jag Raman (Oracle), Brian Hugenbruch (IBM), Jens Alberts (Fr0ntierX), Mira Spina (MITRE) and John Suykerbuyk.
+
+[^tracked-at]: Tracked at:
