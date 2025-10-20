@@ -1,15 +1,12 @@
 ---
 title: Remote Attestation for Trustworthy Workload Identity
 abbrev: RATS for TWI
+docname: draft-novak-twi-attestation-latest
 category: info
 ipr: trust200902
-# area: Security
-# workgroup: RATS
-
-stand_alone: yes
-
-docname: draft-novak-twi-attestation-latest
-
+area: Security
+wg: RATS Working Group
+stand_alone: true
 submissiontype: IETF
 number:
 date:
@@ -22,12 +19,12 @@ keyword:
  - remote attestation
  - stable workload credentials
 venue:
-#  group: WG
-#  type: Working Group
-#  mail: WG@example.com
-#  arch: https://example.com/WG
-  github: "confidential-computing/twi-rats"
-  latest: "https://confidential-computing.github.io/twi-rats/draft-novak-twi-attestation.html"
+ group: RATS
+ type: Working Group
+ mail: rats@ietf.org
+
+github: "confidential-computing/twi-rats"
+latest: "https://confidential-computing.github.io/twi-rats/draft-novak-twi-attestation.html"
 
 pi:
 
