@@ -590,6 +590,10 @@ Table of Contents
    considerations" as detailed in the RATS Architecture Section 11 and
    Section 12 of [RFC9334].
 
+   The credential key MUST always be stored securely at all time, for
+   example in a secure element of the underlying platform running the
+   Workload.
+
 5.  Pivacy Considerations
 
    Remote Attestation of a Workload requires exchange of attestation
