@@ -591,7 +591,8 @@ Table of Contents
    Section 12 of [RFC9334].
 
    The credential key MUST always be stored securely at all time, for
-   example in a secure element within the workload.
+   example in a secure element of the underlying platform running the
+   Workload.
 
 5.  Pivacy Considerations
 
