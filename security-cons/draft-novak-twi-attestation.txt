@@ -582,7 +582,7 @@ Table of Contents
    All communications between entities (Workload to Credential
    Authority, Workload to Verifier etc) MUST be secured using mutually
    authenticated, confidential, and integrity-protected channels (e.g.,
-   TLS).
+   TLS).  The credential key MUST be obtained over a secure channel.
 
    In addition to the considerations herein, Verifier, which is a
    central point of anchor for Trustworthy Workload Identifer MUST
@@ -590,17 +590,20 @@ Table of Contents
    considerations" as detailed in the RATS Architecture Section 11 and
    Section 12 of [RFC9334].
 
+   The credential key MUST always be stored securely at all time, for
+   example in a secure element within the workload.
+
 5.  Pivacy Considerations
 
    Remote Attestation of a Workload requires exchange of attestation
    related messages, for example, Evidence and Attestation Results.
    This can potentially leak sensitive information about the Workload.
 
-   Confidentiality: Encryption could be used to prevent unauthorised
-   parties from accessing sensitive information from Evidence or
-   Attestation Results.  This is crucial in multi-tenant environments.
-   The Credential Key to be released to a Workload MUST always be
-   encrypted to avoid potential leakage to unauthorised actors.
+   Confidentiality: Encryption could be used to prevent unauthorized
+   parties from accessing sensitive Evidence.  This is crucial in multi-
+   tenant environments.  The Credential Key to be released to a Workload
+   MUST always be encrypted to avoid potential leakage to unauthorised
+   actors.
 
 6.  IANA Considerations
 
