@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-19T01:49:15.644298+00:00",
+  "timestamp": "2025-10-21T01:41:09.655932+00:00",
   "repo": "confidential-computing/twi-rats",
   "labels": [
     {
@@ -49,7 +49,40 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 5,
+      "id": "I_kwDOP1Ynus7SiB6z",
+      "title": "Draw ASCII Art for Veraint1 and Variant 2 in the document!",
+      "url": "https://github.com/confidential-computing/twi-rats/issues/5",
+      "state": "OPEN",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-20T11:44:07Z",
+      "updatedAt": "2025-10-20T11:44:07Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 9,
+      "id": "I_kwDOP1Ynus7Sp4XC",
+      "title": "Fill out the Security Considerations sections",
+      "url": "https://github.com/confidential-computing/twi-rats/issues/9",
+      "state": "OPEN",
+      "author": "TheBankster",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Two known issues here:\n- Require use of TLS between the parties, and document the vulnerabilities that might be present if TLS is not used\n- Document lack of freshness in the case where the workload contacts the Credential Authority first and think about mitigations",
+      "createdAt": "2025-10-20T22:47:30Z",
+      "updatedAt": "2025-10-20T22:47:30Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
   "pulls": [
     {
       "number": 1,
@@ -114,6 +147,188 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOP1Ynus6uh4o-",
+      "title": "Polish Diagram",
+      "url": "https://github.com/confidential-computing/twi-rats/pull/3",
+      "state": "MERGED",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Corrected Diagrams, as they rendered very incomplete!",
+      "createdAt": "2025-10-19T22:02:12Z",
+      "updatedAt": "2025-10-19T22:02:23Z",
+      "baseRepository": "confidential-computing/twi-rats",
+      "baseRefName": "main",
+      "baseRefOid": "75f205be39b5de2cbbd14391f1223bded4dff013",
+      "headRepository": "confidential-computing/twi-rats",
+      "headRefName": "diagram-polish",
+      "headRefOid": "36a0bf49be09e8f4b63e5d520a6df80f28907c1c",
+      "closedAt": "2025-10-19T22:02:20Z",
+      "mergedAt": "2025-10-19T22:02:20Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "2aec4320518840d9c6e01a74b7ac2c34360b3b7b"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOP1Ynus6unYEe",
+      "title": "Fix Sections before abstract",
+      "url": "https://github.com/confidential-computing/twi-rats/pull/4",
+      "state": "MERGED",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-20T11:42:06Z",
+      "updatedAt": "2025-10-20T11:42:25Z",
+      "baseRepository": "confidential-computing/twi-rats",
+      "baseRefName": "main",
+      "baseRefOid": "2aec4320518840d9c6e01a74b7ac2c34360b3b7b",
+      "headRepository": "confidential-computing/twi-rats",
+      "headRefName": "diagram-polish",
+      "headRefOid": "ff5652beb2f2e28fff0528435dde1e2329cac2ef",
+      "closedAt": "2025-10-20T11:42:21Z",
+      "mergedAt": "2025-10-20T11:42:20Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "d875c49282bf123e163f47a1dc6d77bc79fa55a1"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOP1Ynus6undBx",
+      "title": "Insert Issue List",
+      "url": "https://github.com/confidential-computing/twi-rats/pull/6",
+      "state": "MERGED",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-20T11:50:26Z",
+      "updatedAt": "2025-10-20T11:51:20Z",
+      "baseRepository": "confidential-computing/twi-rats",
+      "baseRefName": "main",
+      "baseRefOid": "d875c49282bf123e163f47a1dc6d77bc79fa55a1",
+      "headRepository": "confidential-computing/twi-rats",
+      "headRefName": "issue-tracker",
+      "headRefOid": "f8e597af8e7ac7035e1d789d9647efd4ca874293",
+      "closedAt": "2025-10-20T11:51:15Z",
+      "mergedAt": "2025-10-20T11:51:15Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "13400a003a9ad7546179375571458f8f5644e802"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 7,
+      "id": "PR_kwDOP1Ynus6uojVP",
+      "title": "Add Security and Privacy Considerations",
+      "url": "https://github.com/confidential-computing/twi-rats/pull/7",
+      "state": "MERGED",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-20T13:34:24Z",
+      "updatedAt": "2025-10-20T13:36:24Z",
+      "baseRepository": "confidential-computing/twi-rats",
+      "baseRefName": "main",
+      "baseRefOid": "3e6a9d8c720e16383525f45e6aae26a691eeab15",
+      "headRepository": "confidential-computing/twi-rats",
+      "headRefName": "security-cons",
+      "headRefOid": "d3de97213ebe8c5f8ce3b56988c4ade18eca3330",
+      "closedAt": "2025-10-20T13:36:18Z",
+      "mergedAt": "2025-10-20T13:36:18Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "163f89b85c7f2dca167516408baec7d2e5a029d9"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOP1Ynus7IECHo",
+          "commit": {
+            "abbreviatedOid": "84bf593"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-20T13:35:15Z",
+          "updatedAt": "2025-10-20T13:35:15Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "```suggestion\r\nConfidentiality: Encryption could be used to prevent unauthorised parties from accessing sensitive information from Evidence or Attestation Results.\r\n```",
+              "createdAt": "2025-10-20T13:35:15Z",
+              "updatedAt": "2025-10-20T13:35:16Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDOP1Ynus6uowll",
+      "title": "Further Security Considerations",
+      "url": "https://github.com/confidential-computing/twi-rats/pull/8",
+      "state": "MERGED",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-20T13:52:15Z",
+      "updatedAt": "2025-10-20T13:54:22Z",
+      "baseRepository": "confidential-computing/twi-rats",
+      "baseRefName": "main",
+      "baseRefOid": "163f89b85c7f2dca167516408baec7d2e5a029d9",
+      "headRepository": "confidential-computing/twi-rats",
+      "headRefName": "further-security",
+      "headRefOid": "39768dbd2e5682355f4fbf01179ac6e016350105",
+      "closedAt": "2025-10-20T13:54:18Z",
+      "mergedAt": "2025-10-20T13:54:18Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "26f1fcc75febd5b82f298d1e20ec236954960f79"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOP1Ynus7IESw3",
+          "commit": {
+            "abbreviatedOid": "92e26c7"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-20T13:53:34Z",
+          "updatedAt": "2025-10-20T13:53:34Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\nThe credential key MUST always be stored securely at all time, for example in a secure element of the underlying platform running the Workload.\r\n```",
+              "createdAt": "2025-10-20T13:53:34Z",
+              "updatedAt": "2025-10-20T13:53:34Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
