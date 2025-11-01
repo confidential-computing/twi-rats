@@ -162,8 +162,21 @@ Within the RATS Architecture, either of these options can be accomplished in one
 
 In either case, the detailed information about the Workload’s composition conveyed to the Verifier using RATS “Evidence” is mapped to Stable, technology-agnostic, business-oriented claims about the Workload by invoking a new architectural building block called a Claims Mapper, described below.
 
-These two options can be visualised at a high level as:
-[^tracked-at] https://github.com/confidential-computing/twi-rats/issues/5
+These three options can be visualised at a high level as:
+## Variant 1
+~~~ aasvg
+{::include variant_1.txt}
+~~~
+
+## Variant 2
+~~~ aasvg
+{::include variant_2.txt}
+~~~
+
+## Variant 3
+~~~ aasvg
+{::include variant_3.txt}
+~~~
 
 From the Workload's perspective, Variant 1 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “Evidence” for “Attestation Results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.
 
