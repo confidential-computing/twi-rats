@@ -684,6 +684,12 @@ Table of Contents
    example in a secure element of the underlying platform running the
    Workload.
 
+   There is a risk that a live Workload Migration may render some of the
+   claims about the Workload invalid (e.g., live-migrating a Workload
+   between Germany and France may incorrectly preserve the
+   "Country=Germany" claim, but correctly preserve the "Region=Europe"
+   claim).
+
 7.  Pivacy Considerations
 
    Remote Attestation of a Workload requires exchange of attestation
