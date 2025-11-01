@@ -18,7 +18,7 @@ Abstract
 
    Trustworthy Workloads are workloads that operate in environments that
    provide isolation of data in use.  This document describes how
-   Trustworthy workloads can acquire credentials containing stable
+   Trustworthy Workloads can acquire credentials containing stable
    identifiers, upon proving the trust in the environments in which they
    operate via Remote Attestation.
 
@@ -167,7 +167,7 @@ Table of Contents
 
    When dealing with a client Workload that is running inside a remotely
    attested Trusted Execution Environment, the goal of having a Relying
-   Party having a stable authorization policy and utilizing industry-
+   Party having a Stable authorization policy and utilizing industry-
    standard mechanisms for authorization can be achieved by issuing
    Credentials in a relying party-friendly format, such as those
    specified by [I-D.draft-ietf-wimse-arch].  Such Credentials may take
@@ -199,28 +199,31 @@ Table of Contents
    its own Credential Key and uses Remote Attestation to certify it.
 
    Within the RATS Architecture, either of these options can be
-   accomplished in one of two ways:
+   accomplished in one of three ways:
 
-   1.  The Attestation Results convey to the attesting Workload both the
-       public Credential and the secret Credential Key.
+   1.  The Workload supplies Evidence to a Verifier and obtains from it
+       Attestation Results.  It then provides these Attestation Results
+       to the Credential Authority in exchange for a Credential.
 
-   2.  The Attestation Results are encoded in an Entity Attestation
-       Token or EAT [RFC9711], or a bespoke Verifier-specific format,
-       and can be used by the attesting Workload to obtain a Bound
-       Credential and an associated Credential Key, e.g., by contacting
-       a Credential Authority and/or a Key Store, but without further
-       involving the Verifier.
+   2.  The Verifier contacts the Credential Authority on the Workload’s
+       behalf, and the Attestation Results obtained from the Verifier
+       are (or contain) the Credentials for that Workload.
+
+   3.  The Credential Authority contacts the Verifier on the Workload’s
+       behalf, and the Credential Authority constructs the Credential
+       using the Attestation Results received from the Verifier.
 
    In either case, the detailed information about the Workload’s
    composition conveyed to the Verifier using RATS “Evidence” is mapped
    to Stable, technology-agnostic, business-oriented claims about the
-   Workload.
+   Workload by invoking a new architectural building block called a
+   Claims Mapper, described below.
 
    These two options can be visualised at a high level as:
    // Tracked at: https://github.com/confidential-computing/twi-rats/
    issues/5
 
-   From the Workload's perspective, Variant 2 carries with it an extra
+   From the Workload's perspective, Variant 1 carries with it an extra
    network roundtrip (the first roundtrip being the workload exchanging
    “Evidence” for “Attestation Results”).  It is the only option
    available to the Workload for using existing Verifier implementations
@@ -228,8 +231,9 @@ Table of Contents
    however introduce additional latency and reliability costs inherent
    in an extra roundtrip.
 
-   Variant 1 does not carry with it the extra roundtrip, and thus does
-   not carry the additional performance costs or reliability risks.
+   Variants 2 and 3 do not require the Workload to perform an extra
+   roundtrip, and thus do not carry the additional performance costs or
+   reliability risks.
 
    Several distinct options are possible.  In all cases, the Credential
    is generated and signed by a Credential Authority.  The difference is
