@@ -5,12 +5,13 @@
      +--------+----------------------+--------------------+-------------------------+-----------+
      |                                Credential Provisioning Phase                             |
      +--------+----------------------+--------------------+-------------------------+-----------+
-              │ Create Workload Identifier                |                         |
-              | and Associated Credential Attributes      │                         |
+              | Invoke the Claims Mapper to               |                         |
+              │ create Workload Identifier                |                         |
+              | and Associated Credential Claims          │                         |
               +------------+         |                    |                         |
               +<-----------+         |                    |                         |
               │ Create Credential Key Release Policy      |                         |
-              | based on Workload Reference Values        │                         |
+              | based on anticipated Attestation Results  │                         |
               +------------+         |                    |                         |
               +<-----------+         |                    |                         |
               │ Create Credential Key                     |                         |
