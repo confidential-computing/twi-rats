@@ -10,7 +10,7 @@
 <meta content="Henk Birkholz" name="author">
 <meta content="
        Trustworthy Workloads are workloads that operate in environments that provide isolation of data in use.
-This document describes how Trustworthy workloads can acquire credentials containing stable identifiers, upon proving the trust in the environments in which they operate via Remote Attestation. 
+This document describes how Trustworthy Workloads can acquire credentials containing stable identifiers, upon proving the trust in the environments in which they operate via Remote Attestation. 
     " name="description">
 <meta content="xml2rfc 3.31.0" name="generator">
 <meta content="trustworthy workload identity" name="keyword">
@@ -1092,7 +1092,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">Trustworthy Workloads are workloads that operate in environments that provide isolation of data in use.
-This document describes how Trustworthy workloads can acquire credentials containing stable identifiers, upon proving the trust in the environments in which they operate via Remote Attestation.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+This document describes how Trustworthy Workloads can acquire credentials containing stable identifiers, upon proving the trust in the environments in which they operate via Remote Attestation.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1165,22 +1165,28 @@ This document describes how Trustworthy workloads can acquire credentials contai
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-available-options" class="internal xref">Available Options</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-mechanism-a" class="internal xref">Mechanism A</a></p>
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-variant-2" class="internal xref">Variant 2</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-mechanism-b" class="internal xref">Mechanism B</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-variant-3" class="internal xref">Variant 3</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-mechanism-c" class="internal xref">Mechanism C</a></p>
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-mechanism-a" class="internal xref">Mechanism A</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
-                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-mechanisms-d" class="internal xref">Mechanisms D</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4.2.1">
-                    <p id="section-toc.1-1.3.2.4.2.1.1"><a href="#section-3.4.1" class="auto internal xref">3.4.1</a>.  <a href="#name-credential-provisioning-pha" class="internal xref">Credential Provisioning Phase</a></p>
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-mechanism-b" class="internal xref">Mechanism B</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4.2.2">
-                    <p id="section-toc.1-1.3.2.4.2.2.1"><a href="#section-3.4.2" class="auto internal xref">3.4.2</a>.  <a href="#name-credential-acquisition-phas" class="internal xref">Credential Acquisition Phase</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
+                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-mechanism-c" class="internal xref">Mechanism C</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6">
+                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="auto internal xref">3.6</a>.  <a href="#name-mechanisms-d" class="internal xref">Mechanisms D</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6.2.1">
+                    <p id="section-toc.1-1.3.2.6.2.1.1"><a href="#section-3.6.1" class="auto internal xref">3.6.1</a>.  <a href="#name-credential-provisioning-pha" class="internal xref">Credential Provisioning Phase</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6.2.2">
+                    <p id="section-toc.1-1.3.2.6.2.2.1"><a href="#section-3.6.2" class="auto internal xref">3.6.2</a>.  <a href="#name-credential-acquisition-phas" class="internal xref">Credential Acquisition Phase</a></p>
 </li>
                 </ul>
 </li>
@@ -1291,113 +1297,248 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
       <h2 id="name-available-options">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-available-options" class="section-name selfRef">Available Options</a>
       </h2>
-<p id="section-3-1">When dealing with a client Workload that is running inside a remotely attested Trusted Execution Environment, the goal of having a Relying Party having a stable authorization policy and utilizing industry-standard mechanisms for authorization can be achieved by issuing Credentials in a relying party-friendly format, such as those specified by <span>[<a href="#I-D.draft-ietf-wimse-arch" class="cite xref">I-D.draft-ietf-wimse-arch</a>]</span>. Such Credentials may take the form of x.509 certificates or Workload Identity Tokens (WITs) defined in Section 3.1 of <span>[<a href="#WIMSES2S" class="cite xref">WIMSES2S</a>]</span>. A Workload can start using the Credential for authentication and authorization once it has two items in its possession: the public portion – the Workload Credential itself, and the secret Credential Key necessary to utilize this Credential.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1">When dealing with a client Workload that is running inside a remotely attested Trusted Execution Environment, the goal of having a Relying Party having a Stable authorization policy and utilizing industry-standard mechanisms for authorization can be achieved by issuing Credentials in a relying party-friendly format, such as those specified by <span>[<a href="#I-D.draft-ietf-wimse-arch" class="cite xref">I-D.draft-ietf-wimse-arch</a>]</span>. Such Credentials may take the form of x.509 certificates or Workload Identity Tokens (WITs) defined in Section 3.1 of <span>[<a href="#WIMSES2S" class="cite xref">WIMSES2S</a>]</span>. A Workload can start using the Credential for authentication and authorization once it has two items in its possession: the public portion – the Workload Credential itself, and the secret Credential Key necessary to utilize this Credential.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">A Stable authorization policy can only be achieved if Workloads can have Stable identities. The decision about what constitutes a trustworthy Workload and a trustworthy configuration is a composition verification, with multiple entities providing Reference Values for the components they vouch for. For the issued Workload Identity to be Stable in addition to Trustworthy, a mapping must be performed between these Reference Values and the issued Identities. In a typical enterprise, Stable authorization policies are expressed in terms of business- rather than technology-oriented concepts, e.g., "Payroll Application", "Located in Germany", "Cleared for handling Personally Identifiable Information", etc. This contrasts with what RATS has historically thought of as Attestation Results, which may relate to the hardware manufacturer, firmware and software versions, etc.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">In some implementations, a Credential is precomputed, and the Credential Key is obtained from a Key Store following successful Remote Attestation. In other implementations, the Workload generates its own Credential Key and uses Remote Attestation to certify it.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">Within the RATS Architecture, either of these options can be accomplished in one of two ways:<a href="#section-3-4" class="pilcrow">¶</a></p>
+<p id="section-3-4">Within the RATS Architecture, either of these options can be accomplished in one of three ways:<a href="#section-3-4" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3-5">
 <li id="section-3-5.1">
-          <p id="section-3-5.1.1">The Attestation Results convey to the attesting Workload both the public Credential and the secret Credential Key.<a href="#section-3-5.1.1" class="pilcrow">¶</a></p>
+          <p id="section-3-5.1.1">The Workload supplies Evidence to a Verifier and obtains from it Attestation Results. It then provides these Attestation Results to the Credential Authority in exchange for a Credential.<a href="#section-3-5.1.1" class="pilcrow">¶</a></p>
 </li>
         <li id="section-3-5.2">
-          <p id="section-3-5.2.1">The Attestation Results are encoded in an Entity Attestation Token or EAT <span>[<a href="#RFC9711" class="cite xref">RFC9711</a>]</span>, or a bespoke Verifier-specific format, and can be used by the attesting Workload to obtain a Bound Credential and an associated Credential Key, e.g., by contacting a Credential Authority and/or a Key Store, but without further involving the Verifier.<a href="#section-3-5.2.1" class="pilcrow">¶</a></p>
+          <p id="section-3-5.2.1">The Verifier contacts the Credential Authority on the Workload’s behalf, and the Attestation Results obtained from the Verifier are (or contain) the Credentials for that Workload.<a href="#section-3-5.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-3-5.3">
+          <p id="section-3-5.3.1">The Credential Authority contacts the Verifier on the Workload’s behalf, and the Credential Authority constructs the Credential using the Attestation Results received from the Verifier.<a href="#section-3-5.3.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
-<p id="section-3-6">In either case, the detailed information about the Workload’s composition conveyed to the Verifier using RATS “Evidence” is mapped to Stable, technology-agnostic, business-oriented claims about the Workload.<a href="#section-3-6" class="pilcrow">¶</a></p>
-<p id="section-3-7">These two options can be visualised at a high level as:
-<span class="cref" id="tracked-at">Tracked at:</span> https://github.com/confidential-computing/twi-rats/issues/5<a href="#section-3-7" class="pilcrow">¶</a></p>
-<p id="section-3-8">From the Workload's perspective, Variant 2 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “Evidence” for “Attestation Results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.<a href="#section-3-8" class="pilcrow">¶</a></p>
-<p id="section-3-9">Variant 1 does not carry with it the extra roundtrip, and thus does not carry the additional performance costs or reliability risks.<a href="#section-3-9" class="pilcrow">¶</a></p>
-<p id="section-3-10">Several distinct options are possible. In all cases, the Credential is generated and signed by a Credential Authority. The difference is in how the Workload obtains these Credentials. The main pivots are:<a href="#section-3-10" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-3-11">
-<li id="section-3-11.1">
-          <p id="section-3-11.1.1">Where the Credential Key is generated (Key Source):<a href="#section-3-11.1.1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-3-11.1.2">
-<li id="section-3-11.1.2.1">
-              <p id="section-3-11.1.2.1.1">Inside the Workload Instance<a href="#section-3-11.1.2.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-3-11.1.2.2">
-              <p id="section-3-11.1.2.2.1">Inside a secure Key Store such as a Hardware Security Module (HSM), by the Workload Owner<a href="#section-3-11.1.2.2.1" class="pilcrow">¶</a></p>
-</li>
-          </ol>
-</li>
-        <li id="section-3-11.2">
-          <p id="section-3-11.2.1">Where the Workload gets its Credential from (Credential Source):<a href="#section-3-11.2.1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-3-11.2.2">
-<li id="section-3-11.2.2.1">
-              <p id="section-3-11.2.2.1.1">The Verifier<a href="#section-3-11.2.2.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-3-11.2.2.2">
-              <p id="section-3-11.2.2.2.1">The Credential Authority (e.g., a Certificate Authority, a Security Token Service, or similar)<a href="#section-3-11.2.2.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-3-11.2.2.3">
-              <p id="section-3-11.2.2.3.1">The Workload Owner (via the Control Plane)<a href="#section-3-11.2.2.3.1" class="pilcrow">¶</a></p>
-</li>
-          </ol>
-</li>
-      </ol>
-<p id="section-3-12">Note that it is safe to receive the Credential from an untrusted source such as the Control Plane, because it is public. The only requirement is that the obtained Credential matches the Credential Key, which <span class="bcp14">MUST</span> always be obtained securely and only by an authorized Workload instance.<a href="#section-3-12" class="pilcrow">¶</a></p>
-<p id="section-3-13">Further, under pivot 2.i, the order of interactions involved in Credential generation might differ:<a href="#section-3-13" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-3-14">
-<li id="section-3-14.1">
-          <p id="section-3-14.1.1">A Workload invokes the Verifier which collaborates with the Credential Authority to compute and return Credentials, returning these Credentials inside the Attestation Results, or<a href="#section-3-14.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li id="section-3-14.2">
-          <p id="section-3-14.2.1">A Workload invokes the Verifier, obtains from it the Attestation Results, and forwards these Attestation Results to the Credential Authority inside a Credential Request to get the Credential.<a href="#section-3-14.2.1" class="pilcrow">¶</a></p>
-</li>
-      </ol>
-<p id="section-3-15">This set of variants results in several distinct Credential Acquisition Mechanisms (CAMs), some of which are listed in the table below:<a href="#section-3-15" class="pilcrow">¶</a></p>
-<table class="center" id="table-1">
-        <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
-<thead>
-          <tr>
-            <th class="text-center" rowspan="1" colspan="1">CAM</th>
-            <th class="text-left" rowspan="1" colspan="1">Key Source</th>
-            <th class="text-left" rowspan="1" colspan="1">Credential Source</th>
-            <th class="text-left" rowspan="1" colspan="1">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-center" rowspan="1" colspan="1">A</td>
-            <td class="text-left" rowspan="1" colspan="1">Workload</td>
-            <td class="text-left" rowspan="1" colspan="1">Verifier</td>
-            <td class="text-left" rowspan="1" colspan="1">A Proof-of-Possession of the Credential Key is included in the Evidence submitted by the Workload Instance to the Verifier. The Verifier checks the Evidence, then contacts the Credential Authority to compute a Credential based on this Credential Key and returns it to the Workload Instance as part of Attestation Results.</td>
-          </tr>
-          <tr>
-            <td class="text-center" rowspan="1" colspan="1">B</td>
-            <td class="text-left" rowspan="1" colspan="1">Workload</td>
-            <td class="text-left" rowspan="1" colspan="1">Credential Authority</td>
-            <td class="text-left" rowspan="1" colspan="1">A Proof-of-Possession of the Credential Key is included in the Evidence submitted by the Workload Instance to the Verifier, and also in the Attestation Results returned by the Verifier. The Workload Instance sends the Attestation Results obtained from the Verifier to the Credential Authority, which computes and returns to the Workload Instance a Credential based on these Attestation Results.</td>
-          </tr>
-          <tr>
-            <td class="text-center" rowspan="1" colspan="1">C</td>
-            <td class="text-left" rowspan="1" colspan="1">Workload</td>
-            <td class="text-left" rowspan="1" colspan="1">Credential Authority</td>
-            <td class="text-left" rowspan="1" colspan="1">A Proof-of-Possession of the Credential Key is included in a Credential Request submitted by the Workload to the Credential Authority alongside Evidence destined for the Verifier. Credential Authority handles the Credential Request by contacting the Verifier on the Workload's behalf, supplying the Evidence from the Credential Request. The Verifier responds with Attestation Results which the Credential Authority uses to compute a Credential, which it then returns to the Workload.</td>
-          </tr>
-          <tr>
-            <td class="text-center" rowspan="1" colspan="1">N/A</td>
-            <td class="text-left" rowspan="1" colspan="1">Workload</td>
-            <td class="text-left" rowspan="1" colspan="1">Workload Owner</td>
-            <td class="text-left" rowspan="1" colspan="1">This is not a viable option since a Workload that generates its own Credential Key <span class="bcp14">MUST</span> contact either the Verifier or the Credential Authority to build a Credential for this Key.</td>
-          </tr>
-          <tr>
-            <td class="text-center" rowspan="1" colspan="1">D</td>
-            <td class="text-left" rowspan="1" colspan="1">Key Store</td>
-            <td class="text-left" rowspan="1" colspan="1">Workload Owner</td>
-            <td class="text-left" rowspan="1" colspan="1">The Credential is generated and handed to the Workload by the Workload Owner. The Workload Owner stores the Credential Key in the Key Store. The Workload obtains the Credential Key from the Key Store after completing Remote Attestation.</td>
-          </tr>
-        </tbody>
-      </table>
-<p id="section-3-17">These options are illustrated below with sequence diagrams.<a href="#section-3-17" class="pilcrow">¶</a></p>
-<div id="mechanism-a">
+<p id="section-3-6">In either case, the detailed information about the Workload’s composition conveyed to the Verifier using RATS “Evidence” is mapped to Stable, technology-agnostic, business-oriented claims about the Workload by invoking a new architectural building block called a Claims Mapper, described below.<a href="#section-3-6" class="pilcrow">¶</a></p>
+<p id="section-3-7">These three options can be visualised at a high level as:
+## Variant 1
+~~~ aasvg
++----------+                     <br>
+|          |                     <br>
+| Verifier |                     <br>
+|          |                     <br>
++--^----+--+                     <br>
+   |    |                        <br>
+1:E|    |2:AR                      <br>
++--+----v--+  3:CR   +------------+
+|          +---------&gt; Credential |
+| Workload |  4:C    | Authority  |
+|          &lt;---------+            |
++----+-----+         +------------+
+     |                           <br>
+     |5:C                          <br>
++----v-----+
+| Relying  |
+|  Party   |
++----------+
+~~~<a href="#section-3-7" class="pilcrow">¶</a></p>
+<div id="variant-2">
 <section id="section-3.1">
-        <h3 id="name-mechanism-a">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-mechanism-a" class="section-name selfRef">Mechanism A</a>
+        <h3 id="name-variant-2">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-variant-2" class="section-name selfRef">Variant 2</a>
         </h3>
 <div id="section-3.1-1">
           <div class="alignLeft art-svg artwork" id="section-3.1-1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="320" width="400" viewBox="0 0 400 320" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,32 L 8,96" fill="none" stroke="black"></path>
+              <path d="M 8,144 L 8,208" fill="none" stroke="black"></path>
+              <path d="M 8,256 L 8,304" fill="none" stroke="black"></path>
+              <path d="M 32,96 L 32,144" fill="none" stroke="black"></path>
+              <path d="M 56,208 L 56,256" fill="none" stroke="black"></path>
+              <path d="M 88,96 L 88,144" fill="none" stroke="black"></path>
+              <path d="M 112,32 L 112,64" fill="none" stroke="black"></path>
+              <path d="M 112,144 L 112,208" fill="none" stroke="black"></path>
+              <path d="M 112,256 L 112,304" fill="none" stroke="black"></path>
+              <path d="M 184,64 L 184,96" fill="none" stroke="black"></path>
+              <path d="M 288,32 L 288,96" fill="none" stroke="black"></path>
+              <path d="M 8,32 L 112,32" fill="none" stroke="black"></path>
+              <path d="M 184,32 L 288,32" fill="none" stroke="black"></path>
+              <path d="M 112,48 L 184,48" fill="none" stroke="black"></path>
+              <path d="M 112,80 L 184,80" fill="none" stroke="black"></path>
+              <path d="M 8,96 L 24,96" fill="none" stroke="black"></path>
+              <path d="M 40,96 L 112,96" fill="none" stroke="black"></path>
+              <path d="M 184,96 L 288,96" fill="none" stroke="black"></path>
+              <path d="M 8,144 L 80,144" fill="none" stroke="black"></path>
+              <path d="M 96,144 L 112,144" fill="none" stroke="black"></path>
+              <path d="M 8,208 L 112,208" fill="none" stroke="black"></path>
+              <path d="M 8,256 L 48,256" fill="none" stroke="black"></path>
+              <path d="M 64,256 L 112,256" fill="none" stroke="black"></path>
+              <path d="M 8,304 L 112,304" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="192,48 180,42.4 180,53.6" fill="black" transform="rotate(0,184,48)"></polygon>
+              <polygon class="arrowhead" points="120,80 108,74.4 108,85.6" fill="black" transform="rotate(180,112,80)"></polygon>
+              <polygon class="arrowhead" points="96,144 84,138.4 84,149.6" fill="black" transform="rotate(90,88,144)"></polygon>
+              <polygon class="arrowhead" points="64,256 52,250.4 52,261.6" fill="black" transform="rotate(90,56,256)"></polygon>
+              <polygon class="arrowhead" points="40,96 28,90.4 28,101.6" fill="black" transform="rotate(270,32,96)"></polygon>
+              <g class="text">
+                <text x="148" y="36">2:CR</text>
+                <text x="236" y="52">Credential</text>
+                <text x="60" y="68">Verifier</text>
+                <text x="144" y="68">3:C</text>
+                <text x="232" y="68">Authority</text>
+                <text x="16" y="132">1:E</text>
+                <text x="108" y="132">4:AR</text>
+                <text x="156" y="132">(incl.</text>
+                <text x="196" y="132">C)</text>
+                <text x="60" y="180">Workload</text>
+                <text x="72" y="244">5:C</text>
+                <text x="56" y="276">Relying</text>
+                <text x="56" y="292">Party</text>
+              </g>
+            </svg><a href="#section-3.1-1.1" class="pilcrow">¶</a>
+</div>
+</div>
+</section>
+</div>
+<div id="variant-3">
+<section id="section-3.2">
+        <h3 id="name-variant-3">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-variant-3" class="section-name selfRef">Variant 3</a>
+        </h3>
+<div id="section-3.2-1">
+          <div class="alignLeft art-svg artwork" id="section-3.2-1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="304" width="328" viewBox="0 0 328 304" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,128 L 8,192" fill="none" stroke="black"></path>
+              <path d="M 8,240 L 8,288" fill="none" stroke="black"></path>
+              <path d="M 56,192 L 56,240" fill="none" stroke="black"></path>
+              <path d="M 104,128 L 104,160" fill="none" stroke="black"></path>
+              <path d="M 104,240 L 104,288" fill="none" stroke="black"></path>
+              <path d="M 184,32 L 184,80" fill="none" stroke="black"></path>
+              <path d="M 184,160 L 184,192" fill="none" stroke="black"></path>
+              <path d="M 208,80 L 208,128" fill="none" stroke="black"></path>
+              <path d="M 256,80 L 256,128" fill="none" stroke="black"></path>
+              <path d="M 288,32 L 288,80" fill="none" stroke="black"></path>
+              <path d="M 288,128 L 288,192" fill="none" stroke="black"></path>
+              <path d="M 184,32 L 288,32" fill="none" stroke="black"></path>
+              <path d="M 184,80 L 200,80" fill="none" stroke="black"></path>
+              <path d="M 216,80 L 288,80" fill="none" stroke="black"></path>
+              <path d="M 8,128 L 104,128" fill="none" stroke="black"></path>
+              <path d="M 184,128 L 248,128" fill="none" stroke="black"></path>
+              <path d="M 264,128 L 288,128" fill="none" stroke="black"></path>
+              <path d="M 104,144 L 184,144" fill="none" stroke="black"></path>
+              <path d="M 104,176 L 184,176" fill="none" stroke="black"></path>
+              <path d="M 8,192 L 104,192" fill="none" stroke="black"></path>
+              <path d="M 184,192 L 288,192" fill="none" stroke="black"></path>
+              <path d="M 8,240 L 48,240" fill="none" stroke="black"></path>
+              <path d="M 64,240 L 104,240" fill="none" stroke="black"></path>
+              <path d="M 8,288 L 104,288" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="264,128 252,122.4 252,133.6" fill="black" transform="rotate(90,256,128)"></polygon>
+              <polygon class="arrowhead" points="216,80 204,74.4 204,85.6" fill="black" transform="rotate(270,208,80)"></polygon>
+              <polygon class="arrowhead" points="192,144 180,138.4 180,149.6" fill="black" transform="rotate(0,184,144)"></polygon>
+              <polygon class="arrowhead" points="112,176 100,170.4 100,181.6" fill="black" transform="rotate(180,104,176)"></polygon>
+              <polygon class="arrowhead" points="64,240 52,234.4 52,245.6" fill="black" transform="rotate(90,56,240)"></polygon>
+              <g class="text">
+                <text x="236" y="52">Verifier</text>
+                <text x="192" y="116">2:E</text>
+                <text x="276" y="116">3:AR</text>
+                <text x="148" y="132">1:CR</text>
+                <text x="236" y="148">Credential</text>
+                <text x="52" y="164">Workload</text>
+                <text x="144" y="164">4:C</text>
+                <text x="232" y="164">Authority</text>
+                <text x="72" y="228">5:C</text>
+                <text x="56" y="260">Relying</text>
+                <text x="56" y="276">Party</text>
+              </g>
+            </svg><a href="#section-3.2-1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<p id="section-3.2-2">From the Workload's perspective, Variant 1 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “Evidence” for “Attestation Results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">Variants 2 and 3 do not require the Workload to perform an extra roundtrip, and thus do not carry the additional performance costs or reliability risks.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.2-4">Several distinct options are possible. In all cases, the Credential is generated and signed by a Credential Authority. The difference is in how the Workload obtains these Credentials. The main pivots are:<a href="#section-3.2-4" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.2-5">
+<li id="section-3.2-5.1">
+            <p id="section-3.2-5.1.1">Where the Credential Key is generated (Key Source):<a href="#section-3.2-5.1.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.2-5.1.2">
+<li id="section-3.2-5.1.2.1">
+                <p id="section-3.2-5.1.2.1.1">Inside the Workload Instance<a href="#section-3.2-5.1.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li id="section-3.2-5.1.2.2">
+                <p id="section-3.2-5.1.2.2.1">Inside a secure Key Store such as a Hardware Security Module (HSM), by the Workload Owner<a href="#section-3.2-5.1.2.2.1" class="pilcrow">¶</a></p>
+</li>
+            </ol>
+</li>
+          <li id="section-3.2-5.2">
+            <p id="section-3.2-5.2.1">Where the Workload gets its Credential from (Credential Source):<a href="#section-3.2-5.2.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.2-5.2.2">
+<li id="section-3.2-5.2.2.1">
+                <p id="section-3.2-5.2.2.1.1">The Verifier<a href="#section-3.2-5.2.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li id="section-3.2-5.2.2.2">
+                <p id="section-3.2-5.2.2.2.1">The Credential Authority (e.g., a Certificate Authority, a Security Token Service, or similar)<a href="#section-3.2-5.2.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li id="section-3.2-5.2.2.3">
+                <p id="section-3.2-5.2.2.3.1">The Workload Owner (via the Control Plane)<a href="#section-3.2-5.2.2.3.1" class="pilcrow">¶</a></p>
+</li>
+            </ol>
+</li>
+        </ol>
+<p id="section-3.2-6">Note that it is safe to receive the Credential from an untrusted source such as the Control Plane, because it is public. The only requirement is that the obtained Credential matches the Credential Key, which <span class="bcp14">MUST</span> always be obtained securely and only by an authorized Workload instance.<a href="#section-3.2-6" class="pilcrow">¶</a></p>
+<p id="section-3.2-7">Further, under pivot 2.i, the order of interactions involved in Credential generation might differ:<a href="#section-3.2-7" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.2-8">
+<li id="section-3.2-8.1">
+            <p id="section-3.2-8.1.1">A Workload invokes the Verifier which collaborates with the Credential Authority to compute and return Credentials, returning these Credentials inside the Attestation Results, or<a href="#section-3.2-8.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.2-8.2">
+            <p id="section-3.2-8.2.1">A Workload invokes the Verifier, obtains from it the Attestation Results, and forwards these Attestation Results to the Credential Authority inside a Credential Request to get the Credential.<a href="#section-3.2-8.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ol>
+<p id="section-3.2-9">This set of variants results in several distinct Credential Acquisition Mechanisms (CAMs), some of which are listed in the table below:<a href="#section-3.2-9" class="pilcrow">¶</a></p>
+<table class="center" id="table-1">
+          <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
+<thead>
+            <tr>
+              <th class="text-center" rowspan="1" colspan="1">CAM</th>
+              <th class="text-left" rowspan="1" colspan="1">Key Source</th>
+              <th class="text-left" rowspan="1" colspan="1">Credential Source</th>
+              <th class="text-left" rowspan="1" colspan="1">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-center" rowspan="1" colspan="1">A</td>
+              <td class="text-left" rowspan="1" colspan="1">Workload</td>
+              <td class="text-left" rowspan="1" colspan="1">Verifier</td>
+              <td class="text-left" rowspan="1" colspan="1">A Proof-of-Possession of the Credential Key is included in the Evidence submitted by the Workload Instance to the Verifier. The Verifier checks the Evidence, then contacts the Credential Authority to compute a Credential based on this Credential Key and returns it to the Workload Instance as part of Attestation Results.</td>
+            </tr>
+            <tr>
+              <td class="text-center" rowspan="1" colspan="1">B</td>
+              <td class="text-left" rowspan="1" colspan="1">Workload</td>
+              <td class="text-left" rowspan="1" colspan="1">Credential Authority</td>
+              <td class="text-left" rowspan="1" colspan="1">A Proof-of-Possession of the Credential Key is included in the Evidence submitted by the Workload Instance to the Verifier, and also in the Attestation Results returned by the Verifier. The Workload Instance sends the Attestation Results obtained from the Verifier to the Credential Authority, which computes and returns to the Workload Instance a Credential based on these Attestation Results.</td>
+            </tr>
+            <tr>
+              <td class="text-center" rowspan="1" colspan="1">C</td>
+              <td class="text-left" rowspan="1" colspan="1">Workload</td>
+              <td class="text-left" rowspan="1" colspan="1">Credential Authority</td>
+              <td class="text-left" rowspan="1" colspan="1">A Proof-of-Possession of the Credential Key is included in a Credential Request submitted by the Workload to the Credential Authority alongside Evidence destined for the Verifier. Credential Authority handles the Credential Request by contacting the Verifier on the Workload's behalf, supplying the Evidence from the Credential Request. The Verifier responds with Attestation Results which the Credential Authority uses to compute a Credential, which it then returns to the Workload.</td>
+            </tr>
+            <tr>
+              <td class="text-center" rowspan="1" colspan="1">N/A</td>
+              <td class="text-left" rowspan="1" colspan="1">Workload</td>
+              <td class="text-left" rowspan="1" colspan="1">Workload Owner</td>
+              <td class="text-left" rowspan="1" colspan="1">This is not a viable option since a Workload that generates its own Credential Key <span class="bcp14">MUST</span> contact either the Verifier or the Credential Authority to build a Credential for this Key.</td>
+            </tr>
+            <tr>
+              <td class="text-center" rowspan="1" colspan="1">D</td>
+              <td class="text-left" rowspan="1" colspan="1">Key Store</td>
+              <td class="text-left" rowspan="1" colspan="1">Workload Owner</td>
+              <td class="text-left" rowspan="1" colspan="1">The Credential is generated and handed to the Workload by the Workload Owner. The Workload Owner stores the Credential Key in the Key Store. The Workload obtains the Credential Key from the Key Store after completing Remote Attestation.</td>
+            </tr>
+          </tbody>
+        </table>
+<p id="section-3.2-11">These options are illustrated below with sequence diagrams.<a href="#section-3.2-11" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="mechanism-a">
+<section id="section-3.3">
+        <h3 id="name-mechanism-a">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-mechanism-a" class="section-name selfRef">Mechanism A</a>
+        </h3>
+<div id="section-3.3-1">
+          <div class="alignLeft art-svg artwork" id="section-3.3-1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="688" width="600" viewBox="0 0 600 688" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
               <path d="M 8,32 L 8,64" fill="none" stroke="black"></path>
               <path d="M 8,96 L 8,128" fill="none" stroke="black"></path>
@@ -1526,18 +1667,18 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
                 <text x="452" y="644">Credential</text>
                 <text x="536" y="644">Authority</text>
               </g>
-            </svg><a href="#section-3.1-1.1" class="pilcrow">¶</a>
+            </svg><a href="#section-3.3-1.1" class="pilcrow">¶</a>
 </div>
 </div>
 </section>
 </div>
 <div id="mechanism-b">
-<section id="section-3.2">
+<section id="section-3.4">
         <h3 id="name-mechanism-b">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-mechanism-b" class="section-name selfRef">Mechanism B</a>
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-mechanism-b" class="section-name selfRef">Mechanism B</a>
         </h3>
-<div id="section-3.2-1">
-          <div class="alignLeft art-svg artwork" id="section-3.2-1.1">
+<div id="section-3.4-1">
+          <div class="alignLeft art-svg artwork" id="section-3.4-1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="752" width="640" viewBox="0 0 640 752" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
               <path d="M 8,32 L 8,64" fill="none" stroke="black"></path>
               <path d="M 8,96 L 8,128" fill="none" stroke="black"></path>
@@ -1689,18 +1830,18 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
                 <text x="452" y="708">Credential</text>
                 <text x="536" y="708">Authority</text>
               </g>
-            </svg><a href="#section-3.2-1.1" class="pilcrow">¶</a>
+            </svg><a href="#section-3.4-1.1" class="pilcrow">¶</a>
 </div>
 </div>
 </section>
 </div>
 <div id="mechanism-c">
-<section id="section-3.3">
+<section id="section-3.5">
         <h3 id="name-mechanism-c">
-<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-mechanism-c" class="section-name selfRef">Mechanism C</a>
+<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-mechanism-c" class="section-name selfRef">Mechanism C</a>
         </h3>
-<div id="section-3.3-1">
-          <div class="alignLeft art-svg artwork" id="section-3.3-1.1">
+<div id="section-3.5-1">
+          <div class="alignLeft art-svg artwork" id="section-3.5-1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="768" width="640" viewBox="0 0 640 768" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
               <path d="M 8,32 L 8,64" fill="none" stroke="black"></path>
               <path d="M 8,96 L 8,128" fill="none" stroke="black"></path>
@@ -1852,24 +1993,24 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
                 <text x="352" y="724">Authority</text>
                 <text x="532" y="724">Verifier</text>
               </g>
-            </svg><a href="#section-3.3-1.1" class="pilcrow">¶</a>
+            </svg><a href="#section-3.5-1.1" class="pilcrow">¶</a>
 </div>
 </div>
 </section>
 </div>
 <div id="mechanisms-d">
-<section id="section-3.4">
+<section id="section-3.6">
         <h3 id="name-mechanisms-d">
-<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-mechanisms-d" class="section-name selfRef">Mechanisms D</a>
+<a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-mechanisms-d" class="section-name selfRef">Mechanisms D</a>
         </h3>
-<p id="section-3.4-1">Mechanism D consists of a "Credential Provisioning" phase followed by the "Credential Acquisition" phase.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.6-1">Mechanism D consists of a "Credential Provisioning" phase followed by the "Credential Acquisition" phase.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
 <div id="credential-provisioning-phase">
-<section id="section-3.4.1">
+<section id="section-3.6.1">
           <h4 id="name-credential-provisioning-pha">
-<a href="#section-3.4.1" class="section-number selfRef">3.4.1. </a><a href="#name-credential-provisioning-pha" class="section-name selfRef">Credential Provisioning Phase</a>
+<a href="#section-3.6.1" class="section-number selfRef">3.6.1. </a><a href="#name-credential-provisioning-pha" class="section-name selfRef">Credential Provisioning Phase</a>
           </h4>
-<div id="section-3.4.1-1">
-            <div class="alignLeft art-svg artwork" id="section-3.4.1-1.1">
+<div id="section-3.6.1-1">
+            <div class="alignLeft art-svg artwork" id="section-3.6.1-1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="768" width="760" viewBox="0 0 760 768" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <path d="M 8,32 L 8,64" fill="none" stroke="black"></path>
                 <path d="M 8,704 L 8,736" fill="none" stroke="black"></path>
@@ -2098,18 +2239,18 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
                   <text x="612" y="724">Credential</text>
                   <text x="696" y="724">Authority</text>
                 </g>
-              </svg><a href="#section-3.4.1-1.1" class="pilcrow">¶</a>
+              </svg><a href="#section-3.6.1-1.1" class="pilcrow">¶</a>
 </div>
 </div>
 </section>
 </div>
 <div id="credential-acquisition-phase">
-<section id="section-3.4.2">
+<section id="section-3.6.2">
           <h4 id="name-credential-acquisition-phas">
-<a href="#section-3.4.2" class="section-number selfRef">3.4.2. </a><a href="#name-credential-acquisition-phas" class="section-name selfRef">Credential Acquisition Phase</a>
+<a href="#section-3.6.2" class="section-number selfRef">3.6.2. </a><a href="#name-credential-acquisition-phas" class="section-name selfRef">Credential Acquisition Phase</a>
           </h4>
-<div id="section-3.4.2-1">
-            <div class="alignLeft art-svg artwork" id="section-3.4.2-1.1">
+<div id="section-3.6.2-1">
+            <div class="alignLeft art-svg artwork" id="section-3.6.2-1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="720" width="560" viewBox="0 0 560 720" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <path d="M 8,32 L 8,64" fill="none" stroke="black"></path>
                 <path d="M 8,96 L 8,128" fill="none" stroke="black"></path>
@@ -2277,7 +2418,7 @@ For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#s
                   <text x="440" y="676">Key</text>
                   <text x="480" y="676">Store</text>
                 </g>
-              </svg><a href="#section-3.4.2-1.1" class="pilcrow">¶</a>
+              </svg><a href="#section-3.6.2-1.1" class="pilcrow">¶</a>
 </div>
 </div>
 </section>
