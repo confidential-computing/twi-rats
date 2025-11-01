@@ -260,6 +260,8 @@ In addition to the considerations herein, Verifier, which is a central point of 
 
 The credential key MUST always be stored securely at all time, for example in a secure element of the underlying platform running the Workload.
 
+There is a risk that a live Workload Migration may render some of the claims about the Workload invalid (e.g., live-migrating a Workload between Germany and France may incorrectly preserve the "Country=Germany" claim, but correctly preserve the "Region=Europe" claim).
+
 # Pivacy Considerations
 
 Remote Attestation of a Workload requires exchange of attestation related messages, for example, Evidence and Attestation Results. This can potentially leak sensitive information about the Workload.
