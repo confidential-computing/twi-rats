@@ -91,7 +91,7 @@ informative:
 --- abstract
 
 Trustworthy Workloads are workloads that operate in environments that provide isolation of data in use.
-This document describes how Trustworthy workloads can acquire credentials containing stable identifiers, upon proving the trust in the environments in which they operate via Remote Attestation.
+This document describes how Trustworthy Workloads can acquire credentials containing stable identifiers, upon proving the trust in the environments in which they operate via Remote Attestation.
 
 --- middle
 
@@ -148,25 +148,26 @@ Verifier:
 
 # Available Options
 
-When dealing with a client Workload that is running inside a remotely attested Trusted Execution Environment, the goal of having a Relying Party having a stable authorization policy and utilizing industry-standard mechanisms for authorization can be achieved by issuing Credentials in a relying party-friendly format, such as those specified by {{-WIMSE}}. Such Credentials may take the form of x.509 certificates or Workload Identity Tokens (WITs) defined in Section 3.1 of {{-WIMSES2S}}. A Workload can start using the Credential for authentication and authorization once it has two items in its possession: the public portion – the Workload Credential itself, and the secret Credential Key necessary to utilize this Credential.
+When dealing with a client Workload that is running inside a remotely attested Trusted Execution Environment, the goal of having a Relying Party having a Stable authorization policy and utilizing industry-standard mechanisms for authorization can be achieved by issuing Credentials in a relying party-friendly format, such as those specified by {{-WIMSE}}. Such Credentials may take the form of x.509 certificates or Workload Identity Tokens (WITs) defined in Section 3.1 of {{-WIMSES2S}}. A Workload can start using the Credential for authentication and authorization once it has two items in its possession: the public portion – the Workload Credential itself, and the secret Credential Key necessary to utilize this Credential.
 
 A Stable authorization policy can only be achieved if Workloads can have Stable identities. The decision about what constitutes a trustworthy Workload and a trustworthy configuration is a composition verification, with multiple entities providing Reference Values for the components they vouch for. For the issued Workload Identity to be Stable in addition to Trustworthy, a mapping must be performed between these Reference Values and the issued Identities. In a typical enterprise, Stable authorization policies are expressed in terms of business- rather than technology-oriented concepts, e.g., "Payroll Application", "Located in Germany", "Cleared for handling Personally Identifiable Information", etc. This contrasts with what RATS has historically thought of as Attestation Results, which may relate to the hardware manufacturer, firmware and software versions, etc.
 
 In some implementations, a Credential is precomputed, and the Credential Key is obtained from a Key Store following successful Remote Attestation. In other implementations, the Workload generates its own Credential Key and uses Remote Attestation to certify it.
 
-Within the RATS Architecture, either of these options can be accomplished in one of two ways:
+Within the RATS Architecture, either of these options can be accomplished in one of three ways:
 
-1. The Attestation Results convey to the attesting Workload both the public Credential and the secret Credential Key.
-2. The Attestation Results are encoded in an Entity Attestation Token or EAT {{-rats-eat}}, or a bespoke Verifier-specific format, and can be used by the attesting Workload to obtain a Bound Credential and an associated Credential Key, e.g., by contacting a Credential Authority and/or a Key Store, but without further involving the Verifier.
+1. The Workload supplies Evidence to a Verifier and obtains from it Attestation Results. It then provides these Attestation Results to the Credential Authority in exchange for a Credential.
+2. The Verifier contacts the Credential Authority on the Workload’s behalf, and the Attestation Results obtained from the Verifier are (or contain) the Credentials for that Workload.
+3. The Credential Authority contacts the Verifier on the Workload’s behalf, and the Credential Authority constructs the Credential using the Attestation Results received from the Verifier.
 
-In either case, the detailed information about the Workload’s composition conveyed to the Verifier using RATS “Evidence” is mapped to Stable, technology-agnostic, business-oriented claims about the Workload.
+In either case, the detailed information about the Workload’s composition conveyed to the Verifier using RATS “Evidence” is mapped to Stable, technology-agnostic, business-oriented claims about the Workload by invoking a new architectural building block called a Claims Mapper, described below.
 
 These two options can be visualised at a high level as:
 [^tracked-at] https://github.com/confidential-computing/twi-rats/issues/5
 
-From the Workload's perspective, Variant 2 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “Evidence” for “Attestation Results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.
+From the Workload's perspective, Variant 1 carries with it an extra network roundtrip (the first roundtrip being the workload exchanging “Evidence” for “Attestation Results”). It is the only option available to the Workload for using existing Verifier implementations that make no changes associated with this proposal. This option does however introduce additional latency and reliability costs inherent in an extra roundtrip.
 
-Variant 1 does not carry with it the extra roundtrip, and thus does not carry the additional performance costs or reliability risks.
+Variants 2 and 3 do not require the Workload to perform an extra roundtrip, and thus do not carry the additional performance costs or reliability risks.
 
 Several distinct options are possible. In all cases, the Credential is generated and signed by a Credential Authority. The difference is in how the Workload obtains these Credentials. The main pivots are:
 
