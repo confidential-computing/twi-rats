@@ -1,7 +1,7 @@
 ---
 title: Remote Attestation for Trustworthy Workload Identity
 abbrev: RATS for TWI
-docname: draft-novak-twi-attestation-latest
+docname: draft-ietf-rats-twi-attestation-latest
 category: info
 ipr: trust200902
 area: Security
@@ -24,7 +24,7 @@ venue:
  mail: rats@ietf.org
 
 github: "confidential-computing/twi-rats"
-latest: "https://confidential-computing.github.io/twi-rats/draft-novak-twi-attestation.html"
+latest: "https://confidential-computing.github.io/twi-rats/draft-ietf-rats-twi-attestation.html"
 
 pi:
 
