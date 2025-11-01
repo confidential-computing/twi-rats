@@ -70,12 +70,14 @@ Table of Contents
    1.  Introduction
    2.  Conventions and Definitions
    3.  Available Options
-     3.1.  Mechanism A
-     3.2.  Mechanism B
-     3.3.  Mechanism C
-     3.4.  Mechanisms D
-       3.4.1.  Credential Provisioning Phase
-       3.4.2.  Credential Acquisition Phase
+     3.1.  Variant 2
+     3.2.  Variant 3
+     3.3.  Mechanism A
+     3.4.  Mechanism B
+     3.5.  Mechanism C
+     3.6.  Mechanisms D
+       3.6.1.  Credential Provisioning Phase
+       3.6.2.  Credential Acquisition Phase
    4.  Security Considerations
    5.  Pivacy Considerations
    6.  IANA Considerations
@@ -219,9 +221,60 @@ Table of Contents
    Workload by invoking a new architectural building block called a
    Claims Mapper, described below.
 
-   These two options can be visualised at a high level as:
-   // Tracked at: https://github.com/confidential-computing/twi-rats/
-   issues/5
+   These three options can be visualised at a high level as: ## Variant
+   1 ~~~ aasvg +----------+
+   | |
+   | Verifier |
+   | |
+   +--^----+--+
+   | |
+   1:E| |2:AR
+   +--+----v--+ 3:CR +------------+ | +---------> Credential | |
+   Workload | 4:C | Authority | | <---------+ | +----+-----+
+   +------------+ |
+   |5:C
+   +----v-----+ | Relying | | Party | +----------+ ~~~
+
+3.1.  Variant 2
+
+   +------------+  2:CR  +------------+
+   |            +--------> Credential |
+   |  Verifier  |  3:C   | Authority  |
+   |            <--------+            |
+   +--^------+--+        +------------+
+      |      |
+   1:E|      |4:AR (incl. C)
+   +--+------v--+
+   |            |
+   |  Workload  |
+   |            |
+   +-----+------+
+         |
+         |5:C
+   +-----v------+
+   |  Relying   |
+   |   Party    |
+   +------------+
+
+3.2.  Variant 3
+
+                         +------------+
+                         |  Verifier  |
+                         |            |
+                         +--^-----+---+
+                            |     |
+                         2:E|     |3:AR
+   +-----------+   1:CR  +--+-----v---+
+   |           +---------> Credential |
+   | Workload  |   4:C   | Authority  |
+   |           <---------+            |
+   +-----+-----+         +------------+
+         |
+         |5:C
+   +-----v-----+
+   |  Relying  |
+   |   Party   |
+   +-----------+
 
    From the Workload's perspective, Variant 1 carries with it an extra
    network roundtrip (the first roundtrip being the workload exchanging
@@ -345,7 +398,7 @@ Table of Contents
 
    These options are illustrated below with sequence diagrams.
 
-3.1.  Mechanism A
+3.3.  Mechanism A
 
     +--------------+        +--------------+        +------------------------+
     |   Workload   |        |   Verifier   |        |  Credential Authority  |
@@ -388,7 +441,7 @@ Table of Contents
     |   Workload   |        |   Verifier   |        |  Credential Authority  |
     +--------------+        +--------------+        +------------------------+
 
-3.2.  Mechanism B
+3.4.  Mechanism B
 
     +--------------+        +--------------+        +------------------------+
     |   Workload   |        |   Verifier   |        |  Credential Authority  |
@@ -435,7 +488,7 @@ Table of Contents
     |   Workload   |        |   Verifier   |        |  Credential Authority  |
     +------+-------+        +--------------+        +------------------------+
 
-3.3.  Mechanism C
+3.5.  Mechanism C
 
     +--------------+        +------------------------+        +--------------+
     |   Workload   |        |   Credential Authority |        |   Verifier   |
@@ -483,12 +536,12 @@ Table of Contents
     |   Workload   |        |   Credential Authority |        |   Verifier   |
     +------+-------+        +------------+-----------+        +-------+------+
 
-3.4.  Mechanisms D
+3.6.  Mechanisms D
 
    Mechanism D consists of a "Credential Provisioning" phase followed by
    the "Credential Acquisition" phase.
 
-3.4.1.  Credential Provisioning Phase
+3.6.1.  Credential Provisioning Phase
 
     +------------------+      +-------------+      +-------------+      +------------------------+
     |  Workload Owner  |      |  Workload   |      |  Key Store  |      |  Credential Authority  |
@@ -536,7 +589,7 @@ Table of Contents
     |  Workload Owner  |      |  Workload   │      |  Key Store  |      |  Credential Authority  |
     +------------------+      +-------------+      +-------------+      +------------------------+
 
-3.4.2.  Credential Acquisition Phase
+3.6.2.  Credential Acquisition Phase
 
     +--------------+        +--------------+        +-------------------+
     |   Workload   |        |   Verifier   |        |    Key Store      |
