@@ -506,7 +506,8 @@ Table of Contents
            +<-----------+           |                            |
            │ Request Credential (Cre|dential Request)            |                |
            +------------------------+--------------------------->+
-           │                        |Convert Attestation Results |
+           |                        |    Invoke Claims Mapper to |
+           │                        |convert Attestation Results |
            │                        |   to Credential Attributes |
            |                        |              +-------------+
            |                        |              +------------>|
