@@ -72,18 +72,20 @@ Table of Contents
    3.  Available Options
      3.1.  Variant 2
      3.2.  Variant 3
-     3.3.  Mechanism A
-     3.4.  Mechanism B
-     3.5.  Mechanism C
-     3.6.  Mechanisms D
-       3.6.1.  Credential Provisioning Phase
-       3.6.2.  Credential Acquisition Phase
-   4.  Security Considerations
-   5.  Pivacy Considerations
-   6.  IANA Considerations
-   7.  References
-     7.1.  Normative References
-     7.2.  Informative References
+   4.  Claims Mapper
+   5.  Credential Acquisition Mechanisms
+     5.1.  Mechanism A
+     5.2.  Mechanism B
+     5.3.  Mechanism C
+     5.4.  Mechanisms D
+       5.4.1.  Credential Provisioning Phase
+       5.4.2.  Credential Acquisition Phase
+   6.  Security Considerations
+   7.  Pivacy Considerations
+   8.  IANA Considerations
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -325,80 +327,109 @@ Table of Contents
        Results, and forwards these Attestation Results to the Credential
        Authority inside a Credential Request to get the Credential.
 
+4.  Claims Mapper
+
+   In order to convert Evidence that the Workload collects about itself
+   into business-centric Claims about the Workload, a new architectural
+   building block is required: a Claims Mapper.  The inputs to the
+   Claims Mapper depend on the Credential Issuance Mechanism, several of
+   which are discussed in the following sections.  In some cases, the
+   business-centric output claims are generated from the Evidence
+   submitted to the Verifier by the Workload, and in other cases – from
+   the Attestation Results computed by the Verifier upon examining the
+   Evidence.  In all cases, the decisions on 1) whether to accept the
+   inputs as valid and 2) which claims to emit based on these inputs are
+   going to be made by the Claims Mapper Policy, which is governed by
+   the Workload Owner.
+
+   Whenever a new version of the Workload is rolled out, the
+   corresponding updated Claims Mapper Policy must be put in place.
+
+5.  Credential Acquisition Mechanisms
+
    This set of variants results in several distinct Credential
    Acquisition Mechanisms (CAMs), some of which are listed in the table
    below:
 
-    +=====+==========+============+==================================+
-    | CAM | Key      | Credential | Description                      |
-    |     | Source   | Source     |                                  |
-    +=====+==========+============+==================================+
-    |  A  | Workload | Verifier   | A Proof-of-Possession of the     |
-    |     |          |            | Credential Key is included in    |
-    |     |          |            | the Evidence submitted by the    |
-    |     |          |            | Workload Instance to the         |
-    |     |          |            | Verifier.  The Verifier checks   |
-    |     |          |            | the Evidence, then contacts the  |
-    |     |          |            | Credential Authority to compute  |
-    |     |          |            | a Credential based on this       |
-    |     |          |            | Credential Key and returns it to |
-    |     |          |            | the Workload Instance as part of |
-    |     |          |            | Attestation Results.             |
-    +-----+----------+------------+----------------------------------+
-    |  B  | Workload | Credential | A Proof-of-Possession of the     |
-    |     |          | Authority  | Credential Key is included in    |
-    |     |          |            | the Evidence submitted by the    |
-    |     |          |            | Workload Instance to the         |
-    |     |          |            | Verifier, and also in the        |
-    |     |          |            | Attestation Results returned by  |
-    |     |          |            | the Verifier.  The Workload      |
-    |     |          |            | Instance sends the Attestation   |
-    |     |          |            | Results obtained from the        |
-    |     |          |            | Verifier to the Credential       |
-    |     |          |            | Authority, which computes and    |
-    |     |          |            | returns to the Workload Instance |
-    |     |          |            | a Credential based on these      |
-    |     |          |            | Attestation Results.             |
-    +-----+----------+------------+----------------------------------+
-    |  C  | Workload | Credential | A Proof-of-Possession of the     |
-    |     |          | Authority  | Credential Key is included in a  |
-    |     |          |            | Credential Request submitted by  |
-    |     |          |            | the Workload to the Credential   |
-    |     |          |            | Authority alongside Evidence     |
-    |     |          |            | destined for the Verifier.       |
-    |     |          |            | Credential Authority handles the |
-    |     |          |            | Credential Request by contacting |
-    |     |          |            | the Verifier on the Workload's   |
-    |     |          |            | behalf, supplying the Evidence   |
-    |     |          |            | from the Credential Request.     |
-    |     |          |            | The Verifier responds with       |
-    |     |          |            | Attestation Results which the    |
-    |     |          |            | Credential Authority uses to     |
-    |     |          |            | compute a Credential, which it   |
-    |     |          |            | then returns to the Workload.    |
-    +-----+----------+------------+----------------------------------+
-    | N/A | Workload | Workload   | This is not a viable option      |
-    |     |          | Owner      | since a Workload that generates  |
-    |     |          |            | its own Credential Key MUST      |
-    |     |          |            | contact either the Verifier or   |
-    |     |          |            | the Credential Authority to      |
-    |     |          |            | build a Credential for this Key. |
-    +-----+----------+------------+----------------------------------+
-    |  D  | Key      | Workload   | The Credential is generated and  |
-    |     | Store    | Owner      | handed to the Workload by the    |
-    |     |          |            | Workload Owner.  The Workload    |
-    |     |          |            | Owner stores the Credential Key  |
-    |     |          |            | in the Key Store.  The Workload  |
-    |     |          |            | obtains the Credential Key from  |
-    |     |          |            | the Key Store after completing   |
-    |     |          |            | Remote Attestation.              |
-    +-----+----------+------------+----------------------------------+
+   +=====+==========+============+====================================+
+   | CAM | Key      | Credential | Description                        |
+   |     | Source   | Source     |                                    |
+   +=====+==========+============+====================================+
+   |  A  | Workload | Verifier   | A Proof-of-Possession of the       |
+   |     |          |            | Credential Key is included in the  |
+   |     |          |            | Evidence submitted by the Workload |
+   |     |          |            | Instance to the Verifier.  The     |
+   |     |          |            | Verifier first appraises the       |
+   |     |          |            | Evidence.  It then invokes the     |
+   |     |          |            | Claims Mapper to map this Evidence |
+   |     |          |            | to Claims about the Workload.      |
+   |     |          |            | Finally, it contacts the           |
+   |     |          |            | Credential Authority to compute a  |
+   |     |          |            | Credential based on this           |
+   |     |          |            | Credential Key, and returns it to  |
+   |     |          |            | the Workload Instance as part of   |
+   |     |          |            | Attestation Results.               |
+   +-----+----------+------------+------------------------------------+
+   |  B  | Workload | Credential | A Proof-of-Possession of the       |
+   |     |          | Authority  | Credential Key is included in the  |
+   |     |          |            | Evidence submitted by the Workload |
+   |     |          |            | Instance to the Verifier, and also |
+   |     |          |            | in the Attestation Results         |
+   |     |          |            | returned by the Verifier.  The     |
+   |     |          |            | Workload Instance sends the        |
+   |     |          |            | Attestation Results obtained from  |
+   |     |          |            | the Verifier to the Credential     |
+   |     |          |            | Authority.  Credential Authority   |
+   |     |          |            | invokes the Claims Mapper to map   |
+   |     |          |            | the Attestation Results to Claims  |
+   |     |          |            | about the Workload Instance.  It   |
+   |     |          |            | then computes and returns to the   |
+   |     |          |            | Workload Instance a Credential     |
+   |     |          |            | based on these Claims.             |
+   +-----+----------+------------+------------------------------------+
+   |  C  | Workload | Credential | A Proof-of-Possession of the       |
+   |     |          | Authority  | Credential Key is included in a    |
+   |     |          |            | Credential Request submitted by    |
+   |     |          |            | the Workload to the Credential     |
+   |     |          |            | Authority alongside Evidence       |
+   |     |          |            | destined for the Verifier.         |
+   |     |          |            | Credential Authority handles the   |
+   |     |          |            | Credential Request by contacting   |
+   |     |          |            | the Verifier on the Workload's     |
+   |     |          |            | behalf, supplying the Evidence     |
+   |     |          |            | from the Credential Request.  The  |
+   |     |          |            | Verifier responds with Attestation |
+   |     |          |            | Results.  The Credential Authority |
+   |     |          |            | invokes the Claims Mapper to       |
+   |     |          |            | convert the Attestation Results to |
+   |     |          |            | Claims about the Workload.  It     |
+   |     |          |            | then computes and returns to the   |
+   |     |          |            | Workload Instance a Credential     |
+   |     |          |            | based on these Claims.             |
+   +-----+----------+------------+------------------------------------+
+   |  D  | Key      | Workload   | The Workload Owner uses the Claims |
+   |     | Store    | Owner      | Mapper to create the Claims about  |
+   |     |          |            | the Workload and the associated    |
+   |     |          |            | Key Release Policy, specifying the |
+   |     |          |            | expected Attestation Results       |
+   |     |          |            | needed to obtain the Credential    |
+   |     |          |            | Key. The Workload Owner then       |
+   |     |          |            | interacts with the Key Store to    |
+   |     |          |            | generate the Credential Key, the   |
+   |     |          |            | Credential and set the Key Release |
+   |     |          |            | Policy.  It then makes the         |
+   |     |          |            | Credential available to the        |
+   |     |          |            | Workload.  The Workload obtains    |
+   |     |          |            | the Credential Key from the Key    |
+   |     |          |            | Store after completing Remote      |
+   |     |          |            | Attestation.                       |
+   +-----+----------+------------+------------------------------------+
 
                                  Table 1
 
    These options are illustrated below with sequence diagrams.
 
-3.3.  Mechanism A
+5.1.  Mechanism A
 
     +--------------+        +--------------+        +------------------------+
     |   Workload   |        |   Verifier   |        |  Credential Authority  |
@@ -441,7 +472,7 @@ Table of Contents
     |   Workload   |        |   Verifier   |        |  Credential Authority  |
     +--------------+        +--------------+        +------------------------+
 
-3.4.  Mechanism B
+5.2.  Mechanism B
 
     +--------------+        +--------------+        +------------------------+
     |   Workload   |        |   Verifier   |        |  Credential Authority  |
@@ -488,7 +519,7 @@ Table of Contents
     |   Workload   |        |   Verifier   |        |  Credential Authority  |
     +------+-------+        +--------------+        +------------------------+
 
-3.5.  Mechanism C
+5.3.  Mechanism C
 
     +--------------+        +------------------------+        +--------------+
     |   Workload   |        |   Credential Authority |        |   Verifier   |
@@ -536,12 +567,12 @@ Table of Contents
     |   Workload   |        |   Credential Authority |        |   Verifier   |
     +------+-------+        +------------+-----------+        +-------+------+
 
-3.6.  Mechanisms D
+5.4.  Mechanisms D
 
    Mechanism D consists of a "Credential Provisioning" phase followed by
    the "Credential Acquisition" phase.
 
-3.6.1.  Credential Provisioning Phase
+5.4.1.  Credential Provisioning Phase
 
     +------------------+      +-------------+      +-------------+      +------------------------+
     |  Workload Owner  |      |  Workload   |      |  Key Store  |      |  Credential Authority  |
@@ -589,7 +620,7 @@ Table of Contents
     |  Workload Owner  |      |  Workload   │      |  Key Store  |      |  Credential Authority  |
     +------------------+      +-------------+      +-------------+      +------------------------+
 
-3.6.2.  Credential Acquisition Phase
+5.4.2.  Credential Acquisition Phase
 
     +--------------+        +--------------+        +-------------------+
     |   Workload   |        |   Verifier   |        |    Key Store      |
@@ -634,7 +665,7 @@ Table of Contents
     |   Workload   |        |   Verifier   |        |    Key Store      |
     +------+-------+        +-------+------+        +-------+-----------+
 
-4.  Security Considerations
+6.  Security Considerations
 
    All communications between entities (Workload to Credential
    Authority, Workload to Verifier etc) MUST be secured using mutually
@@ -651,7 +682,7 @@ Table of Contents
    example in a secure element of the underlying platform running the
    Workload.
 
-5.  Pivacy Considerations
+7.  Pivacy Considerations
 
    Remote Attestation of a Workload requires exchange of attestation
    related messages, for example, Evidence and Attestation Results.
@@ -663,13 +694,13 @@ Table of Contents
    The Credential Key to be released to a Workload MUST always be
    encrypted to avoid potential leakage to unauthorised actors.
 
-6.  IANA Considerations
+8.  IANA Considerations
 
    This document has no IANA actions.
 
-7.  References
+9.  References
 
-7.1.  Normative References
+9.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -680,7 +711,7 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-7.2.  Informative References
+9.2.  Informative References
 
    [I-D.draft-ietf-wimse-arch]
               Salowey, J. A., Rosomakho, Y., and H. Tschofenig,
