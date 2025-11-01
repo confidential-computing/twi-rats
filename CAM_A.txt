@@ -21,11 +21,11 @@
            |  (Evidence)            | Appraise Evidence          |
            |                        +-----------+                |
            |                        |<----------+                |
-           |                        | Compute Credential         |
-           |                        +-----------+ Attributes     |
+           |                        | Invoke Claims Mapper       |
+           |                        +-----------+ to compute Claims
            |                        +<----------+                |
            │                        | Request Credential         |
-           │                        | (Credential Req+ Attrib)   |
+           │                        | (Credential Req+ Claims)   |
            │                        +--------------------------->+
            │                        |   Create & Sign Credential |
            |                        |              +-------------+ 
