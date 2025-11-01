@@ -454,11 +454,11 @@ Table of Contents
            |  (Evidence)            | Appraise Evidence          |
            |                        +-----------+                |
            |                        |<----------+                |
-           |                        | Compute Credential         |
-           |                        +-----------+ Attributes     |
+           |                        | Invoke Claims Mapper       |
+           |                        +-----------+ to compute Claims
            |                        +<----------+                |
            │                        | Request Credential         |
-           │                        | (Credential Req+ Attrib)   |
+           │                        | (Credential Req+ Claims)   |
            │                        +--------------------------->+
            │                        |   Create & Sign Credential |
            |                        |              +-------------+
@@ -506,7 +506,8 @@ Table of Contents
            +<-----------+           |                            |
            │ Request Credential (Cre|dential Request)            |                |
            +------------------------+--------------------------->+
-           │                        |Convert Attestation Results |
+           |                        |    Invoke Claims Mapper to |
+           │                        |convert Attestation Results |
            │                        |   to Credential Attributes |
            |                        |              +-------------+
            |                        |              +------------>|
@@ -525,9 +526,9 @@ Table of Contents
     |   Workload   |        |   Credential Authority |        |   Verifier   |
     +------+-------+        +------------+-----------+        +-------+------+
            |                             |                            |
-    .------+-----------------------------+----------------------------+-----------.
-    |                    Credential Acquisition Phase                             |
-    +------+-----------------------------+----------------------------+-----------+
+    .------+-----------------------------+----------------------------+------.
+    |                    Credential Acquisition Phase                        |
+    +------+-----------------------------+----------------------------+------+
            │ Generate Credential Key     |                            |
            +------------+                |                            |
            +<-----------+                |                            |
@@ -554,9 +555,9 @@ Table of Contents
            |                             |              +------------>+
            │                             | Return Attestation Results |
            │                             +<---------------------------+
-           |                             |                            |
-           |                             |Compute Credential Attrib   |
-           |                             +------------+ (from AR)     |
+           |                             | Invoke Claims Mapper to    |
+           |                             | compute Claims from AR     |
+           |                             +------------+               |
            |                             +<-----------+               |
            │                             | Create & Sign Credential   |
            |                             +------------+               |
@@ -581,12 +582,13 @@ Table of Contents
      +--------+----------------------+--------------------+-------------------------+-----------+
      |                                Credential Provisioning Phase                             |
      +--------+----------------------+--------------------+-------------------------+-----------+
-              │ Create Workload Identifier                |                         |
-              | and Associated Credential Attributes      │                         |
+              | Invoke the Claims Mapper to               |                         |
+              │ create Workload Identifier                |                         |
+              | and Associated Credential Claims          │                         |
               +------------+         |                    |                         |
               +<-----------+         |                    |                         |
               │ Create Credential Key Release Policy      |                         |
-              | based on Workload Reference Values        │                         |
+              | based on anticipated Attestation Results  │                         |
               +------------+         |                    |                         |
               +<-----------+         |                    |                         |
               │ Create Credential Key                     |                         |
