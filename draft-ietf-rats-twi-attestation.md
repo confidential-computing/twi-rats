@@ -162,7 +162,13 @@ Within the RATS Architecture, either of these options can be accomplished in one
 
 In either case, the detailed information about the Workload’s composition conveyed to the Verifier using RATS “Evidence” is mapped to Stable, technology-agnostic, business-oriented claims about the Workload by invoking a new architectural building block called a Claims Mapper, described below.
 
-These three options can be visualised at a high level as:
+These three options can be visualised at a high level as shown below.
+
+E: Evidence
+AR: Attestation Results
+CR: Credential Request
+C: Credential
+
 ## Variant 1
 ~~~ aasvg
 {::include variant_1.txt}
