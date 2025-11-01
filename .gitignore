@@ -18,7 +18,7 @@
 /versioned/
 Gemfile.lock
 archive.json
-draft-novak-twi-attestation.xml
+draft-ietf-rats-twi-attestation.xml
 package-lock.json
 report.xml
 !requirements.txt
