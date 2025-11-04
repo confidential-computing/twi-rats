@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-11-02T01:48:08.092536+00:00",
+  "timestamp": "2025-11-04T01:43:51.664803+00:00",
   "repo": "confidential-computing/twi-rats",
   "labels": [
     {
@@ -71,15 +71,15 @@
       "id": "I_kwDOP1Ynus7Sp4XC",
       "title": "Fill out the Security Considerations sections",
       "url": "https://github.com/confidential-computing/twi-rats/issues/9",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "TheBankster",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Two known issues here:\n- Require use of TLS between the parties, and document the vulnerabilities that might be present if TLS is not used\n- Document lack of freshness in the case where the workload contacts the Credential Authority first and think about mitigations",
       "createdAt": "2025-10-20T22:47:30Z",
-      "updatedAt": "2025-10-20T22:47:30Z",
-      "closedAt": null,
+      "updatedAt": "2025-11-02T14:58:27Z",
+      "closedAt": "2025-11-02T14:58:27Z",
       "comments": []
     }
   ],
